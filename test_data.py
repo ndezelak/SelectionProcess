@@ -15,13 +15,13 @@ def generate_test_data(students_list,companies_list):
 
         students_list.append(Student(list_id=i,
                                    name=available_names[randint(0,3)],
-                                   field_of_study=[Field_of_Study(value=randint(0,3))] ) )
+                                   field_of_study=Field_of_Study(value=randint(0,3)) ) )
 
 
 # Generate random data for companies
     for i in range (0,9):
         companies_list.append(Company(i,name=available_company_names[i],
-                                  field_of_study=Field_of_Study(value=randint(0,3)) ) )
+                                  field_of_study=[ Field_of_Study(value=randint(0,3)) ] ) )
 
 # Pick random companies for each students
 
