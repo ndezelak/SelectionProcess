@@ -2,7 +2,8 @@
 #                           - generate_system_matrix(students,companies)
 #                           - rate_and_sort(students,companies,matrix) (is additionally able to resolve conflicts when too many students want to be with a particular company)
 #
-
+# Created: 27/11/2016
+# Last Change: 29/11/2016
 def generate_system_matrix (students, companies):
     pass
     col_count = len(companies)
@@ -30,16 +31,13 @@ def generate_system_matrix (students, companies):
     for company in companies:
        for student in students:
             for field in company.field_of_study:
-                if student.field_of_study ==field:
-                    if system[student.list_id][company.list_id] == 1:
-                        system[student.list_id][company.list_id] = 3
-                    else:
-                        system[student.list_id][company.list_id] = 2
+                if student.field_of_study == field:
+                    system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + 2
 
     return system
 
 #---------------------------------------------------#
-# rate and sort function
+#
 def rate_and_sort(students,companies,system):
     sorted_students=students
     sorted_companies=companies
@@ -51,17 +49,17 @@ def rate_and_sort(students,companies,system):
                 student.points = student.points + match_value
                 company.points = company.points + match_value
 
+    # Sort both lists. Note that order of the original list already determines the priority of each individual
     sort_by_points(sorted_students)
     sort_by_points(sorted_companies)
     return [sorted_companies,sorted_students]
 
 #---------------------------------------------------#
-# Helper function
+# Helper function - Insertion sort
 def sort_by_points(person_list):
-    # Insertion algorithm
     for master_pointer in range(0,len(person_list)):
         pointer = master_pointer -1
-        while ( pointer > 0):
+        while (pointer >= 0):
             if person_list[pointer].points < person_list[pointer+1].points:
                 # Swap the list elements
                 buffer = person_list[pointer]
