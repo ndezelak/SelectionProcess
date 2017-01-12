@@ -11,17 +11,17 @@ def generate_test_data(students_list,companies_list):
 
 
 # Generate random data for students
-    for i in range (0,200):
+    for i in range (0,39):
 
-        students_list.append(Student(list_id=i,
+        students_list.append(Student(list_id=i,seats=[0,0,0,0],
                                    name=available_names[randint(0,3)],
                                    field_of_study=Field_of_Study(value=randint(0,3)) ) )
 
 
 # Generate random data for companies
-    for i in range (0,9):
-        companies_list.append(Company(i,name=available_company_names[i],
-                                  field_of_study=[ Field_of_Study(value=randint(0,3)) ] ) )
+    for i in range (0,10):
+        companies_list.append(Company(i,[ [] for i in range(4)   ] , name=available_company_names[i],
+                                  field_of_study=[ Field_of_Study(value=randint(0,3)) ] ))
 
 # Pick random companies for each students
 
