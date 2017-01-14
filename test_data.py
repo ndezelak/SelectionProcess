@@ -11,7 +11,7 @@ def generate_test_data(students_list,companies_list):
 
 
 # Generate random data for students
-    for i in range (0,39):
+    for i in range (0,47):
 
         students_list.append(Student(list_id=i,seats=[0,0,0,0],
                                    name=available_names[randint(0,3)],

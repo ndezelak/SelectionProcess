@@ -51,7 +51,7 @@ def divide_students(sorted_students, max_number): # ****** TESTED ****** #
 
     return [passed_students, boundary_region]
 
-# TODO: Finish this function
+#
 def process_boundary(boundary_region, algorithm_step, system, left_places):
     # Depending on the algorithm step consider a given number of points that a student might have and look which one
     # fits the best into the left available seats. The "fill_table" function also has to be used here.

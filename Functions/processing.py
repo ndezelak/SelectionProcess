@@ -137,5 +137,72 @@ def fill_left_places(passed_students, finished_students,sorted_companies, system
     for student in students_to_delete:
         passed_students.remove(student)
 
+# Postprocessing started
+
+# TODO: Finish the postprocessing feature
+# IDEA: try to move students from a crowded round to a less crowded round. Pick the most optimal student from the crowded round.
+def post_process(students,sorted_companies,system):
+    problematic_companies = []
+    index = 0
+
+    # Identify companies with lack of seats at a particular round
+    for company in sorted_companies:
+        for round in range(0,4):
+            if len(company.seats[round]) < MIN_NUM_SEATS:
+                problematic_companies.append([index,round])
+        index = index +1
+    print("Problematic places : ")
+    print(problematic_companies)
+    SOLUTION_FOUND = True
+    # Try to solve each problematic round of a company
+    for target in problematic_companies:
+        sorted_rounds = []
+        if SOLUTION_FOUND == False:
+            print(" Could NOT find a complete solution!")
+        SOLUTION_FOUND = False
+        for round in range(0,4):
+            # Add length of a round to the list to be sorted afterward
+            length = len(sorted_companies[target[0]].seats[round])
+            if  length >= (MIN_NUM_SEATS+1):
+                    sorted_rounds.append( [len(sorted_companies[target[0]].seats[round]),round]  )
+        # Sort the list afterwards
+        sorted_rounds.sort(reverse=True)
+
+        # Go through each enough full round of the company
+        for [length,round] in sorted_rounds:
+            # Pick a random student from that round
+            for student in sorted_companies[target[0]].seats[round]:
+                # Check if the students company at the full round has some space left at the empty round
+                if len(student.seats[target[1]].seats[round]) <= AVAILABLE_SEATS and len(student.seats[target[1]].seats[target[1]]) > MIN_NUM_SEATS:
+                    print(" A solution could be found!")
+                    # Exhange the students seat
+                    company_A = student.seats[round]
+                    company_B = student.seats[target[1]]
+
+                    student.seats[round] = company_B
+                    company_B.seats[round].append(student)
+                    company_B.seats[target[1]].remove(student)
+
+                    student.seats[target[1]] = company_A
+                    company_A.seats[round].remove(student)
+                    company_A.seats[target[1]].append(student)
+
+                    # Check if you still need to reorder more
+                    if len(company_A.seats[target[1]]) >=MIN_NUM_SEATS:
+                        SOLUTION_FOUND = True
+                        break
+                    else:
+                        print(" But still need to do some more work")
+
+            # You have found the solution so you can exit the outer for loop
+            if SOLUTION_FOUND:
+                print("Solution for " + str(target))
+                break
+            else:
+                print("Trying with the next round")
+
+
+
+
 
 

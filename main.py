@@ -29,6 +29,10 @@ fill_tables(passed_students,finished_students,sorted_companies,system,1)
 print (" Let us fill all the left seats")
 fill_left_places(passed_students,finished_students,sorted_companies,system)
 
+print(" Post processing ...")
+post_process(finished_students,sorted_companies,system)
+
+
 # TODO: Implement the boundary region elimination + what to do when students seats are still left after the complete first pass?
 print("---- RESULTS ----")
 for company in sorted_companies:
