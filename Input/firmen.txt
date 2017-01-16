@@ -1,0 +1,50 @@
+Carmeq GmbH: 3 Firmenvertreter
+[Master,Doktoranden,Absolventen]
+
+[Wirtschaftsingenieurwesen, IT, Elektrotechnik]
+
+
+Iserv GmbH: 4 Firmenvertreter
+[Bachelor,Master,Absolventen]
+
+[IT]
+
+BASF SE: 4 Firmenvertreter
+[Master,Doktoranden,Absolventen]
+
+[Maschinenbau,  Elektrotechnik, Chemieingenieurwesen, Verfahrenstechnik]
+
+Bertrandt AG: 4 Firmenvertreter
+[Master,Absolventen]
+
+[Wirtschaftsingenieurwesen,  Elektrotechnik]
+
+Bundeswehr - Braunschweig: 3 Firmenvertreter
+[Bachelor,Master,Doktoranden,Absolventen]
+
+[Maschinenbau ,Wirtschaftsingenieurwesen, IT, Elektrotechnik]
+
+Forschungsgesellschaft Kraftfahrwesen mbH Aachen: 3 Firmenvertreter
+[Doktoranden,Absolventen]
+
+[Maschinenbau, IT, Elektrotechnik]
+
+H&D International Group: 3 Firmenvertreter
+[Master,,Absolventen]
+
+[Maschinenbau, IT]
+
+Miele & Cie. KG: 4 Firmenvertreter
+[Bachelor, Master,Doktoranden,Absolventen]
+
+[Maschinenbau, Wirtschaftsingenieurwesen, IT, Elektrotechnik]
+
+P3 Automotive GmbH: 3 Firmenvertreter
+[Master,Absolventen]
+
+[Maschinenbau,Wirtschaftsingenieurwesen, IT, Elektrotechnik]
+
+Zielpuls GmbH:4 Firmenvertreter
+[Master,Absolventen]
+
+[Maschinenbau, Wirtschaftsingenieurwesen, IT, Elektrotechnik]

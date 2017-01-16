@@ -8,9 +8,16 @@ class Field_of_Study(Enum):
     MB = 1
     INF = 2
     WIW = 3
+    NAT = 4
 
+class Degree(Enum):
+    BACHELOR = 0
+    MASTER = 1
+    PROMOTION = 2
+    DOCTOR = 3
+    ABSOLVENT = 4
 class Student:
-    def __init__(self, list_id, seats,name="Empty", field_of_study = Field_of_Study.EE, text = "Empty", companies = [], points = 0, other_points=0):
+    def __init__(self, list_id, seats,name="Empty", field_of_study = Field_of_Study.EE, text = "Empty", companies = [], points = 0, degree = [], other_points=0):
         self.name=name
         self.field_of_study=field_of_study
         self.text = text
@@ -19,14 +26,16 @@ class Student:
         self.points=points
         self.seats=seats
         self.other_points = other_points
+        self.degree = degree
 
 class Company:
-    def __init__(self, list_id, seats, name="Empty", field_of_study = [Field_of_Study.EE], points = 0, ):
+    def __init__(self, list_id, seats, name="Empty", field_of_study = [Field_of_Study.EE], points = 0, degrees = []):
         self.name=name
         self.field_of_study=field_of_study
         self.list_id=list_id
         self.points=points
         self.seats=seats
+        self.degrees = degrees
 
 
 
