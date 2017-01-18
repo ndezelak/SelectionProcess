@@ -7,7 +7,8 @@ from config import *
 from dominate.tags import *
 from dominate import *
 
-
+#TODO: Construct an HTML that gives a global overview of all rounds
+#TODO: Output matching success for each student and company
 print('Starting the program ...')
 print('Small change')
 #students = Student(0,name="Nejc Dezelak",field_of_study=Field_of_Study.EE)
@@ -36,6 +37,8 @@ print('Elimination process started ...')
 
 # Occupy seats starting with perfect matches
 print('--------------  OCCUPYING SEATS ---------------')
+print("First pass, 5 points")
+fill_tables(passed_students,finished_students,sorted_companies,system,5)
 print("First pass, 4 points")
 fill_tables(passed_students,finished_students,sorted_companies,system,4)
 print("First pass, 3 points")
@@ -59,6 +62,13 @@ for company in sorted_companies:
         print(len(company.seats[row]))
 print ("Number of passed students:" + str(len(finished_students) + len(passed_students)))
 print ("Number of finished students:" + str(len(finished_students)) )
+
+for student in finished_students:
+    points = 0
+    for company in student.seats:
+        if company in student.companies:
+            points = points +1
+    print(" Student " + student.name +" "+ str(points)+"/4. Chosen together: "+ str(len(student.companies)))
 
 # HTML document construction
 
@@ -91,6 +101,7 @@ file.close()
 file = open('Output\HTML_company_list.html','w')
 file.write(str(doc2))
 file.close()
+
 
 # Seat plan for each student
 i = 0

@@ -4,7 +4,7 @@
 #
 # Created: 27/11/2016
 # Last Change: 09/01/2016
-
+from config import *
 
 def generate_system_matrix (students, companies): # ****** TESTED ****** #
     pass
@@ -26,7 +26,7 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
         student.list_id = count
         for company in student.companies:
             # One point means the student prefers the company
-            system[count][company.list_id] = 1
+            system[count][company.list_id] = STUDENT_POINTS
         count = count + 1
 
 
@@ -36,14 +36,14 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
                 for student_field in student.field_of_study:
                     # Field of study match gives 2 points
                     if student_field in company.field_of_study:
-                        system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + 2
+                        system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + COMPANY_FIELD_OF_STUDY_POINTS
                         if student.degree in company.degrees:
-                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + 1
+                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + COMPANY_DEGREE_POINTS
                         break
                     # Additional degree match gives one more point
                     else:
                         if student.degree in company.degrees:
-                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + 1
+                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + COMPANY_DEGREE_POINTS
                             break
 
 

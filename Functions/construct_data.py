@@ -58,13 +58,14 @@ def read_csv(students, companies):
     # Read .csv file rows and construct data structures
     file = open('Input/studenten.csv','r')
     rows = reader(file, delimiter = ';')
+    k = 0
     i = 0
     for row in rows:
-        if i == 0:
-            i = i+1
+        # Skip first row as it has no data
+        if k == 0:
+            k = 1
             continue
-        #print(row)
-        #print(row[6].split(','))
+
         data = row[7].split(',')
         major=[]
 
@@ -108,10 +109,18 @@ def read_csv(students, companies):
                 if comp in company.name:
                     pref_companies.append(company)
                     break
-                # Special case for a company that is corrupted in the input data
 
+        # Hack for Vanessa
+        meumann_companies = ['Miele & Cie. KG', 'BASF AG', 'Zielpuls GmbH', 'Bertrandt AG' ]
+        j = 0
+        seats = [0,0,0,0]
+        if 'Meumann' in row[1]:
+            for company in companies:
+                if company.name in meumann_companies:
+                    seats[j]=company
+                    j = j+1
+        else:
+            seats = [0,0,0,0]
+        students.append(Student(i,seats=seats,name=row[0]+" "+row[1],field_of_study=major,companies = pref_companies, degree=degree))
 
-
-
-        students.append(Student(i,[0,0,0,0],name=row[0]+" "+row[1],field_of_study=major,companies = pref_companies, degree=degree))
-        i = i+1
+        i = i +1
