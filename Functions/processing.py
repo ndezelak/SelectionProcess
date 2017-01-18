@@ -3,7 +3,7 @@
 #                           - fill_left_places(passed_students, finished_students,sorted_companies, system)
 #                           - post_process(students,sorted_companies,system)
 # Created: 29/11/2016
-# Last Change: 15/01/2017
+# Last Change: 17/01/2017
 
 from config import *
 
@@ -31,9 +31,10 @@ def fill_student(algorithm_step, student, system, sorted_companies):
     num_companies = len(sorted_companies)
 
     for i in range(0,len(sorted_companies)):
+        index = num_companies - 1 - i
         # If the system value equals the algorithm step then you fill the seats
-        #if system[student.list_id][sorted_companies[num_companies -1 -i].list_id] == algorithm_step:
-        if system[student.list_id][sorted_companies[i].list_id] == algorithm_step:
+        if system[student.list_id][sorted_companies[index].list_id] == algorithm_step:
+        #if system[student.list_id][sorted_companies[i].list_id] == algorithm_step:
                 row = 0
                 while row <=3:
                         # Check if students round is not yet filled
@@ -41,18 +42,18 @@ def fill_student(algorithm_step, student, system, sorted_companies):
                             row = row +1
                             continue
                         # If there is enough space at the companies table then add student to the round
-                        if len(sorted_companies[i].seats[row]) < AVAILABLE_SEATS:
-                            sorted_companies[i].seats[row].append(student)
-                            student_seats[row]=sorted_companies[i]
+                        if len(sorted_companies[index].seats[row]) < AVAILABLE_SEATS:
+                            sorted_companies[index].seats[row].append(student)
+                            student_seats[row]=sorted_companies[index]
                             break
                         row = row +1
                # If you could not find a seat at the company
                 if row >= 4:
-                        print("Student" + str(student.list_id) + " could not find seat at company " + sorted_companies[num_companies -1 -i].name)
+                        print("Student" + str(student.list_id) + " could not find seat at company " + sorted_companies[index].name)
                         # Search for solution
                         print("Finding solution ...!")
                         #reorder_seats(student, sorted_companies[num_companies -1 -i])
-                        reorder_seats(student, sorted_companies[i])
+                        reorder_seats(student, sorted_companies[index])
                 # If all student seats are full, skip the further process
                 if 0 not in student_seats:
                     break
@@ -118,7 +119,9 @@ def fill_left_places(passed_students, finished_students,sorted_companies, system
                 for company in sorted_companies:
                     # As companies are sorted companies with the list number of points are prioritized
                     # Making sure a student is not added to a company twice
-                    if len(company.seats[row]) <= min_seats and system[student.list_id][company.list_id] == 0:
+                    if len(company.seats[row]) <= min_seats and system[student.list_id][company.list_id] == 0 and \
+                        (company != student.seats[0] and company != student.seats[1] and company != student.seats[2]
+                        and company != student.seats[3]):
                         min_seats = len(company.seats[row])
                         min_company_index = index
                     index = index +1
@@ -126,6 +129,7 @@ def fill_left_places(passed_students, finished_students,sorted_companies, system
                 # TODO: How to handle this case??
                 if min_company_index == -1:
                     print("student" + str(student.list_id) + " could not found any left seat in the row " + str(row)+"!")
+                    print("Problematic student: " + student.name)
                 else:
                     print("student"+str(student.list_id)+" has found a left seat in the round " + str(row) +"!")
                     sorted_companies[min_company_index].seats[row].append(student)

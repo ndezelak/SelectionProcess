@@ -84,7 +84,7 @@ def read_csv(students, companies):
                 print('Unknown major ' + _major + " for student " + row[0] + " " + row[1])
 
         # Degree of study
-        data = row[4]
+        data = row[5]
         degree = []
         if data in 'Bachelor':
             degree = Degree.BACHELOR
@@ -108,8 +108,10 @@ def read_csv(students, companies):
                 if comp in company.name:
                     pref_companies.append(company)
                     break
+                # Special case for a company that is corrupted in the input data
 
 
 
-        students.append(Student(i,[0,0,0,0],name=row[0]+" "+row[1],field_of_study=major,companies = pref_companies))
+
+        students.append(Student(i,[0,0,0,0],name=row[0]+" "+row[1],field_of_study=major,companies = pref_companies, degree=degree))
         i = i+1

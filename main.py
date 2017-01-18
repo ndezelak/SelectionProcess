@@ -1,6 +1,4 @@
-# Main fle
-from Classes.Person import *
-from test_data import *
+# Main file
 from Functions.rating_procedure import *
 from Functions.elimination import *
 from Functions.processing import *
@@ -8,9 +6,10 @@ from Functions.construct_data import *
 from config import *
 from dominate.tags import *
 from dominate import *
-import os
+
 
 print('Starting the program ...')
+print('Small change')
 #students = Student(0,name="Nejc Dezelak",field_of_study=Field_of_Study.EE)
 #companies = Company(0,name="Infenion",field_of_study=[Field_of_Study.EE,Field_of_Study.MB],seats=[students])
 
@@ -37,6 +36,8 @@ print('Elimination process started ...')
 
 # Occupy seats starting with perfect matches
 print('--------------  OCCUPYING SEATS ---------------')
+print("First pass, 4 points")
+fill_tables(passed_students,finished_students,sorted_companies,system,4)
 print("First pass, 3 points")
 fill_tables(passed_students,finished_students,sorted_companies,system,3)
 print("First pass, 2 points")
@@ -96,17 +97,28 @@ i = 0
 for student in finished_students:
     doc = document()
     doc+=style("h1{text-align:center}")
-    doc+=style("h2{text-align:center}")
+    doc+=style("h3{text-align:center}")
+    doc += style("h2{text-align:center; color:darkblue}")
+    doc += style("h4{text-align:center}")
     doc+=style("div{text-align:center}")
+    doc.head.add_raw_string("<header><center><img src=""logo.png"" alt=""Something"" align=""middle""></center></header>")
+    doc+=br()
+    doc+=br()
+
     doc+=h1(student.name)
+    doc+=br()
+
+    #doc.body.add_raw_string("<body background=""logo.jpg"">")
+
     for round in range(0,4):
-        doc+=h2("Runde "+str(round+1)+":")
-        doc+=div("Firma:"+str(student.seats[round].name))
-        doc+=div("Tischnummer:"+str(student.seats[round].list_id+1))
+        doc+=h3("Gang "+str(round+1))
+        doc+=h2(str(student.seats[round].name))
+        doc+=h4("Tischnummer:"+str(student.seats[round].list_id+1))
         doc+=br()
+   # doc.body.add_raw_string("<footer><center><img src=""logo.png"" alt=""Something"" align=""middle""></center></footer>")
 
     # Output result ot a specific file
-    file=open('Output\Students\sitzplan_'+str(student.name)+str(i)+'.html','w')
+    file=open("Output/Students/"+str(student.name)+'.html','w')
     file.write(str(doc))
     file.close()
     i = i+1

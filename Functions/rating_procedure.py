@@ -33,11 +33,20 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
     # Fill additionally the coloumns
     for company in companies:
        for student in students:
-           # Go through each companies field of study
-            for field in company.field_of_study:
-                # If there is a company match add 2 points ot the matrix value
-                if student.field_of_study == field:
-                    system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + 2
+                for student_field in student.field_of_study:
+                    # Field of study match gives 2 points
+                    if student_field in company.field_of_study:
+                        system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + 2
+                        if student.degree in company.degrees:
+                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + 1
+                        break
+                    # Additional degree match gives one more point
+                    else:
+                        if student.degree in company.degrees:
+                            system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + 1
+                            break
+
+
 
     return system
 
