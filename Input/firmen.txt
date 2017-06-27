@@ -1,50 +1,11 @@
-Carmeq GmbH: 3 Firmenvertreter
-[Master,Doktoranden,Absolventen]
-
-[Wirtschaftsingenieurwesen, IT, Elektrotechnik]
-
-
-Iserv GmbH: 4 Firmenvertreter
-[Bachelor,Master,Absolventen]
-
-[IT]
-
-BASF SE: 4 Firmenvertreter
-[Master,Doktoranden,Absolventen]
-
-[Maschinenbau,  Elektrotechnik, Chemieingenieurwesen, Verfahrenstechnik]
-
-Bertrandt AG: 4 Firmenvertreter
-[Master,Absolventen]
-
-[Wirtschaftsingenieurwesen,  Elektrotechnik]
-
-Bundeswehr - Braunschweig: 3 Firmenvertreter
-[Bachelor,Master,Doktoranden,Absolventen]
-
-[Maschinenbau ,Wirtschaftsingenieurwesen, IT, Elektrotechnik]
-
-Forschungsgesellschaft Kraftfahrwesen mbH Aachen: 3 Firmenvertreter
-[Doktoranden,Absolventen]
-
-[Maschinenbau, IT, Elektrotechnik]
-
-H&D International Group: 3 Firmenvertreter
-[Master,,Absolventen]
-
-[Maschinenbau, IT]
-
-Miele & Cie. KG: 4 Firmenvertreter
-[Bachelor, Master,Doktoranden,Absolventen]
-
-[Maschinenbau, Wirtschaftsingenieurwesen, IT, Elektrotechnik]
-
-P3 Automotive GmbH: 3 Firmenvertreter
-[Master,Absolventen]
-
-[Maschinenbau,Wirtschaftsingenieurwesen, IT, Elektrotechnik]
-
-Zielpuls GmbH:4 Firmenvertreter
-[Master,Absolventen]
-
-[Maschinenbau, Wirtschaftsingenieurwesen, IT, Elektrotechnik]
+1.Arvato:Informatik, Jura, Technische Informatik, Wirtschaftsinformatik, Wirtschaftswissenschaften, Mathematik
+2.Cmore Automotive:Elektrotechnik, Fahrzeugtechnik, Informatik, Maschinenbau, Mathematik, Mechatronik, Wirtschaftswissenschaften, Technische Informatik, Wirt.Ing. Maschinenbau, Wirt.Ing. Elektrotechnik
+3.DBK: Elektrotechnik, Maschinenbau
+4.Ferchau: Bauingenieurwesen, Chem.-Ing / Verf.-technik, Elektrotechnik, Fahrzeugtechnik, Feinwerktechnik, Informatik, Kommunikationswissenschaften, Maschinenbau, Optik, Physik, Technische Redaktion, Wirtschaftsingenieurwesen, Geowissenschaften, Wirt.Ing. Maschinenbau, Wirt.Ing. Elektrotechnik, Wirtschaftsinformatik, Technische Informatik, Verfahrenstechnik, Medizintechnik, Mechatronik, Nachrichtentechnik, Materialwissen¬schaften
+5.ICIS: Informatik, Wirt.Ing. Elektrotechnik, Wirt.Ing. Maschinenbau, Wirtschaftsinformatik, Wirtschaftswissenschaften 	
+6.Infologistix: Informatik, Mathematik, Wirtschaftsinformatik, Elektrotechnik, Technische Informatik
+7.Itk: Elektrotechnik, Fahrzeugtechnik, Informatik, Luft- und Raumfahrttechnik, Maschinenbau, Mathematik, Naturwissenschaften, Physik, Wirtschaftsingenieurwesen
+8.Mahle: Elektrotechnik, Fahrzeugtechnik, Luft- und Raumfahrttechnik, Maschinenbau, Wirtschafts¬ingenieurwesen, Wirtschaftswissenschaften, Wirt.Ing. Maschinenbau
+9.Vodafone: Wirtschaftsingenieurwesen, Wirtschaftswissenschaften, Informatik, Wirtschaftsinformatik, Wirt.Ing. Elektrotechnik, Kommunikationswissenschaften, Nachrichtentechnik, Psycholo¬gie, Technische Informatik
+10.T&S: Elektrotechnik, Fahrzeugtechnik, Informatik, Luft- und Raumfahrttechnik, Mechatronik, Wirt.Ing. Elektrotechnik, Technische Informatik
+11.Zurcher: Bauingenieurwesen, Wirtschaftsingenieurwesen, Geowissenschaften, Wirt.Ing. Bauinge¬nieur

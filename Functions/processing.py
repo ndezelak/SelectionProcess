@@ -36,7 +36,7 @@ def fill_student(algorithm_step, student, system, sorted_companies):
         if system[student.list_id][sorted_companies[index].list_id] == algorithm_step:
         #if system[student.list_id][sorted_companies[i].list_id] == algorithm_step:
                 row = 0
-                while row <=3:
+                while row <=(NUM_ROWS-1):
                         # Check if students round is not yet filled
                         if student_seats[row]!=0:
                             row = row +1
@@ -48,7 +48,7 @@ def fill_student(algorithm_step, student, system, sorted_companies):
                             break
                         row = row +1
                # If you could not find a seat at the company
-                if row >= 4:
+                if row >= NUM_ROWS:
                         print("Student" + str(student.list_id) + " could not find seat at company " + sorted_companies[index].name)
                         # Search for solution
                         print("Finding solution ...!")
@@ -66,14 +66,14 @@ def reorder_seats(student, conflicted_company):
         free_seats = []
         filled_seats = []
         # Determine students free seats
-        for row in range(0,4):
+        for row in range(0,NUM_ROWS):
             if student.seats[row] == 0:
                 free_seats.append(row)
             else:
                 filled_seats.append(row)
         # Determine conflicting company free rounds
         free_rounds = []
-        for round in range(0,4):
+        for round in range(0,NUM_ROWS):
             if len(conflicted_company.seats[round]) < AVAILABLE_SEATS:
                 free_rounds.append(round)
 
@@ -109,19 +109,18 @@ def reorder_seats(student, conflicted_company):
 def fill_left_places(passed_students, finished_students,sorted_companies, system):
     students_to_delete = []
     for student in passed_students:
-        for row in range(0,4):
+        for row in range(0,NUM_ROWS):
             # If students seat is still empty
             if student.seats[row] == 0:
                 min_company_index = -1
-                min_seats = AVAILABLE_SEATS
+                min_seats = AVAILABLE_SEATS+1
                 index = 0
                 # Find the company with the least occupied seats at that round
                 for company in sorted_companies:
-                    # As companies are sorted companies with the list number of points are prioritized
+                    # As companies are sorted companies with the least number of points are prioritized
                     # Making sure a student is not added to a company twice
-                    if len(company.seats[row]) <= min_seats and system[student.list_id][company.list_id] == 0 and \
-                        (company != student.seats[0] and company != student.seats[1] and company != student.seats[2]
-                        and company != student.seats[3]):
+                    if len(company.seats[row]) < min_seats and system[student.list_id][company.list_id] == 0 and \
+                        (company not in student.seats):
                         min_seats = len(company.seats[row])
                         min_company_index = index
                     index = index +1
@@ -151,7 +150,7 @@ def post_process(students,sorted_companies,system):
 
     # Identify companies with lack of seats at a particular round
     for company in sorted_companies:
-        for round in range(0,4):
+        for round in range(0,NUM_ROWS):
             if len(company.seats[round]) < MIN_NUM_SEATS:
                 problematic_companies.append([index,round])
         index = index +1
@@ -166,8 +165,8 @@ def post_process(students,sorted_companies,system):
             print(" Could NOT find a complete solution!")
         SOLUTION_FOUND = False
 
-        # Sort filled companies round by length
-        for round in range(0,4):
+        # Sort filled(nonproblematic) companies round by length
+        for round in range(0,NUM_ROWS):
             length = len(sorted_companies[target[0]].seats[round])
             if  length >= (MIN_NUM_SEATS+1):
                     sorted_rounds.append( [len(sorted_companies[target[0]].seats[round]),round]  )

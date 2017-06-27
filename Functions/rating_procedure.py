@@ -14,11 +14,11 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
     # Python list comprehension generating a M X N matrix
     system = [ [0 for x in range(col_count)] for y in range(row_count) ]
 
-    count = 0
+    #count = 0
     # Add index number to each company
-    for company in companies:
-        company.list_id = count
-        count = count +1
+   # for company in companies:
+     #   company.list_id = count
+     #   count = count +1
 
     count = 0
     # Add index number to each student and fill the rows of the matrix

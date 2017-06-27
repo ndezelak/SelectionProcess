@@ -9,6 +9,7 @@ class Field_of_Study(Enum):
     INF = 2
     WIW = 3
     NAT = 4
+    SONSTIGES = 5
 
 class Degree(Enum):
     BACHELOR = 0
@@ -29,7 +30,7 @@ class Student:
         self.degree = degree
 
 class Company:
-    def __init__(self, list_id, seats, name="Empty", field_of_study = [Field_of_Study.EE], points = 0, degrees = []):
+    def __init__(self, list_id=0, seats=0, name="Empty", field_of_study = [Field_of_Study.EE], points = 0, degrees = []):
         self.name=name
         self.field_of_study=field_of_study
         self.list_id=list_id

@@ -1,50 +1,69 @@
-Vorname;Nachname*;Telefon;E-Mail;Studiengang;Studienabschnitt;Firmen;St+H:AAudium
-Victoria Areli;Bracamontes Vazquez;15171243149;vbracamontes.bss@gmail.com;Maschbau-Luft und Raumfahrttechnik;Bachelor;Carmeq,Bundeswehr,Bertrandt AG,P3;Maschinenbau
-Ariana;Martin;17655562186;ariana.sophia.martin@gmail.com;Psychologie;Bachelor;Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,Miele,P3;Sonstiges 
-Niklas;Casper;4,92E+12;n.casper@tu-bs.de;Physik;Promotion;Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,P3,Zielpuls,IServ ;Naturwissenschaften
-Mustafa;Yikilmaz;1721582375;mustafa213@web.de;(Wirtschaftsingenieurwesen) Maschinenbau;Master;Bertrandt AG,Carmeq,Miele,P3;Maschinenbau
-Burhan ;Sandede;1723659200;b.sandede@tu-bs.de;;Master;BASF,Bertrandt AG,Bundeswehr,Forschungsgesellschaft Kraftfahrwesen mbH ,Miele;Wirtschaftsingenieurswesen
-Patrick;Kurtz;1744036058;patrick.kurtz@vwi-bs.de;Wirtschaftsingenieurwesen Maschinenbau;Bachelor;BASF,Bertrandt AG,Miele,P3;Maschinenbau
-Karin;Flaig;15253456086;K.Flaig@tu-bs.de;;Master;Bertrandt AG,Bundeswehr,P3,Zielpuls;Maschinenbau
-Kanischka;Anwari;0174 - 104 2004;k.anwari@hotmail.de;Technologie-orientiertes Management;Master;BASF,Bertrandt AG,Bundeswehr,H&D International Group,Miele,P3;Wirtschaftsingenieurswesen
-Leila;Lazemi;1631991877;l.lazemi@tu-bs.de;;Promotion;Zielpuls;Naturwissenschaften
-Onno Jacobus;Jansen;15125202826;jakobjansen@gmx.de; Fahrzeugtechnik ;Master;Carmeq,H&D International Group,P3,Zielpuls;Maschinenbau
-Michael;Bunse;17680655124;m.bunse@tu-bs.de;Wirtschaftsingenieurswesen Elektrotechnik;Master;BASF,Miele,P3,Zielpuls;Elektrotechnik
-Kristina;Nikolaus;16090888870;kristinanikolaus@gmx.de;Technologie-orientiertes Management;Master;BASF,Bertrandt AG,Bundeswehr,Carmeq,H&D International Group,Miele,P3,Zielpuls,IServ ;Sonstiges 
-Cindy;Bailer;0531/29565152;cindybailer@web.de;Umweltingenieurwesen;Master;BASF,Bertrandt AG,Bundeswehr,P3;Sonstiges 
-Jonas;Bobe;15256111872;jonas.bobe@gmx.de;Wirtschaftsingenieurwesen Studienrichtung Maschinenbau;Absolvent;BASF,Bertrandt AG,Carmeq,H&D International Group,Miele,P3;Wirtschaftsingenieurswesen
-Daniel;Malsam;15259771365;daniel_malsam@web.de;Maschinenbau ;Bachelor;Bertrandt AG,Bundeswehr,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group;Maschinenbau
-Mona;Meyer-Hollmann;17670957295;m.meyer-hollmann@tu-bs.de;Chemie;Master;BASF,Bundeswehr,H&D International Group,P3;Naturwissenschaften
-Nathalie ;Werner;17657808697;n.werner@tu-braunschweig.de;Integrierte Sozialwissenschaften;Bachelor;BASF,Bundeswehr,Miele,IServ ;Sonstiges 
-Tushar;Shring;15145950693;tushar007shring@gmail.com;Elektrotechnik;Master;Bertrandt AG,Forschungsgesellschaft Kraftfahrwesen mbH ,Miele,P3,IServ ;Elektrotechnik
-Christian;Franke;15775988708;franke.chri@googlemail.com;Wirtschaftsingenieur Maschinenbau;Bachelor;BASF,Bertrandt AG,Miele,P3,Zielpuls;Wirtschaftsingenieurswesen
-Abdullah;Sadeq;17630739897;a.sadeq@tu-Braunschweig.de;Bioingenieurwesen;Master;BASF;Maschinenbau,Naturwissenschaften
-Jennifer;Bartsch;17676105328;jennifer.bartsch@bonding.de;;Promotion;BASF,Bertrandt AG,Carmeq,H&D International Group,P3,Zielpuls;Naturwissenschaften
-Thomas ;Löbel;1733840866;thomas.loebel@dlr.de;-;Promotion;BASF,Bundeswehr,H&D International Group,P3,Zielpuls;Maschinenbau
-Chunxiao;Chen;15902678364;c.chen@tu-bs.de;Fahrzeugtechnik;Master;Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,P3;Maschinenbau
-Prasanth;Subramani;4,92E+12;p.subramani@tu-bs.de;Computational Science in Engineering;Master;BASF,Bundeswehr,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,P3;Maschinenbau,Wirtschaftsingenieurswesen,Naturwissenschaften
-Alexander;Meumann ;1601835887;alexandermeumann@web.de;Maschinenbau Wirtschaft ;Bachelor;BASF,Bertrandt AG,Miele,Zielpuls;Maschinenbau
-Sander;Berming;1737077911;sander.berning@gmail.com;Wing mb;Absolvent;Carmeq,H&D International Group,Miele,P3;Wirtschaftsingenieurswesen
-Dirk;Michaelsen;17697871878;dirkmichaelsen@gmx.de;;Absolvent;BASF,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls,IServ ;Maschinenbau
-Natraj Athreya;Ariyur Suryanarayanan;1767108251;asnathreya@gmail.com;Maschinenbau;Master;BASF,Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls,IServ ;Maschinenbau
-Aizar;Berlanga;4,92E+11;aizar.aa95@gmail.com;Luft-und Raumfahrttechnik;Master;Bertrandt AG,Bundeswehr,Carmeq,P3;Maschinenbau
-Desislava;Balabanova;15774068968;desislava.balabanova7@gmail.com;ToM;Master;BASF,Bertrandt AG,Bundeswehr,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls,IServ ;Sonstiges 
-Oualid;Amri;0176-72483833;am_oualid@hotmail.de;;Master;BASF,Bertrandt AG,Bundeswehr,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls;Maschinenbau
-Oscar Andres;Flores Garza;4,92E+12;oscar.andres.fg@gmail.com;Wirtschaftsingenieurswesen;Bachelor;BASF,Bertrandt AG,Carmeq,Miele,P3;Wirtschaftsingenieurswesen
-Mohit;Talele;15215112229;m.talele@tu-bs.de;Computational Science in Engineering;Master;Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele;Maschinenbau
-Niklas;Schwertner;1722336147;n.schwertner@tu-bs.de;Wirtschaftsingenieurwesen Maschinenbau, Produktions- und Systemtechnik;Master;Miele,P3,Zielpuls,IServ ;Wirtschaftsingenieurswesen
-David;Arnhold;17630106431;davidarnhold@web.de;Wirtschaftsingenieur Maschinenbau;Bachelor;BASF,Carmeq,Miele,IServ ;Maschinenbau
-Julius;Hass;1793931715;julius.hass@gmail.com;Kommunikationsmanagement - FH Ostfalia;Master;BASF,Bertrandt AG,Bundeswehr,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls,IServ ;Sonstiges 
-Nicole;Flieger;15114184052;n.flieger@tu-bs.de;Wirtschaftsingenieurwesen Maschinenbau;Bachelor;BASF,Bertrandt AG,P3,Zielpuls;Maschinenbau,Wirtschaftsingenieurswesen
-Christoph;Bernitt;17627609004;c.bernitt@tu-bs.de;;Bachelor;Bertrandt AG,Miele,P3,Zielpuls;Maschinenbau
-Xi;Liu;15237824340;wilson_xiliu@hotmail.com;MBA;Master;BASF,Bertrandt AG,Bundeswehr,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls,IServ ;Wirtschaftsingenieurswesen
-Anshuman;Chauhan;4,92E+12;anshuman1193@gmail.com;Computational Sciences in engineering;Master;Bertrandt AG,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3;Maschinenbau
-Feng;Pan;17655551293;f.pan@tu-braunschweig.de;Maschinenbau ;Bachelor;Miele,Zielpuls;Maschinenbau
-Per;Grunenberg;5311294368;Per_Grunenberg@yahoo.de;Elektrotechnik ;Absolvent;BASF,Bertrandt AG,Carmeq,Miele,Zielpuls;Elektrotechnik
-Alex;Arunov;17695577359;alex.arunov@gmail.com;Wirtschaftsingenieurwesen;Absolvent;Bertrandt AG,Carmeq,H&D International Group,Miele,P3;Wirtschaftsingenieurswesen
-Rick;Pingel;17632049468;rick.pingel@web.de;Wirtschaftsingenieurwesen Maschinenbau;Master;Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,P3,Zielpuls;Wirtschaftsingenieurswesen
-Ramon Felipe;Brandão do Nascimento;15736438455;ramonfnasc@gmail.com;Maschinenbau;Bachelor;BASF,Bertrandt AG,Bundeswehr,Carmeq,Forschungsgesellschaft Kraftfahrwesen mbH ,H&D International Group,Miele,P3,Zielpuls;Maschinenbau
-Malte ;Bräumer;17662083935;malte.braeumer@googlemail.com;WIING MB ;Master;Bertrandt AG,Carmeq,Miele,P3,Zielpuls;Maschinenbau,Wirtschaftsingenieurswesen
-Tobias;Jakob;15226618407;jakob.genthin95@gmail.com;Wirtschaftsingenieurwesen Bau;Bachelor;BASF,Bundeswehr,P3,Zielpuls;Wirtschaftsingenieurswesen
-Francescoli Aldair;Hernandez Castillo;4,92E+12;frank_hdz16@hotmail.com;Mechatronik;Bachelor;Bertrandt AG,Carmeq,P3,Zielpuls;Elektrotechnik,Maschinenbau,Informatik,Wirtschaftsingenieurswesen
-sebastian;schrödter;48503700800;sschrodter@gmail.com;;Bachelor;Bertrandt AG,Miele,P3,Zielpuls;Maschinenbau
+Nachname*;Vorname;Studiengang;Studienabschnitt;Firmen
+Abdelhedi;Ahmed;Wing;Bachelor;
+Abel;Christopher;Wirtschaftsingenieurwesen;Absolvent;ITK, Mahle, Vodafone
+Adib;Mustahsin;Electronic, Nanotechnology, Gas sensor;Promotion;Ferchau, T&S, Mahle, Cmore
+Ahmed;Mustakim ;Informatik ;Bachelor;
+Altun;Bilal;Wirtschaftsingenieurwesen;Master;
+Annadurai;Chandra prakash;Sensor systems technology;Master;
+Ayaz;Isa Can;Wirtschaftsingenieurwesen ;Bachelor;
+Ben Naceur;Souha;Wirtschaftsingenieurwesen;Bachelor;
+Benke;Desirée ;Wirtschaftsingenieurwesen;Master;
+Bornkessel;Tim;Wissenschaft-Medien-Kommunikation (KIT);Master;
+Brisam;Riadh;General Management, Schwerpunkt HR & Diversity;Master;
+Bücher;Tim;Informatik;Bachelor;Ferchau 
+Choudhury;Subhobroto;;Master;
+Czajkowski;David ;M.Sc.(Hons.) Advanced Materials  and Processes (Friedrich-Alexander-Universität, Erlangen-Nürnberg);Absolvent;Mahle, Ferchau
+Delgado Collazos;Andrea;Wirtschaftsingenieurwessen;Bachelor;
+Dharmarajan;Shankar;;Master;
+DIAZ;EDUARD;;Absolvent;
+Du;Wei;Materialwissenschaft;Master;
+Eghbalpoor;Ali;Chemieingenieurwesen;Master;
+Ernst;Eugen;(Wirtschafts-)Mathematik;Bachelor;
+Glaser;Konstantin;Physik / Elektrotechnik;Promotion;DBK, Tschach, Mahle, Cmore, IKT, Ferchau
+Günther;Patrick;Mechatronik;Bachelor;DBK, ITK, Mahle
+Güvenc;Sarper Ege;TVWL;Bachelor;Arvato, Vodafone
+Häußler;Fabian;Maschinenbau;Master;
+Hohmann;Johannes;Wirtschaftsingenieurwesen;Master;Mahle, Arvato, T&S,Vodafone, Infologistix, arvato
+Jiang;Yonghui;Maschinenbau: Robotik und Mechatronik;Master;
+Kaupp;Benjamin;International Management;Bachelor;
+Kraft;Christopher;Wing;Master;
+Kumaravelu;Prarthana;;Master;
+Legler;Tatjana;Maschinenbau - Produktionstechnik;Master;ITK, DBK, Ferchau
+Leingang;Florian;Elektrotechnik / Automatisierungstechnik;Bachelor;
+Li;Kai ;Maschinenbau in Richtung Fahrzeugtechnik;Master;
+Li;Hongze;Maschinenbau;Master;
+Lindner;Gerd;Informatik;Master;ITK, DBK, Ferchau, Tschach
+Liu;Yuanjing ;Maschinenbau ;Master;
+Lujan;Pamela;;Master;
+Ma;Huiru;Maschinenbau;Master;
+Manthey;Sarah;Integrative Sozialwissenschaft;Master;
+Mielke ;Thibaut ;Maschinenbau ;Master;
+NARAYANAN;ESHWARAN;Sensor System Technology;Master;
+Natarajan;Ashok;Sensor System Technology;Master;
+Nghiem;Hong Nam;MIT;Master;
+Osuna Arrieta;Adriana;Materialwissenschaften;Absolvent;
+Rafdionza;Farhan;Elektro- und Informationstechnik;Master;
+Rastegar;Damoon;Maschinenbau;Master;
+Sagaya Janet;Clinton;Sensor Systems Technology;Master;
+Scherer;Marc;Fachschule Maschinenbau;Absolvent;ITK, DBK
+Schimmelpfennig-Röhm;Max;International Business;Bachelor;
+Schmidgruber;Nils;;Master;Itk,cmore
+Seidel;Patrick;Maschinenbau;Master;
+Seydel;Reinhard;Maschinenbau;Master;ITK, Mahle, Ferchau
+Shahidi Rad;Hamed;Chemie-Ingenieurwesen;Master;
+Shevchyk;Anja;Elektro- und Informationstechnik;Bachelor;
+Tenzler;Tillman;Maschinenbau;Bachelor;ITK, Ferchau
+Thampi;Manu;Masters in Sensor Systems Technology;Master;
+Thirumoorthy;Aravind;Maschinenbau ( Produktion & Logistik);Master;Mahle, Ferchau
+Ünver;Sefa;Elektrotechnik und Informationstechnik;Master;
+von Plotho;Michael;Wirtschaftsingenieurwesen;Master;
+Wang;Jie;Wirtschaftsingenieurwesen ;Bachelor;
+Wieczorek;Dieter;Elektro- und Informationstechnik;Master;ITK, Mahle, Cmore
+Yu;Qiuyang;Maschinenbau;Master;Cmore, ITK
+Zhang;Shaoyilei ;Bauingenieurwesen;Bachelor;
+Zhang;Yani;Wiing;Master;
+Zhang;Yameng;Maschinenbau ;Master;
+Zhao;Shiyun;Maschinenbau;Master;Ferchau, TITK
+Zhao;Qi;Maschinenbau;Master;
+Zhu;Shengwen;Informatik;Master;
+Ziegler;Andreas;MIT;Bachelor;

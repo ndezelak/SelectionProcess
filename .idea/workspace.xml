@@ -2,53 +2,116 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88bde533-b77e-4f56-aa5d-37463fb5b2ee" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Functions/html_output.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Abdullah Sadeq.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Aizar Berlanga.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Alex Arunov.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Alexander Meumann .html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Anshuman Chauhan.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Ariana Martin.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Burhan  Sandede.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Christian Franke.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Christoph Bernitt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Chunxiao Chen.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Cindy Bailer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Daniel Malsam.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/David Arnhold.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Desislava Balabanova.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Dirk Michaelsen.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Feng Pan.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Francescoli Aldair Hernandez Castillo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Jennifer Bartsch.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Jonas Bobe.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Julius Hass.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Kanischka Anwari.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Karin Flaig.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Kristina Nikolaus.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Leila Lazemi.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Malte  Bräumer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Michael Bunse.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Mohit Talele.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Mona Meyer-Hollmann.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Mustafa Yikilmaz.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Nathalie  Werner.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Natraj Athreya Ariyur Suryanarayanan.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Nicole Flieger.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Niklas Casper.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Niklas Schwertner.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Onno Jacobus Jansen.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Oscar Andres Flores Garza.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Oualid Amri.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Patrick Kurtz.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Per Grunenberg.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Prasanth Subramani.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Ramon Felipe Brandăo do Nascimento.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Rick Pingel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Sander Berming.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Thomas  Löbel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Tobias Jakob.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Tushar Shring.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Victoria Areli Bracamontes Vazquez.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students/Xi Liu.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Abdullah Sadeq.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Aizar Berlanga.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Alex Arunov.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Alexander Meumann .pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Anshuman Chauhan.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Ariana Martin.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Burhan  Sandede.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Christian Franke.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Christoph Bernitt.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Chunxiao Chen.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Cindy Bailer.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Daniel Malsam.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/David Arnhold.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Desislava Balabanova.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Dirk Michaelsen.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Feng Pan.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Francescoli Aldair Hernandez Castillo.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Jennifer Bartsch.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Jonas Bobe.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Julius Hass.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Kanischka Anwari.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Karin Flaig.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Kristina Nikolaus.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Leila Lazemi.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Malte  Bräumer.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Michael Bunse.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Mohit Talele.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Mona Meyer-Hollmann.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Mustafa Yikilmaz.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Nathalie  Werner.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Natraj Athreya Ariyur Suryanarayanan.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Nicole Flieger.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Niklas Casper.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Niklas Schwertner.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Onno Jacobus Jansen.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Oscar Andres Flores Garza.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Oualid Amri.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Patrick Kurtz.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Per Grunenberg.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Prasanth Subramani.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Ramon Felipe Brandăo do Nascimento.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Rick Pingel.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Sander Berming.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Thomas  Löbel.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Tobias Jakob.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Tushar Shring.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Victoria Areli Bracamontes Vazquez.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Output/Students_pdfs/Xi Liu.pdf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Input/studenten.csv" afterPath="$PROJECT_DIR$/Input/studenten.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students_pdfs/sebastian schrödter.pdf" afterPath="$PROJECT_DIR$/Output/Students_pdfs/sebastian schrödter.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Bonding_Career_Night_Algorithm.iml" afterPath="$PROJECT_DIR$/.idea/Bonding_Career_Night_Algorithm.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Classes/Person.py" afterPath="$PROJECT_DIR$/Classes/Person.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Functions/construct_data.py" afterPath="$PROJECT_DIR$/Functions/construct_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Functions/processing.py" afterPath="$PROJECT_DIR$/Functions/processing.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Functions/rating_procedure.py" afterPath="$PROJECT_DIR$/Functions/rating_procedure.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Abdullah Sadeq.html" afterPath="$PROJECT_DIR$/Output/Students/Abdullah Sadeq.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Aizar Berlanga.html" afterPath="$PROJECT_DIR$/Output/Students/Aizar Berlanga.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Alexander Meumann .html" afterPath="$PROJECT_DIR$/Output/Students/Alexander Meumann .html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Anshuman Chauhan.html" afterPath="$PROJECT_DIR$/Output/Students/Anshuman Chauhan.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Ariana Martin.html" afterPath="$PROJECT_DIR$/Output/Students/Ariana Martin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Burhan  Sandede.html" afterPath="$PROJECT_DIR$/Output/Students/Burhan  Sandede.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Christian Franke.html" afterPath="$PROJECT_DIR$/Output/Students/Christian Franke.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Christoph Bernitt.html" afterPath="$PROJECT_DIR$/Output/Students/Christoph Bernitt.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Chunxiao Chen.html" afterPath="$PROJECT_DIR$/Output/Students/Chunxiao Chen.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Cindy Bailer.html" afterPath="$PROJECT_DIR$/Output/Students/Cindy Bailer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Daniel Malsam.html" afterPath="$PROJECT_DIR$/Output/Students/Daniel Malsam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/David Arnhold.html" afterPath="$PROJECT_DIR$/Output/Students/David Arnhold.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Desislava Balabanova.html" afterPath="$PROJECT_DIR$/Output/Students/Desislava Balabanova.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Feng Pan.html" afterPath="$PROJECT_DIR$/Output/Students/Feng Pan.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Jennifer Bartsch.html" afterPath="$PROJECT_DIR$/Output/Students/Jennifer Bartsch.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Jonas Bobe.html" afterPath="$PROJECT_DIR$/Output/Students/Jonas Bobe.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Julius Hass.html" afterPath="$PROJECT_DIR$/Output/Students/Julius Hass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Kanischka Anwari.html" afterPath="$PROJECT_DIR$/Output/Students/Kanischka Anwari.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Karin Flaig.html" afterPath="$PROJECT_DIR$/Output/Students/Karin Flaig.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Kristina Nikolaus.html" afterPath="$PROJECT_DIR$/Output/Students/Kristina Nikolaus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Leila Lazemi.html" afterPath="$PROJECT_DIR$/Output/Students/Leila Lazemi.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Malte  Bräumer.html" afterPath="$PROJECT_DIR$/Output/Students/Malte  Bräumer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Mohit Talele.html" afterPath="$PROJECT_DIR$/Output/Students/Mohit Talele.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Mona Meyer-Hollmann.html" afterPath="$PROJECT_DIR$/Output/Students/Mona Meyer-Hollmann.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Mustafa Yikilmaz.html" afterPath="$PROJECT_DIR$/Output/Students/Mustafa Yikilmaz.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Nathalie  Werner.html" afterPath="$PROJECT_DIR$/Output/Students/Nathalie  Werner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Nicole Flieger.html" afterPath="$PROJECT_DIR$/Output/Students/Nicole Flieger.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Niklas Casper.html" afterPath="$PROJECT_DIR$/Output/Students/Niklas Casper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Niklas Schwertner.html" afterPath="$PROJECT_DIR$/Output/Students/Niklas Schwertner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Onno Jacobus Jansen.html" afterPath="$PROJECT_DIR$/Output/Students/Onno Jacobus Jansen.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Oscar Andres Flores Garza.html" afterPath="$PROJECT_DIR$/Output/Students/Oscar Andres Flores Garza.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Oualid Amri.html" afterPath="$PROJECT_DIR$/Output/Students/Oualid Amri.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Patrick Kurtz.html" afterPath="$PROJECT_DIR$/Output/Students/Patrick Kurtz.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Per Grunenberg.html" afterPath="$PROJECT_DIR$/Output/Students/Per Grunenberg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Prasanth Subramani.html" afterPath="$PROJECT_DIR$/Output/Students/Prasanth Subramani.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Rick Pingel.html" afterPath="$PROJECT_DIR$/Output/Students/Rick Pingel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Sander Berming.html" afterPath="$PROJECT_DIR$/Output/Students/Sander Berming.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Thomas  Löbel.html" afterPath="$PROJECT_DIR$/Output/Students/Thomas  Löbel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Tobias Jakob.html" afterPath="$PROJECT_DIR$/Output/Students/Tobias Jakob.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Victoria Areli Bracamontes Vazquez.html" afterPath="$PROJECT_DIR$/Output/Students/Victoria Areli Bracamontes Vazquez.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/Xi Liu.html" afterPath="$PROJECT_DIR$/Output/Students/Xi Liu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Input/firmen.txt" afterPath="$PROJECT_DIR$/Input/firmen.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output/Students/sebastian schrödter.html" afterPath="$PROJECT_DIR$/Output/Students/sebastian schrödter.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run_exe.bat" afterPath="$PROJECT_DIR$/run_exe.bat" />
     </list>
     <ignored path="Bonding_Career_Night_Algorithm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,8 +134,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+            <state relative-caret-position="536">
+              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="e#12#52#0" expanded="true" />
               </folding>
@@ -83,18 +146,30 @@
       <file leaf-file-name="processing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Functions/processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="-50">
+              <caret line="139" column="46" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="html_output.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Functions/html_output.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="34">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -103,11 +178,21 @@
       <file leaf-file-name="construct_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Functions/construct_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
               <folding>
                 <element signature="e#92#120#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rating_procedure.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Functions/rating_procedure.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="38" column="63" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,21 +219,24 @@
         <option value="$PROJECT_DIR$/Classes/Student.py" />
         <option value="$PROJECT_DIR$/Functions/elimination.py" />
         <option value="$PROJECT_DIR$/test_data.py" />
-        <option value="$PROJECT_DIR$/Classes/Person.py" />
-        <option value="$PROJECT_DIR$/Functions/processing.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/Functions/rating_procedure.py" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/lecture2-segment1.py" />
+        <option value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/Lecture2_exe1.py" />
+        <option value="$PROJECT_DIR$/Classes/Person.py" />
+        <option value="$PROJECT_DIR$/Functions/processing.py" />
         <option value="$PROJECT_DIR$/Functions/construct_data.py" />
         <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Functions/html_output.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="1358" />
+    <option name="y" value="-49" />
+    <option name="width" value="1296" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -175,6 +263,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -190,6 +280,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Bonding_Career_Night_Algorithm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonding_Career_Night_Algorithm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonding_Career_Night_Algorithm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Input" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -223,14 +327,20 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="Bonding_Career_Night_Algorithm" sdk-home="C:\Python36-32\python.exe">
+        <option name="mySdkHome" value="C:\Python36-32\python.exe" />
+        <option name="myModuleName" value="Bonding_Career_Night_Algorithm" />
+      </console-settings>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -372,6 +482,40 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="Lecture2_exe1" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonding_Career_Night_Algorithm" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/Lecture2_exe1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ComputationalThinking" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python34\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonding_Career_Night_Algorithm" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/lecture2-segment1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="Algorithm_run" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -389,8 +533,10 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Python.Algorithm_run" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.Lecture2_exe1" />
+      <item index="1" class="java.lang.String" itemvalue="Python.ComputationalThinking" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Algorithm_run" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -463,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484727386518</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="+ Added matching success for all students&#10;+ Algorithm weight factors added to the config file&#10;+ Minor bug fixes&#10;&#10;&#10;">
+      <created>1484748808898</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1484748808898</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -476,25 +629,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1358" y="-49" width="1296" height="1040" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17261904" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24562798" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2640264" sideWeight="0.47853735" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2761438" sideWeight="0.52678573" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.71288747" sideWeight="0.5171131" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.71288747" sideWeight="0.4828869" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5513866" sideWeight="0.80431545" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45728642" sideWeight="0.24496125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35313532" sideWeight="0.4936407" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2618262" sideWeight="0.5079491" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.229923" sideWeight="0.38791734" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.229923" sideWeight="0.61208266" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4169417" sideWeight="0.4936407" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41598696" sideWeight="0.4903274" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43882546" sideWeight="0.76339287" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3487349" sideWeight="0.6621622" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.034257747" sideWeight="0.49702382" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -536,25 +689,22 @@
     <MESSAGE value="+ Improved code documentation&#10;" />
     <MESSAGE value="+ Added .csv parsing &#10;+ Added wkhtmltopdf.exe to generate pdfs&#10;+ Added HTML page generation for wkhtmltopdf input data&#10;+ Batch script added to simplify the output generation process&#10;&#10;&#10;" />
     <MESSAGE value="+ Minor bug fixes in the algorithm&#10;+ Scripts for running the program added&#10;&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Minor bug fixes in the algorithm&#10;+ Scripts for running the program added&#10;&#10;&#10;" />
+    <MESSAGE value="+ Added matching success for all students&#10;+ Algorithm weight factors added to the config file&#10;+ Minor bug fixes&#10;&#10;&#10;" />
+    <MESSAGE value="+ Made .csv parsing more generic&#10;+ Changed HTML output&#10;+ Number of rows as a parameter&#10;&#10;&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Made .csv parsing more generic&#10;+ Changed HTML output&#10;+ Number of rows as a parameter&#10;&#10;&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Functions/processing.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="93" />
+          <url>file://$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/Lecture2_exe1.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
           <line>29</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Functions/construct_data.py</url>
-          <line>123</line>
-          <option name="timeStamp" value="99" />
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -564,31 +714,110 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="100" />
+      <option name="time" value="128" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="row[0]" language="Python" />
-        <watch expression="row[1]" language="Python" />
+        <watch expression="items_left" language="Python" />
+        <watch expression="combi1" language="Python" />
+        <watch expression="combi2" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding>
             <element signature="e#12#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2856">
+          <caret line="168" column="48" selection-start-line="168" selection-start-column="48" selection-end-line="168" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/html_output.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/rating_procedure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/lecture2-segment1.py" />
+    <entry file="file://$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/Lecture2_exe1.py" />
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/rating_procedure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/html_output.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Classes/Person.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="115" column="45" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -596,9 +825,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#92#120#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/construct_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -606,9 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#12#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,7 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -624,7 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,9 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -657,7 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="139" selection-start-line="12" selection-start-column="139" selection-end-line="12" selection-end-column="139" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,9 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding>
-            <element signature="e#12#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -675,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,7 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,9 +937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -719,38 +947,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python34/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3553">
-          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python34/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python34/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8573">
-          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Python34/Lib/random.py" />
+    <entry file="file://C:/Python34/Lib/random.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Functions/elimination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -761,61 +963,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python34/Lib/site-packages/dominate/tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Python34/Lib/site-packages/dominate/tags.py" />
+    <entry file="file://$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/Lecture2_exe1.py" />
+    <entry file="file://$USER_HOME$/Google Drive/PROJEKTI/Projekti 2017/Introduction to computational thinking and data science/lecture2-segment1.py" />
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="34">
           <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/Functions/elimination.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-          <folding>
-            <element signature="e#12#52#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Person.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        <state relative-caret-position="187">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Functions/processing.py">
+    <entry file="file://C:/Python34/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="222">
+          <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Functions/rating_procedure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+        <state relative-caret-position="331">
+          <caret line="38" column="63" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="139" column="46" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Functions/construct_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
           <folding>
             <element signature="e#92#120#0" expanded="true" />
           </folding>
@@ -824,9 +1026,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Functions/html_output.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
