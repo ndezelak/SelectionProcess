@@ -1,9 +1,0 @@
-1.Amazon:Wirtschaftsingenieurwesen, Maschinenbau, Informatik
-2.Codewerk:Informatik, Elektrotechnik
-3.Ferchau:Bau, Maschinenbau, Elektrotechnik, Informatik, Wirtschaftsingenieurwesen, Naturwissenschaften
-4.Fraport:Bau, Elektrotechnik, Informatik, Wirtschaftsingenieurwesen
-5.IBM: Informatik, Elektrotechnik
-6.infologistix:Informatik, Elektrotechnik
-7.P&G:Naturwissenschaften, Elektrotechnik, Informatik, Maschinenbau, Wirtschaftsingenieurwesen
-8.T&S:Elektrotechnik, Informatik, Maschinenbau, Wirtschaftsingenieurwesen
-9.Vodafone:Wirtschaftsingenieurwesen, Informatik, Elektrotechnik
