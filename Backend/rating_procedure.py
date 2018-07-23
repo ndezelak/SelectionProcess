@@ -34,13 +34,13 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
     for company in companies:
        for student in students:
                 for student_field in student.field_of_study:
-                    # Field of study match gives 2 points
+                    # Field of study match
                     if student_field in company.field_of_study:
                         system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + COMPANY_FIELD_OF_STUDY_POINTS
                         if student.degree in company.degrees:
                             system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + COMPANY_DEGREE_POINTS
                         break
-                    # Additional degree match gives one more point
+                    # Additional Degree match
                     else:
                         if student.degree in company.degrees:
                             system[student.list_id][company.list_id] = system[student.list_id][company.list_id] + COMPANY_DEGREE_POINTS
@@ -53,6 +53,7 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
 #---------------------------------------------------#
 #
 def rate_and_sort(students,companies,system): # ****** TESTED ****** #
+    #Internal lists of students and companies
     sorted_students=students
     sorted_companies=companies
 

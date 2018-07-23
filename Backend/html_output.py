@@ -42,10 +42,10 @@ def create_student_plans(finished_students):
         h1{ \
         font-size:48px;} \
         h2{font-size:30px;}\
-        h3{font-size:20px;}            ") \
+        h3{font-size:20px;} h4{font-size:14px;}         ") \
 
         doc.head.add_raw_string(
-        "<header><center><img src=""logo.png"" alt=""Something"" align=""middle""></center></header>")
+        "<header><center><img src=""logo.png"" alt=""Something"" align=""middle"" width=""500""></center></header>")
         doc += br()
         doc += br()
 
@@ -54,9 +54,9 @@ def create_student_plans(finished_students):
         doc += style("h1{text-align:center; color:darkblue}")
 
         for round in range(0, NUM_ROWS):
-            doc+=h2("Gang " + str(round + 1))
-            doc+=h1(unicode(str(student.seats[round].name)))
-            doc+=h3("Tischnummer:" + str(student.seats[round].list_id + 1))
+            doc+=h3("Gang " + str(round + 1))
+            doc+=h2(unicode(str(student.seats[round].name)))
+           # doc+=h4("Tischnummer:" + str(student.seats[round].list_id + 1))
             doc+=br()
         # doc.body.add_raw_string("<footer><center><img src=""logo.png"" alt=""Something"" align=""middle""></center></footer>")
 
@@ -65,3 +65,24 @@ def create_student_plans(finished_students):
         file.write(str(doc))
         file.close()
         i = i + 1
+
+def create_company_plan(sorted_companies,system):
+
+    for company in sorted_companies:
+        doc = document()
+        doc += style("h1{text-align:left}")
+        doc += style("h3{text-align:left}")
+        doc += style("h2{text-align:left}")
+        doc += style("h4{text-align:left}")
+        doc += style("div{text-align:left}")
+        doc+=h2(company.name)
+        for round in range(0, NUM_ROWS):
+            doc += h3("Gang " + str(round + 1))
+            for student in company.seats[round]:
+                doc += h5(" " + unicode(str(student.name))+" ("+str(system[student.list_id][company.list_id])+")")
+            doc += br()
+        file = open("Output/Global/" + str(company.name) + '.html', 'w')
+        file.write(str(doc))
+        file.close()
+
+

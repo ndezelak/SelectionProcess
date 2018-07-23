@@ -1,6 +1,6 @@
 # Module external functions:
 #                           - read_csv( csv_file, person_type)
-from Classes.Person import *
+from Data.Person import *
 from csv import *
 from config import *
 
@@ -11,11 +11,15 @@ def construct_companies(companies):
         if(line is ''):
             break
         data=line.split('.')
+        #Company name order
         list_id=int(data[0])-1
         data = data[1].split(':')
+        #Company name
         name = data[0]
+        #Student majors the company is looking for
         branches = data[1].split(',')
         fields = []
+        # Fill student majors into the company data structure
         for branch in branches:
             if 'Informatik' in branch or 'informatik' in branch:
                 if Field_of_Study.INF not in fields:
@@ -26,19 +30,22 @@ def construct_companies(companies):
             elif 'Maschinenbau' in branch or 'Mechatronik' in branch or 'Fahrzeugtechnik' in branch or 'Feinwerktechnik' in branch or 'Luft' in branch:
                 if Field_of_Study.MB not in fields:
                     fields.append(Field_of_Study.MB)
-            elif 'Mathe' in branch or 'Chem' in branch or 'Physik' in branch or 'Optik' in branch or 'Bau' in branch:
+            elif 'Natur' in branch or 'Chem' in branch or 'Physik' in branch or 'Optik' in branch:
                 if Field_of_Study.NAT not in fields:
                     fields.append(Field_of_Study.NAT)
             elif 'Wirtschaft' in branch or 'Wirt'  in branch:
                 if Field_of_Study.WIW not in fields:
                     fields.append(Field_of_Study.WIW)
+            elif 'Bau' in branch:
+                if Field_of_Study.BAU not in fields:
+                    fields.append(Field_of_Study.BAU)
             else:
                 if Field_of_Study.SONSTIGES not in fields:
                     fields.append(Field_of_Study.SONSTIGES)
         #Hack
-        if 'zurch' in name.lower():
-            name = 'Zürcher'
-
+  #      if 'zurch' in name.lower():
+   #         name = 'Zürcher'
+        #Construct an instance of the company and add it to the list of companies
         companies.append(Company(list_id=list_id,name=name,seats=[ [] for i in range(NUM_ROWS) ],field_of_study=fields,degrees=[]))
 
 
@@ -157,7 +164,7 @@ def hacks(students,companies):
 
 def read_csv(students, companies):
     # Read .csv file rows and construct data structures
-    file = open('Input/studenten.csv','r')
+    file = open('Input/studenten_ka2018.csv','r')
     rows = reader(file, delimiter = ';')
     k = 0
     i = 0
@@ -165,8 +172,9 @@ def read_csv(students, companies):
     surname_index = -1
     field_of_study_index = -1
     degree_index = -1
-    firmen_pointer = -1
+    firmen_pointer = []
     hack_pointer = 0
+    # Go through each student in the .csv file
     for row in rows:
         # Skip first row as it has no data
         if k == 0:
@@ -174,27 +182,41 @@ def read_csv(students, companies):
             try:
                 name_index=row.index('Vorname')
             except ValueError:
-                print('Could not find name column in the .csv file!')
+                print('Could not find column with "Name" in the .csv file!')
                 raise ValueError
             try:
                 surname_index = row.index('Nachname*')
             except ValueError:
-                print('Could not find surnamename column in the .csv file!')
-                raise ValueError
+                try:
+                    surname_index = row.index('Nachname')
+                except ValueError:
+                    print('Could not find column with "Surname" in the .csv file!')
+                    raise ValueError
+
             try:
                 field_of_study_index = row.index('Studiengang')
             except ValueError:
                 print('Could not find field of study column in the .csv file!')
                 raise ValueError
+            '''
             try:
                 degree_index = row.index('Studienabschnitt')
             except ValueError:
-                print('Could not find degree f column in the .csv file!')
+                print('Could not find degree column in the .csv file!')
                 raise ValueError
+
             try:
                 firmen_pointer = row.index('Firmen')
             except ValueError:
-                print('Could not find degree companies column in the .csv file!')
+                print('Could not find column "wanted companies" in the .csv file!')
+                raise ValueError
+            '''
+            try:
+                firmen_pointer.append(row.index('Wunsch 1'))
+                firmen_pointer.append(row.index('Wunsch 2'))
+                firmen_pointer.append(row.index('Wunsch 3'))
+            except ValueError:
+                print('Could not find column "wanted companies" in the .csv file!')
                 raise ValueError
             continue
 
@@ -205,21 +227,26 @@ def read_csv(students, companies):
         # Field of study
         for _major in data:
             _major = _major.lower()
-            if 'ele' in _major or 'mecha' in _major or 'sensor' in _major or 'nano' in _major:
+            if 'ele' in _major or 'mecha' in _major or 'sensor' in _major or 'nano' in _major or 'entech' in _major:
                 major.append(Field_of_Study.EE)
-            elif  'manag' in _major or 'wi' in _major or 'tvwl' in _major or 'bus' in _major :
+            elif  'manag' in _major or 'wirtschaft' in _major or 'tvwl' in _major or 'bus' in _major or 'wing' in _major or 'ciw' in _major or 'wi' in _major or 'mark'in _major:
                 major.append(Field_of_Study.WIW)
             elif 'masch' in _major or 'produk' in _major or 'mater' in _major:
                 major.append(Field_of_Study.MB)
-            elif 'inf' in _major:
+            elif 'inf' in _major or 'math' in _major or 'bildver' in _major:
                 major.append(Field_of_Study.INF)
-            elif 'physik' in _major or 'chem' in _major or 'bio' in _major or 'mathe' in _major:
+            elif 'phys' in _major or 'chem' in _major or 'bio' in _major or 'verfah' in _major:
                 major.append(Field_of_Study.NAT)
+            elif 'bau' in _major:
+                major.append(Field_of_Study.BAU)
+            elif 'sonstiges' in _major:
+                major.append(Field_of_Study.SONSTIGES)
             else:
                 print('Unknown major ' + _major + " for student " + row[0] + " " + row[1])
                 major.append(Field_of_Study.SONSTIGES)
 
         # Degree of study
+        '''
         data = row[degree_index]
         degree = []
         data = data.lower()
@@ -235,11 +262,20 @@ def read_csv(students, companies):
             degree = Degree.DOCTOR
         else:
             print("Unknown degree "+ data + " for student " + row[0] + " " + row[1])
-
-
-        # Prefered Companies
+        '''
+        ''' OLD VERSION
+                # Prefered Companies
         pref_companies =[]
         data = row[firmen_pointer].split(',')
+
+
+        '''
+        # Prefered Companies -kA version
+        pref_companies =[]
+        data = []
+        for pointer in firmen_pointer:
+            comp_string = row[pointer]
+            data.append(comp_string)
         for company in companies:
             for comp in data:
                 if comp is '':
@@ -248,7 +284,8 @@ def read_csv(students, companies):
                     pref_companies.append(company)
                     break
 
+        # Construct the student data object and add it to the list of students
         seats =[ 0 for i in range(NUM_ROWS) ]
-        students.append(Student(i,seats=seats,name=row[name_index]+" "+row[surname_index],field_of_study=major,companies = pref_companies, degree=degree))
+        students.append(Student(i,seats=seats,name=row[name_index]+" "+row[surname_index],field_of_study=major,companies = pref_companies, degree=Degree.MASTER))
 
         i = i +1

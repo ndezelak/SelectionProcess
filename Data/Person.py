@@ -10,6 +10,7 @@ class Field_of_Study(Enum):
     WIW = 3
     NAT = 4
     SONSTIGES = 5
+    BAU = 6
 
 class Degree(Enum):
     BACHELOR = 0

@@ -1,22 +1,22 @@
 # Main file
-from Functions.rating_procedure import *
-from Functions.elimination import *
-from Functions.processing import *
-from Functions.construct_data import *
+from Backend.rating_procedure import *
+from Backend.elimination import *
+from Backend.processing import *
+from Backend.construct_data import *
 from config import *
-from Functions.html_output import *
+from Backend.html_output import *
 
 #TODO: Construct an HTML that gives a global overview of all rounds
 #TODO: Output matching success for each student and company
 print('Starting the program ...')
-print('Small change')
+#print('Small change')
 #students = Student(0,name="Nejc Dezelak",field_of_study=Field_of_Study.EE)
 #companies = Company(0,name="Infenion",field_of_study=[Field_of_Study.EE,Field_of_Study.MB],seats=[students])
 
 students=[]
 companies=[]
 finished_students = []
-
+not_passed_students = []
 construct_companies(companies)
 read_csv(students,companies)
 #hacks(students,companies)
@@ -46,13 +46,30 @@ print("First pass, 2 points")
 fill_tables(passed_students,finished_students,sorted_companies,system,2)
 print("First pass, 1 point")
 fill_tables(passed_students,finished_students,sorted_companies,system,1)
-print ("First pass, 0 points")
-fill_left_places(passed_students,finished_students,sorted_companies,system)
+print ("Filling left places, 0 points")
+watchdog = 0
+while(len(finished_students)<MAX_STUDENT_NUMBER):
+    fill_left_places(passed_students,finished_students,sorted_companies,system)
+    watchdog = watchdog +1
+    if watchdog>5:
+        print("NO SOLUTIONS FOUND\nPROBLEMATIC STUDENTS:\n")
+        for student in passed_students:
+            print(student.name+"\n")
+        break
 
 # Post processing of the occupied seats in order to assure minimal number of students at each table and at each round
 print(" Post processing ...")
 post_process(finished_students,sorted_companies,system)
 
+watchdog = 0
+while(len(finished_students)<MAX_STUDENT_NUMBER):
+    fill_left_places(passed_students,finished_students,sorted_companies,system)
+    watchdog = watchdog +1
+    if watchdog>5:
+        print("NO SOLUTIONS FOUND\nPROBLEMATIC STUDENTS:\n")
+        for student in passed_students:
+            print(student.name+"\n")
+        break
 
 print("---------------- RESULTS -------------------------")
 for company in sorted_companies:
@@ -67,10 +84,19 @@ for student in finished_students:
     for company in student.seats:
         if company in student.companies:
             points = points +1
-    print(" Student " + student.name +" "+ str(points)+"/"+str(NUM_ROWS)+".Chosen together: "+ str(len(student.companies)))
+    print(" Student " + student.name +" "+ str(points)+"/"+str(NUM_ROWS)+".Wanted: "+ str(len(student.companies)))
+
+# Not passed students
+print("----------------------------------------")
+print("Not passed students\n")
+for student in students:
+    if student not in finished_students:
+        print(student.name + "\n")
 
 # HTML document construction
 print("-----------Creating student HTMLs -------------- ")
 create_student_plans(finished_students)
 print("-----------Creating global HTMLs -------------- ")
 create_global_plan(finished_students,sorted_companies)
+print("-----------Creating company plans-------------- ")
+create_company_plan(sorted_companies,system)

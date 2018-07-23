@@ -1,6 +1,6 @@
 # Until no .csv file is available you will construct your data with this file
 from random import randint,sample
-from Classes.Person import *
+from Data.Person import *
 
 
 def generate_test_data(students_list,companies_list):
