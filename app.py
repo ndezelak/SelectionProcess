@@ -8,8 +8,7 @@ if __name__ == '__main__':
 
 # Create the application
 app = QApplication([])
-startpage = initialize_startpage()
-startpage.show()
+startpage = startPage(app)
 
 sys.exit(app.exec_())
 
