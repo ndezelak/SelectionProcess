@@ -1,10 +1,10 @@
 # Main file
-from Backend.rating_procedure import *
+from Backend.rating_procedures import *
 from Backend.elimination import *
 from Backend.processing import *
-from Backend.construct_data import *
+from Backend.input_reading import *
 from config import *
-from Backend.html_output import *
+from Backend.output_creation import *
 
 #TODO: Construct an HTML that gives a global overview of all rounds
 #TODO: Output matching success for each student and company
