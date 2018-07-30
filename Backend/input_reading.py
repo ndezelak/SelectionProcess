@@ -1,6 +1,6 @@
 # Module external functions:
 #                           - read_csv( csv_file, person_type)
-from Data.Person import *
+from Data.data_structures import *
 from csv import *
 from config import *
 

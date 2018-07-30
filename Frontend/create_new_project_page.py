@@ -1,5 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QLineEdit, QLabel, QSpinBox
 from PyQt5.QtCore import *
+import Data.globals as globals
+from Data.data_structures import Session, Settings
+import pickle
+
 class newProjectWindow(QWidget):
     def __init__(self,parent):
         super().__init__()
@@ -61,10 +65,18 @@ class newProjectWindow(QWidget):
     # Callbacks
     @pyqtSlot()
     def finished(self):
-        print(self.text_user.text())
-        print(self.num_menus.text())
-        self.hide()
+        self.close()
+        globals.current_session = Session(name=self.text_user.text(),settings=Settings(num_rows = int(self.num_menus.text()),\
+                                                                           min_num=int(self.min_people.text()), \
+                                                                           max_num=int(self.max_people.text()),\
+                                                                           points_student=0, points_company=0))
+
+        with open(globals.current_session.name+".bonding", 'wb') as f:
+            pickle.dump(globals.current_session,f,pickle.HIGHEST_PROTOCOL)
+        self.parent.create_project_ok.emit()
+
 
     @pyqtSlot()
     def cancel(self):
+        self.parent.create_project_canceled.emit()
         self.hide()

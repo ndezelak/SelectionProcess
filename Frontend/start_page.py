@@ -1,15 +1,21 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QHBoxLayout, QVBoxLayout, QPushButton, QSizePolicy
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import *
 from Frontend.create_new_project_page import *
-
+from Frontend.main_page import *
+from PyQt5.QtCore import pyqtSignal
+import Data.globals as globals
 
 class startPage(QWidget):
+    # Events
+    create_project_ok = pyqtSignal()
+    create_project_canceled = pyqtSignal()
     def __init__(self,parent):
         super().__init__()
         self.initialize()
         self.new_project_window = []
+        self.main_window = []
         self.parent = parent
+        self.create_project_canceled.connect(self.new_project_canceled)
+        self.create_project_ok.connect(self.new_project_ok)
     # Create the GUI
     def initialize(self):
         self.setWindowTitle("bonding Career Night App")
@@ -54,3 +60,17 @@ class startPage(QWidget):
     def old_project_selected(self):
         if self.new_project_window is not []:
             self.new_project_window.hide()
+        #print(app.session.name)
+
+    @pyqtSlot()
+    def new_project_canceled(self):
+        print("Project has been canceled!")
+
+
+    @pyqtSlot()
+    def new_project_ok(self):
+        print("New project has been created!")
+        self.main_window = mainPage(self)
+        print("Main page has been created")
+        self.hide()
+
