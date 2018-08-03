@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QLineEdit, QLabel
 from PyQt5.QtCore import *
 import Data.globals as globals
 from Data.data_structures import Session, Settings
+from Backend.output_utils import save_project
 import pickle
 
 class newProjectWindow(QWidget):
@@ -71,8 +72,7 @@ class newProjectWindow(QWidget):
                                                                            max_num=int(self.max_people.text()),\
                                                                            points_student=0, points_company=0))
 
-        with open(globals.current_session.name+".bonding", 'wb') as f:
-            pickle.dump(globals.current_session,f,pickle.HIGHEST_PROTOCOL)
+        save_project()
         self.parent.create_project_ok.emit()
 
 

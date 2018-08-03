@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit
-
+from PyQt5.QtCore import pyqtSlot
+from Backend.output_utils import save_project
 class mainPage(QWidget):
     def __init__(self, parent):
         super().__init__()
@@ -86,6 +87,7 @@ class mainPage(QWidget):
 
         button_home = QPushButton()
         button_home.setText("HOME")
+        button_home.clicked.connect(self.callback_home)
 
         button_help = QPushButton()
         button_help.setText("HILFE")
@@ -119,4 +121,14 @@ class mainPage(QWidget):
         main_layout.addWidget(groupbox_output)
         self.setLayout(main_layout)
         self.show()
+
+    def closeEvent(self, QCloseEvent):
+        save_project()
+        super().closeEvent(QCloseEvent)
+
+    @pyqtSlot()
+    def callback_home(self):
+        self.parent.home_button_clicked_signal.emit()
+
+
 

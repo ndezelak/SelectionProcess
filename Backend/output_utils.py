@@ -2,6 +2,14 @@ from dominate import *
 from dominate import *
 from dominate.tags import *
 from config import *
+import Data.globals as globals
+import pickle
+
+def save_project():
+    with open(globals.current_session.name+".bonding","wb") as file:
+        pickle.dump(globals.current_session,file,pickle.HIGHEST_PROTOCOL)
+    print("Project saved!")
+
 def create_global_plan(finished_students,sorted_companies):
     #doc += style("h3{text-align:center}")
     #doc += style("h4{text-align:center}")

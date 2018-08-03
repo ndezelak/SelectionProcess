@@ -8,14 +8,17 @@ class startPage(QWidget):
     # Events
     create_project_ok = pyqtSignal()
     create_project_canceled = pyqtSignal()
+    home_button_clicked_signal = pyqtSignal()
     def __init__(self,parent):
         super().__init__()
         self.initialize()
         self.new_project_window = []
         self.main_window = []
+        self.current_project_name = ""
         self.parent = parent
         self.create_project_canceled.connect(self.new_project_canceled)
         self.create_project_ok.connect(self.new_project_ok)
+        self.home_button_clicked_signal.connect(self.home_button_clicked)
     # Create the GUI
     def initialize(self):
         self.setWindowTitle("bonding Career Night App")
@@ -74,3 +77,8 @@ class startPage(QWidget):
         print("Main page has been created")
         self.hide()
 
+    @pyqtSlot()
+    def home_button_clicked(self):
+        save_project()
+        self.main_window.hide()
+        self.show()

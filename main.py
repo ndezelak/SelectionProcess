@@ -4,7 +4,7 @@ from Backend.elimination import *
 from Backend.processing import *
 from Backend.input_reading import *
 from config import *
-from Backend.output_creation import *
+from Backend.output_utils import *
 
 #TODO: Construct an HTML that gives a global overview of all rounds
 #TODO: Output matching success for each student and company
