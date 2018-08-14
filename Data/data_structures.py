@@ -1,6 +1,6 @@
 # Here all used classes in the algortihm are defined
 # Created: 23/11/2016
-# Last Change: 25/07/2018
+# Last Change: 13/08/2018
 from enum import Enum
 
 class Field_of_Study(Enum):
@@ -58,6 +58,10 @@ class Session:
         self.pdf_dir = pdf_dir
 
 
+class Field_of_Study():
+    def __init__(self, name="", tags=[]):
+        self.name = name
+        self.tags = tags
 
 
 

@@ -1,11 +1,13 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit
 from PyQt5.QtCore import pyqtSlot
 from Backend.output_utils import save_project
+from Frontend.field_of_study_page import *
 class mainPage(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.initialize()
         self.parent = parent
+        self.fields_of_study_window = []
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
@@ -26,6 +28,7 @@ class mainPage(QWidget):
 
         button_fields = QPushButton()
         button_fields.setText("Studienrichtungen eingeben")
+        button_fields.clicked.connect(self.settings_clicked)
 
         button_import_students = QPushButton()
         button_import_students.setText("Studenten aus einer Tabelle importieren")
@@ -48,12 +51,10 @@ class mainPage(QWidget):
         upper_grid.addWidget(table_students,1,0,2,3)
         upper_grid.addWidget(table_companies,1,3,2,2)
 
-
         # Settings
-
-
         button_settings = QPushButton()
         button_settings.setText("Prozess Einstellungen")
+
 
         button_start_process = QPushButton()
         button_start_process.setText("Prozess neu ausführen")
@@ -65,6 +66,7 @@ class mainPage(QWidget):
         settings.addWidget(button_settings)
         settings.addWidget(button_start_process)
         settings.addWidget(button_start_process_limited)
+
         # Bottom grid
         label_statistik = QLabel()
         label_statistik.setText("Ergebnisse")
@@ -129,6 +131,11 @@ class mainPage(QWidget):
     @pyqtSlot()
     def callback_home(self):
         self.parent.home_button_clicked_signal.emit()
+
+    @pyqtSlot()
+    def settings_clicked(self):
+        self.fields_of_study_window = field_of_study(self)
+
 
 
 
