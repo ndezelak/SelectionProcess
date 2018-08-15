@@ -1,6 +1,6 @@
 # Here all used classes in the algortihm are defined
 # Created: 23/11/2016
-# Last Change: 13/08/2018
+# Last Change: 15/08/2018
 from enum import Enum
 
 class Field_of_Study(Enum):
@@ -20,7 +20,7 @@ class Degree(Enum):
     ABSOLVENT = 4
 
 class Student:
-    def __init__(self, list_id, seats,name="Empty", field_of_study = Field_of_Study.EE, text = "Empty", companies = [], points = 0, degree = [], other_points=0):
+    def __init__(self, list_id, seats,name="Empty", field_of_study = [], text = "Empty", companies = [], points = 0, degree = [], other_points=0):
         self.name=name
         self.field_of_study=field_of_study
         self.text = text
@@ -32,7 +32,7 @@ class Student:
         self.degree = degree
 
 class Company:
-    def __init__(self, list_id=0, seats=0, name="Empty", field_of_study = [Field_of_Study.EE], points = 0, degrees = []):
+    def __init__(self, list_id=0, seats=0, name="Empty", field_of_study = [], points = 0, degrees = []):
         self.name=name
         self.field_of_study=field_of_study
         self.list_id=list_id
