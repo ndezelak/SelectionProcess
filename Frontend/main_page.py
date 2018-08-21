@@ -1,15 +1,21 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit, QTableWidgetItem
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit, QTableWidgetItem, QFileDialog
+from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal
 from Backend.output_utils import save_project
 from Frontend.field_of_study_page import *
 from Frontend.add_company_page import *
+from Frontend.file_specifier_page import *
 class mainPage(QWidget):
+    # signals
+    input_table_specified = pyqtSignal()
+
     def __init__(self, parent):
         super().__init__()
         self.initialize()
         self.parent = parent
         self.fields_of_study_window = []
         self.add_company_window = []
+        self.file_specifier_page = []
+        self.input_table_specified.connect(self.read_table)
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
@@ -34,6 +40,7 @@ class mainPage(QWidget):
 
         button_import_students = QPushButton()
         button_import_students.setText("Studenten aus einer Tabelle importieren")
+        button_import_students.clicked.connect(self.choose_file_clicked)
 
         label_firmen = QLabel()
         label_firmen.setText("Firmen")
@@ -187,6 +194,23 @@ class mainPage(QWidget):
             if company_item.text() == company.name:
                 globals.current_session.companies.remove(company)
         self.update_companies()
+
+    @pyqtSlot()
+    def choose_file_clicked(self):
+        file =  QFileDialog.getOpenFileName(self, 'Open file',
+         globals.home_dir+"\\Input","CSV File (*.csv)")
+        self.file_specifier_page = file_specifier_page(self)
+
+    @pyqtSlot()
+    def read_table(self):
+        print(globals.table_specs.ID_name)
+        print(globals.table_specs.ID_surname)
+        print(globals.table_specs.ID_field_of_study)
+        print(globals.table_specs.IDs_companies)
+        print(globals.table_specs.IDs_students)
+
+
+
 
 
 

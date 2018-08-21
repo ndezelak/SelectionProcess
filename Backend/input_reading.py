@@ -220,7 +220,7 @@ def read_csv(students, companies):
                 raise ValueError
             continue
 
-        # TODO: Make csv column finding more generic
+
         data = row[field_of_study_index].split(',')
         major=[]
 
@@ -245,31 +245,111 @@ def read_csv(students, companies):
                 print('Unknown major ' + _major + " for student " + row[0] + " " + row[1])
                 major.append(Field_of_Study.SONSTIGES)
 
-        # Degree of study
-        '''
-        data = row[degree_index]
-        degree = []
-        data = data.lower()
-        if 'bach' in data:
-            degree = Degree.BACHELOR
-        elif 'mast' in data:
-            degree = Degree.MASTER
-        elif 'prom' in data:
-            degree = Degree.PROMOTION
-        elif 'abso' in data:
-            degree = Degree.ABSOLVENT
-        elif 'doc' in data or 'dok' in data:
-            degree = Degree.DOCTOR
-        else:
-            print("Unknown degree "+ data + " for student " + row[0] + " " + row[1])
-        '''
-        ''' OLD VERSION
-                # Prefered Companies
+
+        # Prefered Companies -kA version
         pref_companies =[]
-        data = row[firmen_pointer].split(',')
+        data = []
+        for pointer in firmen_pointer:
+            comp_string = row[pointer]
+            data.append(comp_string)
+        for company in companies:
+            for comp in data:
+                if comp is '':
+                    break
+                elif comp.lower() in company.name.lower() or company.name.lower() in comp.lower():
+                    pref_companies.append(company)
+                    break
+
+        # Construct the student data object and add it to the list of students
+        seats =[ 0 for i in range(NUM_ROWS) ]
+        students.append(Student(i,seats=seats,name=row[name_index]+" "+row[surname_index],field_of_study=major,companies = pref_companies, degree=Degree.MASTER))
+
+        i = i +1
+
+def read_file(file_path):
+    # Read .csv file rows and construct data structures
+    file = open('Input/studenten_ka2018.csv','r')
+    rows = reader(file, delimiter = ';')
+    k = 0
+    i = 0
+    name_index = -1
+    surname_index = -1
+    field_of_study_index = -1
+    degree_index = -1
+    firmen_pointer = []
+    hack_pointer = 0
+    # Go through each student in the .csv file
+    for row in rows:
+        # Skip first row as it has no data
+        if k == 0:
+            k=1
+            try:
+                name_index=row.index('Vorname')
+            except ValueError:
+                print('Could not find column with "Name" in the .csv file!')
+                raise ValueError
+            try:
+                surname_index = row.index('Nachname*')
+            except ValueError:
+                try:
+                    surname_index = row.index('Nachname')
+                except ValueError:
+                    print('Could not find column with "Surname" in the .csv file!')
+                    raise ValueError
+
+            try:
+                field_of_study_index = row.index('Studiengang')
+            except ValueError:
+                print('Could not find field of study column in the .csv file!')
+                raise ValueError
+            '''
+            try:
+                degree_index = row.index('Studienabschnitt')
+            except ValueError:
+                print('Could not find degree column in the .csv file!')
+                raise ValueError
+
+            try:
+                firmen_pointer = row.index('Firmen')
+            except ValueError:
+                print('Could not find column "wanted companies" in the .csv file!')
+                raise ValueError
+            '''
+            try:
+                firmen_pointer.append(row.index('Wunsch 1'))
+                firmen_pointer.append(row.index('Wunsch 2'))
+                firmen_pointer.append(row.index('Wunsch 3'))
+            except ValueError:
+                print('Could not find column "wanted companies" in the .csv file!')
+                raise ValueError
+            continue
 
 
-        '''
+        data = row[field_of_study_index].split(',')
+        major=[]
+
+        # Field of study
+        for _major in data:
+            _major = _major.lower()
+            if 'ele' in _major or 'mecha' in _major or 'sensor' in _major or 'nano' in _major or 'entech' in _major:
+                major.append(Field_of_Study.EE)
+            elif  'manag' in _major or 'wirtschaft' in _major or 'tvwl' in _major or 'bus' in _major or 'wing' in _major or 'ciw' in _major or 'wi' in _major or 'mark'in _major:
+                major.append(Field_of_Study.WIW)
+            elif 'masch' in _major or 'produk' in _major or 'mater' in _major:
+                major.append(Field_of_Study.MB)
+            elif 'inf' in _major or 'math' in _major or 'bildver' in _major:
+                major.append(Field_of_Study.INF)
+            elif 'phys' in _major or 'chem' in _major or 'bio' in _major or 'verfah' in _major:
+                major.append(Field_of_Study.NAT)
+            elif 'bau' in _major:
+                major.append(Field_of_Study.BAU)
+            elif 'sonstiges' in _major:
+                major.append(Field_of_Study.SONSTIGES)
+            else:
+                print('Unknown major ' + _major + " for student " + row[0] + " " + row[1])
+                major.append(Field_of_Study.SONSTIGES)
+
+
         # Prefered Companies -kA version
         pref_companies =[]
         data = []

@@ -63,6 +63,15 @@ class Field_of_Study():
         self.name = name
         self.tags = tags
 
+class Table_Specs():
+    def __init__(self,ID_name=-1,ID_surname=-1,ID_field_of_study=-1,IDs_companies = [-1,-1],IDs_students = [-1,-1]):
+        self.ID_name = ID_name
+        self.ID_surname = ID_surname
+        self.ID_field_of_study = ID_field_of_study
+        self.IDs_companies = IDs_companies
+        self.IDs_students = IDs_students
+
+
 
 
 

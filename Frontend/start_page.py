@@ -11,7 +11,7 @@ class startPage(QWidget):
     create_project_canceled = pyqtSignal()
     home_button_clicked_signal = pyqtSignal()
 
-    def __init__(self,parent):
+    def __init__(self,parent,dir=[]):
         super().__init__()
         self.initialize()
         self.new_project_window = []
@@ -22,6 +22,7 @@ class startPage(QWidget):
         self.create_project_ok.connect(self.new_project_ok)
         self.home_button_clicked_signal.connect(self.home_button_clicked)
         self.test = []
+        self.dir = dir
     # Create the GUI
     def initialize(self):
         self.setWindowTitle("bonding Career Night App")
