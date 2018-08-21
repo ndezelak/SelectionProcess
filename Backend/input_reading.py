@@ -3,6 +3,8 @@
 from Data.data_structures import *
 from csv import *
 from config import *
+import Data.globals as globals
+from Frontend.string_matcher_page import *
 
 def construct_companies(companies):
    file = open('Input/firmen.txt')
@@ -266,106 +268,58 @@ def read_csv(students, companies):
 
         i = i +1
 
-def read_file(file_path):
-    # Read .csv file rows and construct data structures
-    file = open('Input/studenten_ka2018.csv','r')
-    rows = reader(file, delimiter = ';')
-    k = 0
-    i = 0
-    name_index = -1
-    surname_index = -1
-    field_of_study_index = -1
-    degree_index = -1
-    firmen_pointer = []
-    hack_pointer = 0
-    # Go through each student in the .csv file
-    for row in rows:
-        # Skip first row as it has no data
-        if k == 0:
-            k=1
-            try:
-                name_index=row.index('Vorname')
-            except ValueError:
-                print('Could not find column with "Name" in the .csv file!')
-                raise ValueError
-            try:
-                surname_index = row.index('Nachname*')
-            except ValueError:
-                try:
-                    surname_index = row.index('Nachname')
-                except ValueError:
-                    print('Could not find column with "Surname" in the .csv file!')
-                    raise ValueError
-
-            try:
-                field_of_study_index = row.index('Studiengang')
-            except ValueError:
-                print('Could not find field of study column in the .csv file!')
-                raise ValueError
-            '''
-            try:
-                degree_index = row.index('Studienabschnitt')
-            except ValueError:
-                print('Could not find degree column in the .csv file!')
-                raise ValueError
-
-            try:
-                firmen_pointer = row.index('Firmen')
-            except ValueError:
-                print('Could not find column "wanted companies" in the .csv file!')
-                raise ValueError
-            '''
-            try:
-                firmen_pointer.append(row.index('Wunsch 1'))
-                firmen_pointer.append(row.index('Wunsch 2'))
-                firmen_pointer.append(row.index('Wunsch 3'))
-            except ValueError:
-                print('Could not find column "wanted companies" in the .csv file!')
-                raise ValueError
-            continue
+def read_file(file_path,widget=[]):
+    # Read .csv file
+    with open(file_path,'r') as file:
+        # Check for uninitialized file specifier
+        if (globals.table_specs.ID_name == -1 or
+            globals.table_specs.ID_surname == -1 or
+            globals.table_specs.ID_field_of_study == -1 or
+            globals.table_specs.IDs_students[0] == -1 or
+            globals.table_specs.IDs_students[1] == -1 or
+            globals.table_specs.IDs_companies[0] == -1 or
+            globals.table_specs.IDs_companies[1] == -1):
+            return
+        # Open the file
+        rows = reader(file, delimiter = ';')
+        # Go through each line and create a list of students
+        index = 0
+        list_id = 0
+        for row in rows:
+            if index >= globals.table_specs.IDs_students[0]-1 and index <= globals.table_specs.IDs_students[1]-1:
+                name =row[globals.table_specs.ID_name-1]
+                surname = row[globals.table_specs.ID_surname-1]
+                string_field_of_study = row[globals.table_specs.ID_field_of_study-1]
+                field_of_study=find_field_of_study(string_field_of_study,widget)
+                if field_of_study == -1:
+                    return
+                companies = []
+                if globals.table_specs.IDs_companies[0] == globals.table_specs.IDs_companies[1]:
+                    companies = row[globals.table_specs.IDs_companies[0]-1].split(",")
+                else:
+                    for j in range(globals.table_specs.IDs_companies[0],globals.table_specs.IDs_companies[1]):
+                        companies.append(row[j-1])
+                globals.current_session.students.append(Student(list_id=list_id, seats = [], name = name + " " + surname, field_of_study=field_of_study, companies=companies))
+                list_id += 1
+            index += 1
+        pass
 
 
-        data = row[field_of_study_index].split(',')
-        major=[]
+def find_field_of_study(string_field="",widget=[]):
+    # Search for the matching field of study
+    for field in globals.current_session.fields_of_study:
+        for tag in field.tags:
+            if tag in string_field:
+                return field.name
+        if string_field in field.name or field.name in string_field:
+            return field.name
+    # No match, therefor input dialog is started
+    matcher = string_matcher_page()
+    fields = []
+    for field in globals.current_session.fields_of_study:
+        fields.append(field.name)
+    return matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
+                               items=fields)
 
-        # Field of study
-        for _major in data:
-            _major = _major.lower()
-            if 'ele' in _major or 'mecha' in _major or 'sensor' in _major or 'nano' in _major or 'entech' in _major:
-                major.append(Field_of_Study.EE)
-            elif  'manag' in _major or 'wirtschaft' in _major or 'tvwl' in _major or 'bus' in _major or 'wing' in _major or 'ciw' in _major or 'wi' in _major or 'mark'in _major:
-                major.append(Field_of_Study.WIW)
-            elif 'masch' in _major or 'produk' in _major or 'mater' in _major:
-                major.append(Field_of_Study.MB)
-            elif 'inf' in _major or 'math' in _major or 'bildver' in _major:
-                major.append(Field_of_Study.INF)
-            elif 'phys' in _major or 'chem' in _major or 'bio' in _major or 'verfah' in _major:
-                major.append(Field_of_Study.NAT)
-            elif 'bau' in _major:
-                major.append(Field_of_Study.BAU)
-            elif 'sonstiges' in _major:
-                major.append(Field_of_Study.SONSTIGES)
-            else:
-                print('Unknown major ' + _major + " for student " + row[0] + " " + row[1])
-                major.append(Field_of_Study.SONSTIGES)
-
-
-        # Prefered Companies -kA version
-        pref_companies =[]
-        data = []
-        for pointer in firmen_pointer:
-            comp_string = row[pointer]
-            data.append(comp_string)
-        for company in companies:
-            for comp in data:
-                if comp is '':
-                    break
-                elif comp.lower() in company.name.lower() or company.name.lower() in comp.lower():
-                    pref_companies.append(company)
-                    break
-
-        # Construct the student data object and add it to the list of students
-        seats =[ 0 for i in range(NUM_ROWS) ]
-        students.append(Student(i,seats=seats,name=row[name_index]+" "+row[surname_index],field_of_study=major,companies = pref_companies, degree=Degree.MASTER))
-
-        i = i +1
+def find_company(string_company):
+    pass

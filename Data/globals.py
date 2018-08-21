@@ -4,3 +4,5 @@ current_session = Session()
 current_session_buffer = copy.deepcopy(current_session)
 home_dir = []
 table_specs = Table_Specs()
+companies = []
+students = []

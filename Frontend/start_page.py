@@ -74,6 +74,12 @@ class startPage(QWidget):
     @pyqtSlot()
     def new_project_ok(self):
         print("New project has been created!")
+        print("Creating default session data ...")
+        globals.current_session.fields_of_study.append(Field_of_Study(name="Elektrotechnik",tags = ["Etechnik","Robotik","Elektronik"]))
+        globals.current_session.fields_of_study.append(Field_of_Study(name="Maschinenbau",tags = ["Masch","Fahrzeugtechnik"]))
+        globals.current_session.fields_of_study.append(Field_of_Study(name="Informatik",tags= ["Wirtschaftsinformatik"]))
+        globals.current_session.fields_of_study.append(Field_of_Study(name="Sonstiges", tags=[]))
+        
         self.main_window = mainPage(self)
         print("Main page has been created")
         self.hide()

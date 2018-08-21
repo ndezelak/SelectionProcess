@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit, QTableWidgetItem, QFileDialog
 from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal
 from Backend.output_utils import save_project
+from Backend.input_reading import read_file
 from Frontend.field_of_study_page import *
 from Frontend.add_company_page import *
 from Frontend.file_specifier_page import *
+from Frontend.string_matcher_page import *
 class mainPage(QWidget):
     # signals
     input_table_specified = pyqtSignal()
@@ -16,6 +18,7 @@ class mainPage(QWidget):
         self.add_company_window = []
         self.file_specifier_page = []
         self.input_table_specified.connect(self.read_table)
+        self.file_path = []
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
@@ -197,17 +200,26 @@ class mainPage(QWidget):
 
     @pyqtSlot()
     def choose_file_clicked(self):
-        file =  QFileDialog.getOpenFileName(self, 'Open file',
+        matcher = string_matcher_page()
+        if len(globals.current_session.fields_of_study) == 0 and len(globals.current_session.companies) == 0:
+            matcher.display_error(window=self, window_title="Fehlende Daten",
+                                  text="Zuerst müssen Studiengänge und Firmen definiert werden!")
+            return
+        elif len(globals.current_session.fields_of_study) == 0:
+            matcher.display_error(window=self, window_title="Fehlende Daten",
+                                  text="Studiengänge müssen noch definiert!")
+            return
+        elif len(globals.current_session.companies) == 0:
+            matcher.display_error(window=self, window_title="Fehlende Daten",
+                                  text="Firmen müssen noch definiert werden!")
+            return
+        self.file_path =  QFileDialog.getOpenFileName(self, 'Open file',
          globals.home_dir+"\\Input","CSV File (*.csv)")
         self.file_specifier_page = file_specifier_page(self)
 
     @pyqtSlot()
     def read_table(self):
-        print(globals.table_specs.ID_name)
-        print(globals.table_specs.ID_surname)
-        print(globals.table_specs.ID_field_of_study)
-        print(globals.table_specs.IDs_companies)
-        print(globals.table_specs.IDs_students)
+        read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
 
 
 
