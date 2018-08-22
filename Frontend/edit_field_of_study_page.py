@@ -3,12 +3,14 @@ from PyQt5.QtCore import pyqtSlot
 import Data.globals as globals
 from Data.data_structures import Field_of_Study
 from Backend.output_utils import save_project
+import copy
 class edit_field_of_study(QWidget):
     def __init__(self, parent, item_index = []):
         super().__init__()
         self.parent = parent
         self.item_index = item_index
         self.initialize()
+        globals.current_session_buffer = copy.deepcopy(globals.current_session)
 
     def initialize(self):
         self.setWindowTitle("Einstellungen des Studiengänges")
@@ -35,6 +37,7 @@ class edit_field_of_study(QWidget):
 
         self.setLayout(main_layout)
         self.show()
+    # A new field of study is to be added
     @pyqtSlot()
     def ok_clicked(self):
         tag_list = self.text_tag.toPlainText().split("\n")

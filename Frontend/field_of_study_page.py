@@ -9,6 +9,7 @@ class field_of_study(QWidget):
         super().__init__()
         self.parent = parent
         self.initialize()
+        globals.current_session_buffer = copy.deepcopy(globals.current_session)
         self.edit_window = []
 
     def initialize(self):
@@ -72,10 +73,12 @@ class field_of_study(QWidget):
         self.edit_window = edit_field_of_study(self)
     @pyqtSlot()
     def edit_field_clicked(self):
+        # Do nothing if no item is selected
         if not self.main_display.selectedItems():
             return
         selected_item = self.main_display.currentItem().text()
         index = []
+        # Find item in the buffer
         for j in range(0,len(globals.current_session_buffer.fields_of_study)):
             if selected_item == globals.current_session_buffer.fields_of_study[j].name:
                 index = j
