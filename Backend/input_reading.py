@@ -286,20 +286,33 @@ def read_file(file_path,widget=[]):
         index = 0
         list_id = 0
         for row in rows:
+            # Go only through specified rows
             if index >= globals.table_specs.IDs_students[0]-1 and index <= globals.table_specs.IDs_students[1]-1:
                 name =row[globals.table_specs.ID_name-1]
                 surname = row[globals.table_specs.ID_surname-1]
                 string_field_of_study = row[globals.table_specs.ID_field_of_study-1]
+                # Find matching field of study
                 field_of_study=find_field_of_study(string_field_of_study,widget)
+                # Something went wrong
                 if field_of_study == -1:
+                    print("ERROR: No matching field of study found! Table reading not completed!")
+                    globals.current_session.students = []
                     return
-                companies = []
+                read_companies = []
+                matched_companies = []
+                # Single column case
                 if globals.table_specs.IDs_companies[0] == globals.table_specs.IDs_companies[1]:
-                    companies = row[globals.table_specs.IDs_companies[0]-1].split(",")
+                    read_companies = row[globals.table_specs.IDs_companies[0]-1].split(",")
+                # Multi column case
                 else:
                     for j in range(globals.table_specs.IDs_companies[0],globals.table_specs.IDs_companies[1]):
-                        companies.append(row[j-1])
-                globals.current_session.students.append(Student(list_id=list_id, seats = [], name = name + " " + surname, field_of_study=field_of_study, companies=companies))
+                        read_companies.append(row[j-1])
+                # Find matching company from DB
+                for company in read_companies:
+                    for company_ in globals.current_session.companies:
+                        if company.lower() == company_.name.lower():
+                            matched_companies.append(company_)
+                globals.current_session.students.append(Student(list_id=list_id, seats = [], name = name + " " + surname, field_of_study=field_of_study, companies=matched_companies))
                 list_id += 1
             index += 1
         pass
@@ -310,16 +323,22 @@ def find_field_of_study(string_field="",widget=[]):
     for field in globals.current_session.fields_of_study:
         for tag in field.tags:
             if tag in string_field:
-                return field.name
+                return field
         if string_field in field.name or field.name in string_field:
-            return field.name
-    # No match, therefor input dialog is started
+            return field
+    # No match, therefor a user prompt is launched
     matcher = string_matcher_page()
     fields = []
+    # Save all field names into a list of strings
     for field in globals.current_session.fields_of_study:
         fields.append(field.name)
-    return matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
+    # Launch the user prompt
+    field_chosen =  matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
                                items=fields)
+    # Find the complete field object and return it
+    for field in globals.current_session.fields_of_study:
+        if field_chosen == field.name:
+            return field
+    # An error occurred?
+    return -1
 
-def find_company(string_company):
-    pass

@@ -19,6 +19,7 @@ class mainPage(QWidget):
         self.file_specifier_page = []
         self.input_table_specified.connect(self.read_table)
         self.file_path = []
+        self.update_companies()
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
@@ -57,6 +58,25 @@ class mainPage(QWidget):
 
         # Student and company QTableWidgets
         self.table_students = QTableWidget()
+        header_student_name = QTableWidgetItem("Name")
+        header_student_name.setFlags(Qt.ItemIsEnabled)
+        header_field = QTableWidgetItem("Studiengang")
+        header_field.setFlags(Qt.ItemIsEnabled)
+        header_companies = QTableWidgetItem("Gewünschte Firmen")
+        header_companies.setFlags(Qt.ItemIsEnabled)
+        header_match = QTableWidgetItem("Matching mit den Firmen")
+        header_match.setFlags(Qt.ItemIsEnabled)
+        self.table_students.setColumnCount(4)
+        #self.table_students.
+        self.table_students.setColumnWidth(0,self.table_students.width()/4)
+        self.table_students.setColumnWidth(1, self.table_students.width() / 4)
+        self.table_students.setColumnWidth(2, self.table_students.width() / 4)
+        self.table_students.setColumnWidth(3, self.table_students.width() / 4)
+        self.table_students.setHorizontalHeaderItem(0,header_student_name)
+        self.table_students.setHorizontalHeaderItem(1,header_field)
+        self.table_students.setHorizontalHeaderItem(2,header_companies)
+        self.table_students.setHorizontalHeaderItem(3,header_match)
+
         self.table_companies = QTableWidget()
         header_horizontal_name = QTableWidgetItem("Firma")
         header_horizontal_name.setFlags(Qt.ItemIsEnabled)
@@ -66,8 +86,8 @@ class mainPage(QWidget):
         self.table_companies.setRowCount(0)
         self.table_companies.setHorizontalHeaderItem(0,header_horizontal_name)
         self.table_companies.setHorizontalHeaderItem(1,header_horizontal_fields)
-        self.table_companies.resizeColumnsToContents()
-        self.table_companies.resizeRowsToContents()
+        self.table_companies.setColumnWidth(0,self.table_companies.width()/2)
+        self.table_companies.setColumnWidth(1, self.table_companies.width() / 2)
 
 
         upper_grid.addWidget(label_students,0,0)
@@ -151,28 +171,51 @@ class mainPage(QWidget):
         self.setLayout(main_layout)
         self.show()
 
+    # Update company display
     def update_companies(self):
         # Clear table
         self.table_companies.setRowCount(0)
         # Reserve table rows
         self.table_companies.setRowCount(len(globals.current_session.companies))
-        self.table_companies.setColumnCount(2)
+
         index = 0
         for company in globals.current_session.companies:
             company_name = QTableWidgetItem(company.name)
             company_name.setFlags(Qt.ItemIsEnabled)
-            string = ""
+            list_of_fields = []
             for field in company.field_of_study:
-                string+=field.name
-                string+=", "
+                list_of_fields.append(field.name)
+            string = ",".join(list_of_fields)
             company_fields = QTableWidgetItem(string)
             company_fields.setFlags(Qt.ItemIsEnabled)
             self.table_companies.setItem(index,0,company_name)
             self.table_companies.setItem(index, 1, company_fields)
             index+=1
-        self.table_companies.resizeColumnsToContents()
         self.table_companies.resizeRowsToContents()
+    # Update students display
+    def update_students(self):
+        # First delete all remaining table items
+        self.table_students.setRowCount(0)
+        # Reserve table rows
+        self.table_students.setRowCount(len(globals.current_session.students))
+        index = 0
+        for student in globals.current_session.students:
+            student_name = QTableWidgetItem(student.name)
+            student_name.setFlags(Qt.ItemIsEnabled)
+            student_field_of_study = QTableWidgetItem(student.field_of_study.name)
+            student_field_of_study.setFlags(Qt.ItemIsEnabled)
+            list_companies = []
+            for company in student.companies:
+                if company != "":
+                    list_companies.append(company.name)
+            student_companies = QTableWidgetItem(",".join(list_companies))
+            student_companies.setFlags(Qt.ItemIsEnabled)
+            self.table_students.setItem(index,0,student_name)
+            self.table_students.setItem(index,1,student_field_of_study)
+            self.table_students.setItem(index,2,student_companies)
+            index = index + 1
 
+    # Callback when the main window is closed
     def closeEvent(self, QCloseEvent):
         save_project()
         super().closeEvent(QCloseEvent)
@@ -220,6 +263,8 @@ class mainPage(QWidget):
     @pyqtSlot()
     def read_table(self):
         read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
+        self.update_students()
+        save_project()
 
 
 
