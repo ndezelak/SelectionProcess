@@ -10,7 +10,7 @@ class edit_field_of_study(QWidget):
         self.parent = parent
         self.item_index = item_index
         self.initialize()
-        globals.current_session_buffer = copy.deepcopy(globals.current_session)
+
 
     def initialize(self):
         self.setWindowTitle("Einstellungen des Studiengänges")

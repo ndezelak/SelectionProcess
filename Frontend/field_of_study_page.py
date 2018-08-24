@@ -83,6 +83,7 @@ class field_of_study(QWidget):
             if selected_item == globals.current_session_buffer.fields_of_study[j].name:
                 index = j
                 break
+        pass
         self.edit_window = edit_field_of_study(self,item_index=index)
     @pyqtSlot()
     def delete_field_clicked(self):
@@ -95,6 +96,7 @@ class field_of_study(QWidget):
                 globals.current_session_buffer.fields_of_study.remove(field)
                 self.main_display.takeItem(self.main_display.currentRow())
                 self.tag_display.setText("")
+        pass
     @pyqtSlot()
     def save_settings_clicked(self):
         globals.current_session = copy.deepcopy(globals.current_session_buffer)

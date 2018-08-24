@@ -322,9 +322,9 @@ def find_field_of_study(string_field="",widget=[]):
     # Search for the matching field of study
     for field in globals.current_session.fields_of_study:
         for tag in field.tags:
-            if tag in string_field:
+            if tag.lower() in string_field.lower():
                 return field
-        if string_field in field.name or field.name in string_field:
+        if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
             return field
     # No match, therefor a user prompt is launched
     matcher = string_matcher_page()
@@ -335,9 +335,10 @@ def find_field_of_study(string_field="",widget=[]):
     # Launch the user prompt
     field_chosen =  matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
                                items=fields)
-    # Find the complete field object and return it
+    # Find the chosen field in the current session and save the string_field to the tags
     for field in globals.current_session.fields_of_study:
-        if field_chosen == field.name:
+        if field.name == field_chosen:
+            field.tags.append(string_field)
             return field
     # An error occurred?
     return -1

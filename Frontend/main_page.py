@@ -20,6 +20,7 @@ class mainPage(QWidget):
         self.input_table_specified.connect(self.read_table)
         self.file_path = []
         self.update_companies()
+        globals.current_session_buffer = copy.deepcopy(globals.current_session)
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
