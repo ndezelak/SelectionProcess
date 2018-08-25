@@ -6,6 +6,7 @@ from Frontend.field_of_study_page import *
 from Frontend.add_company_page import *
 from Frontend.file_specifier_page import *
 from Frontend.string_matcher_page import *
+from Frontend.process_settings_page import *
 class mainPage(QWidget):
     # signals
     input_table_specified = pyqtSignal()
@@ -103,6 +104,7 @@ class mainPage(QWidget):
         # Settings
         button_settings = QPushButton()
         button_settings.setText("Prozess Einstellungen")
+        button_settings.clicked.connect(self.process_settings_clicked)
 
 
         button_start_process = QPushButton()
@@ -266,6 +268,11 @@ class mainPage(QWidget):
         read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
         self.update_students()
         save_project()
+
+    @pyqtSlot()
+    def process_settings_clicked(self):
+        self.process_settings_page = process_settings_page()
+
 
 
 
