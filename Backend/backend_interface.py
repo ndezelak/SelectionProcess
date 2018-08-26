@@ -3,6 +3,7 @@ import Backend.rating_procedures as rating
 import Backend.elimination as elimination
 import Data.globals as globals
 import Backend.processing as process
+import Backend.statistics as statistics
 from PyQt5.QtWidgets import QMessageBox
 def start():
     print("New start of the selection process ...")
@@ -23,7 +24,7 @@ def start():
                               " die höher in der Tabelle standen werden Vorteil haben."
                               "\n\n Durch Änderung der Prozesseinstellungen könnte dieses Problem gegebenfalls vermieden werden.")
     #   First come, first serve principle
-    elimination.process_boundary(boundary_region,passed_students)
+        elimination.process_boundary(boundary_region,passed_students)
     finished_students = []
     # Initialize company and student seats
     for company in companies:
@@ -78,7 +79,20 @@ def start():
                 print(student.name + "\n")
             break
     print("DONE!")
+    globals.passed_students = finished_students
     print("--------------------------------------------------------------------------")
-    pass
+    passed = statistics.get_student_pass_rate()
+    average = statistics.get_students_average_wish_rate()
+    average_companies = statistics.get_company_average_wish_rate()
+    for company in companies:
+        print(company.name+" ")
+        print(str(statistics.get_row_covering(company)) + "\n"  )
+        print("Wish coverage:" + str(statistics.get_company_wish_rate(company)) + "\n")
+    for student in finished_students:
+        print(student.name + " ")
+        print("Wish coverage:" + str(statistics.get_student_wish_rate(student)))
+    print("Average wish rate for students: " + str(average))
+    print("Average wish rate for companies: " + str(average_companies))
+    globals.main_page.process_run.emit()
 def restart():
     pass

@@ -8,10 +8,11 @@ from Frontend.file_specifier_page import *
 from Frontend.string_matcher_page import *
 from Frontend.process_settings_page import *
 import Backend.backend_interface as backend_interface
+import Backend.statistics as statistics
 class mainPage(QWidget):
     # signals
     input_table_specified = pyqtSignal()
-
+    process_run = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
         self.initialize()
@@ -20,9 +21,11 @@ class mainPage(QWidget):
         self.add_company_window = []
         self.file_specifier_page = []
         self.input_table_specified.connect(self.read_table)
+        self.process_run.connect(self.update_statistics_display)
         self.file_path = []
         self.update_companies()
         globals.current_session_buffer = copy.deepcopy(globals.current_session)
+        globals.main_page = self
 
     def initialize(self):
         self.setWindowTitle("Career Night App")
@@ -127,9 +130,9 @@ class mainPage(QWidget):
         button_statistics = QPushButton()
         button_statistics.setText("Detailierte Statistik")
 
-        text_output = QTextEdit()
-        text_output.setText("Anzahl von Studenten: 40 \nAnzahl von Firmen: 8")
-        text_output.setReadOnly(True)
+        self.text_output = QTextEdit()
+        self.text_output.setText("Anzahl von Studenten: 40 \nAnzahl von Firmen: 8")
+        self.text_output.setReadOnly(True)
 
         button_pdf_dir = QPushButton()
         button_pdf_dir.setText("Zielpfad eingeben")
@@ -149,7 +152,7 @@ class mainPage(QWidget):
 
         bottom_grid.addWidget(label_statistik,0,0,1,5)
         bottom_grid.addWidget(button_statistics,0,5,1,1)
-        bottom_grid.addWidget(text_output,1,0,6,6)
+        bottom_grid.addWidget(self.text_output,1,0,6,6)
         bottom_grid.addWidget(button_pdf_dir,7,0)
         bottom_grid.addWidget(label_pdf_dir,7,1,1,2)
         bottom_grid.addWidget(button_pdf_gen,8,0,1,3)
@@ -279,6 +282,21 @@ class mainPage(QWidget):
     @pyqtSlot()
     def new_start_clicked(self):
         backend_interface.start()
+
+    @pyqtSlot()
+    def update_statistics_display(self):
+        string = " ERGEBNISSE: \n"
+        string+= "Angenommene Studenten: " + str(statistics.get_student_pass_rate()[0])+" von "+str(statistics.get_student_pass_rate()[1])+"\n"
+        string += "Durchschnittliche Erfüllung der Wünsche von Studenten: " + str(
+            int(statistics.get_students_average_wish_rate()*100)) + "%\n"
+        string += "Durchschnittliche Erfüllung der Wünsche von Firmen: " + str(
+            int(statistics.get_company_average_wish_rate()*100)) + "%\n"
+        string += "--------------------------------------------\n"
+        string += "Besetzung der Gänge je Firma je Gang: \n"
+        for company in globals.current_session.companies:
+            string+= company.name + " "
+            string+=str(statistics.get_row_covering(company)) + "\n"
+        self.text_output.setText(string)
 
 
 
