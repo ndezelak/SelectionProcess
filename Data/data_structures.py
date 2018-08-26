@@ -32,7 +32,7 @@ class Student:
         self.degree = degree
 
 class Company:
-    def __init__(self, list_id=0, seats=0, name="Empty", field_of_study = [], points = 0, degrees = []):
+    def __init__(self, list_id=0, seats=[], name="Empty", field_of_study = [], points = 0, degrees = []):
         self.name=name
         self.field_of_study=field_of_study
         self.list_id=list_id

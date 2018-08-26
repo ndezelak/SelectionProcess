@@ -4,7 +4,8 @@
 #                           - user_prompt (boundary_students, num_allowed_seats)
 # Created: 29/11/2016
 # Last Change: 12/01/2017
-from config import *
+import Data.globals as globals
+import Backend.rating_procedures as sorting
 
 def divide_students(sorted_students, max_number): # ****** TESTED ****** #
     passed_students=[]
@@ -19,48 +20,37 @@ def divide_students(sorted_students, max_number): # ****** TESTED ****** #
         except IndexError:
             break
 
-     # Look at the last student in the passed list
-    if len(passed_students) > MAX_STUDENT_NUMBER:
+     # Look at the last student in the passed list (it is assumed that if there are too many students the list size is greater than the maximum allowed size by +1
+    if len(sorted_students) > max_number:
         last_points = sorted_students[index].points
         last_index = index
+    # The passed_students list is already smaller than the maximum, therefor nothing is to be done
     else:
         return [passed_students,boundary_region]
-
 
     # Identify a conflicting boundary region
     if sorted_students[last_index].points == sorted_students[last_index-1].points:
         delete_students =[]
         # For all students with the same amount of points
-        for student in passed_students:
+        for student in sorted_students:
             if student.points == last_points:
                 # Add them to the boundary region and delete them from the passed region
                 boundary_region.append(student)
-                delete_students.append(student)
+                if student in passed_students:
+                    delete_students.append(student)
         # Delete every student that belongs to the boundary region from the passed group
         for student in delete_students:
                 passed_students.remove(student)
-        # Add students to the boundary region from the remaining list
-        try:
-            while sorted_students[index].points == last_points:
-                    boundary_region.append(sorted_students[index])
-                    index = index + 1
-        except IndexError:
-            # You reached the end of the sorted list. No problem, go further
-            pass
-
-
     return [passed_students, boundary_region]
 
 #
-def process_boundary(boundary_region, algorithm_step, system, left_places):
-    # Depending on the algorithm step consider a given number of points that a student might have and look which one
-    # fits the best into the left available seats. The "fill_table" function also has to be used here.
-    for student in boundary_region:
-        for company in student.companies:
-            if system[student.list_id][company.list_id] == algorithm_step:
-                student.other_points = student.other_points + algorithm_step
-
-
-
-def user_prompt(boundary_list):
-    pass
+def process_boundary(boundary_region,passed_students):
+    # First come, first serve principle
+    sorting.sort_by_id(boundary_region)
+    left_places = globals.current_session.settings.max_num * len(globals.current_session.companies) - len(passed_students)
+    to_be_deleted = []
+    for j in range(0,left_places):
+        passed_students.append(boundary_region[j])
+        to_be_deleted.append(boundary_region[j])
+    for student in to_be_deleted:
+        boundary_region.remove(student)

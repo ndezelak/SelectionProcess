@@ -7,6 +7,7 @@ from Frontend.add_company_page import *
 from Frontend.file_specifier_page import *
 from Frontend.string_matcher_page import *
 from Frontend.process_settings_page import *
+import Backend.backend_interface as backend_interface
 class mainPage(QWidget):
     # signals
     input_table_specified = pyqtSignal()
@@ -109,6 +110,7 @@ class mainPage(QWidget):
 
         button_start_process = QPushButton()
         button_start_process.setText("Prozess neu ausführen")
+        button_start_process.clicked.connect(self.new_start_clicked)
 
         button_start_process_limited = QPushButton()
         button_start_process_limited.setText("Prozess nur an neuen Studenten ausführen")
@@ -173,6 +175,7 @@ class mainPage(QWidget):
         main_layout.addWidget(groupbox_output)
         self.setLayout(main_layout)
         self.show()
+
 
     # Update company display
     def update_companies(self):
@@ -272,6 +275,11 @@ class mainPage(QWidget):
     @pyqtSlot()
     def process_settings_clicked(self):
         self.process_settings_page = process_settings_page()
+
+    @pyqtSlot()
+    def new_start_clicked(self):
+        backend_interface.start()
+
 
 
 
