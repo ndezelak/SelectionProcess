@@ -4,6 +4,7 @@ from dominate.tags import *
 from config import *
 import Data.globals as globals
 import pickle
+from fpdf import FPDF
 
 def save_project():
     with open(globals.current_session.name+".bonding","wb") as file:
@@ -92,5 +93,20 @@ def create_company_plan(sorted_companies,system):
         file = open("Output/Global/" + str(company.name) + '.html', 'w')
         file.write(str(doc))
         file.close()
+
+def create_student_page(student):
+    globals.pdf_students.add_page()
+    globals.pdf_students.image("logo.png",x=(globals.pdf_students.w)/4,y=0,w=(globals.pdf_students.w)/2, h=30)
+    globals.pdf_students.ln(51)
+    globals.pdf_students.set_font("Arial", size=32)
+    # Student name display
+    globals.pdf_students.cell(200,10,txt=student.name, ln=1, align="C")
+
+
+def generate_student_pdfs():
+    for student in globals.passed_students:
+        create_student_page(student)
+    globals.pdf_students.output('Studenten.pdf')
+    pass
 
 

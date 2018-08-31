@@ -7,6 +7,7 @@ from Frontend.add_company_page import *
 from Frontend.file_specifier_page import *
 from Frontend.string_matcher_page import *
 from Frontend.process_settings_page import *
+from Backend.output_utils import generate_student_pdfs
 import Backend.backend_interface as backend_interface
 import Backend.statistics as statistics
 class mainPage(QWidget):
@@ -143,6 +144,7 @@ class mainPage(QWidget):
 
         button_pdf_gen = QPushButton()
         button_pdf_gen.setText("Generate pdfs")
+        button_pdf_gen.clicked.connect(self.generate_pdfs_clicked)
 
         button_home = QPushButton()
         button_home.setText("HOME")
@@ -312,6 +314,9 @@ class mainPage(QWidget):
             globals.current_session.pdf_dir = None
             save_project()
 
+    @pyqtSlot()
+    def generate_pdfs_clicked(self):
+        generate_student_pdfs()
 
 
 

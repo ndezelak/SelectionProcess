@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication, QStyleFactory
 from Frontend.start_page import startPage
 from Frontend.main_page import *
 import Data.globals as globals
+
 def main():
     # Get app directory
     dir = os.path.dirname(os.path.realpath(sys.argv[0]))
