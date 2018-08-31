@@ -136,9 +136,10 @@ class mainPage(QWidget):
 
         button_pdf_dir = QPushButton()
         button_pdf_dir.setText("Zielpfad eingeben")
+        button_pdf_dir.clicked.connect(self.set_pdf_dir_clicked)
 
-        label_pdf_dir = QLabel()
-        label_pdf_dir.setText("C:/Users")
+        self.label_pdf_dir = QLabel()
+        self.label_pdf_dir.setText('Kein Zielpfad für die pdfs wurde ausgewählt!')
 
         button_pdf_gen = QPushButton()
         button_pdf_gen.setText("Generate pdfs")
@@ -154,7 +155,7 @@ class mainPage(QWidget):
         bottom_grid.addWidget(button_statistics,0,5,1,1)
         bottom_grid.addWidget(self.text_output,1,0,6,6)
         bottom_grid.addWidget(button_pdf_dir,7,0)
-        bottom_grid.addWidget(label_pdf_dir,7,1,1,2)
+        bottom_grid.addWidget(self.label_pdf_dir,7,1,1,2)
         bottom_grid.addWidget(button_pdf_gen,8,0,1,3)
         bottom_grid.addWidget(button_home,8,3)
         bottom_grid.addWidget(button_help,8,5)
@@ -298,7 +299,18 @@ class mainPage(QWidget):
             string+=str(statistics.get_row_covering(company)) + "\n"
         self.text_output.setText(string)
 
-
+    @pyqtSlot()
+    def set_pdf_dir_clicked(self):
+        dir = QFileDialog.getExistingDirectory(parent=self,caption="Wähle den Zielpfad aus",directory="C://")
+        if dir != None and dir!='':
+            self.label_pdf_dir.setText(dir)
+            globals.current_session.pdf_dir = dir
+            print("Saved pdf dir to session: " + globals.current_session.pdf_dir)
+            save_project()
+        else:
+            self.label_pdf_dir.setText('Kein Zielpfad für die pdfs wurde ausgewählt!')
+            globals.current_session.pdf_dir = None
+            save_project()
 
 
 
