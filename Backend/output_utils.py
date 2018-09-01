@@ -4,7 +4,9 @@ from dominate.tags import *
 from config import *
 import Data.globals as globals
 import pickle
-from fpdf import FPDF
+from fpdf.fpdf import FPDF
+from PyQt5.QtCore import QThread, QMutex, QWaitCondition
+from PyQt5.QtWidgets import QInputDialog, QLineEdit
 
 def save_project():
     with open(globals.current_session.name+".bonding","wb") as file:
@@ -75,8 +77,8 @@ def create_student_plans(finished_students):
         file.close()
         i = i + 1
 
-def create_company_plan(sorted_companies,system):
 
+def create_company_plan(sorted_companies, system):
     for company in sorted_companies:
         doc = document()
         doc += style("h1{text-align:left}")
@@ -84,29 +86,59 @@ def create_company_plan(sorted_companies,system):
         doc += style("h2{text-align:left}")
         doc += style("h4{text-align:left}")
         doc += style("div{text-align:left}")
-        doc+=h2(company.name)
+        doc += h2(company.name)
         for round in range(0, NUM_ROWS):
             doc += h3("Gang " + str(round + 1))
             for student in company.seats[round]:
-                doc += h5(" " + unicode(str(student.name))+" ("+str(system[student.list_id][company.list_id])+")")
+                doc += h5(
+                    " " + unicode(str(student.name)) + " (" + str(system[student.list_id][company.list_id]) + ")")
             doc += br()
         file = open("Output/Global/" + str(company.name) + '.html', 'w')
         file.write(str(doc))
         file.close()
+# Thread for generating PDF files
+class PDF_thread(QThread):
+    def __init__(self, wait_condition = [], mutex = []):
+        super().__init__()
+        self.wait_condition = wait_condition
+        self.mutex = mutex
+    def run(self):
+        print("Thread started")
+        self.generate_student_pdfs()
 
-def create_student_page(student):
-    globals.pdf_students.add_page()
-    globals.pdf_students.image("logo.png",x=(globals.pdf_students.w)/4,y=0,w=(globals.pdf_students.w)/2, h=30)
-    globals.pdf_students.ln(51)
-    globals.pdf_students.set_font("Arial", size=32)
-    # Student name display
-    globals.pdf_students.cell(200,10,txt=student.name, ln=1, align="C")
+    def finished(self):
+        super().finished()
+        print("Thread finished")
 
+    def initialize_document(self):
+        globals.pdf_students.add_font(family='DejaVu',style='',fname='DejaVuSansCondensed.ttf', uni=True)
 
-def generate_student_pdfs():
-    for student in globals.passed_students:
-        create_student_page(student)
-    globals.pdf_students.output('Studenten.pdf')
-    pass
+    def create_student_page(self,student):
+        globals.pdf_students.add_page()
+        globals.pdf_students.image("logo.png", x=(globals.pdf_students.w) / 4, y=0, w=(globals.pdf_students.w) / 2,
+                                   h=30)
+        globals.pdf_students.ln(51)
+        globals.pdf_students.set_font("Arial", size=32)
+        #Check if student's names are all latin-1 encodable
+        try:
+            self.mutex.lock()
+            student.name.encode('latin-1')
+        except UnicodeEncodeError:
+            print("Signal is about to be emitted!")
+            globals.main_page.correct_student_name_signal.emit(student)
+            print("Thread is about to wait ...")
+            self.wait_condition.wait(self.mutex)
+        except Exception as e:
+            print("Unexpected exception:")
+        # Student name display
+        globals.pdf_students.cell(200, 10, txt=student.name, ln=1, align="C")
+        self.mutex.unlock()
+    def generate_student_pdfs(self):
+        #self.initialize_document()
+        for student in globals.passed_students:
+            self.create_student_page(student)
+        print("Done creating pages")
+        globals.pdf_students.output('Studenten.pdf')
+        print("Done generating the pdf file")
 
 

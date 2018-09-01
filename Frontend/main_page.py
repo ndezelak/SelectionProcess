@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QTextEdit, QTableWidgetItem, QFileDialog
-from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QLineEdit, QTableWidgetItem, QFileDialog
+from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal, QWaitCondition, QMutex
 from Backend.output_utils import save_project
 from Backend.input_reading import read_file
 from Frontend.field_of_study_page import *
@@ -7,13 +7,16 @@ from Frontend.add_company_page import *
 from Frontend.file_specifier_page import *
 from Frontend.string_matcher_page import *
 from Frontend.process_settings_page import *
-from Backend.output_utils import generate_student_pdfs
+from Backend.output_utils import PDF_thread
 import Backend.backend_interface as backend_interface
 import Backend.statistics as statistics
+import threading
+
 class mainPage(QWidget):
     # signals
     input_table_specified = pyqtSignal()
     process_run = pyqtSignal()
+    correct_student_name_signal = pyqtSignal('PyQt_PyObject')
     def __init__(self, parent):
         super().__init__()
         self.initialize()
@@ -25,6 +28,10 @@ class mainPage(QWidget):
         self.process_run.connect(self.update_statistics_display)
         self.file_path = []
         self.update_companies()
+        self.pdf_thread = []
+        self.correct_student_name_signal.connect(self.correct_student_name)
+        self.wait_condition = QWaitCondition()
+        self.mutex = QMutex()
         globals.current_session_buffer = copy.deepcopy(globals.current_session)
         globals.main_page = self
 
@@ -232,6 +239,19 @@ class mainPage(QWidget):
         save_project()
         super().closeEvent(QCloseEvent)
 
+    @pyqtSlot('PyQt_PyObject')
+    def correct_student_name(self,student_object):
+        print('Slot called!')
+        [get_str, okPressed] = QInputDialog.getText(None, "Unbekannter Buchstabe!",
+                                                    "Bitte gebe die deutsche Version diesen Namens an: " + student_object.name,
+                                                    QLineEdit.Normal, "")
+        if okPressed and get_str != "":
+            student_object.name = get_str
+        else:
+            #TODO: How to react to this?
+            pass
+        self.wait_condition.wakeAll()
+
     @pyqtSlot()
     def callback_home(self):
         self.parent.home_button_clicked_signal.emit()
@@ -316,7 +336,10 @@ class mainPage(QWidget):
 
     @pyqtSlot()
     def generate_pdfs_clicked(self):
-        generate_student_pdfs()
+        self.pdf_thread = PDF_thread(wait_condition=self.wait_condition,mutex=self.mutex)
+        self.pdf_thread.start()
+        print("Done!")
+
 
 
 

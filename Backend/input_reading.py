@@ -5,6 +5,7 @@ from csv import *
 from config import *
 import Data.globals as globals
 from Frontend.string_matcher_page import *
+from PyQt5.QtWidgets import QInputDialog,QLineEdit
 
 def construct_companies(companies):
    file = open('Input/firmen.txt')
@@ -315,7 +316,7 @@ def read_file(file_path,widget=[]):
                 globals.current_session.students.append(Student(list_id=list_id, seats = [], name = name + " " + surname, field_of_study=field_of_study, companies=matched_companies))
                 list_id += 1
             index += 1
-        pass
+
 
 
 def find_field_of_study(string_field="",widget=[]):
