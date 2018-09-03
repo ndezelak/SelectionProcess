@@ -1,22 +1,25 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QLineEdit, QTableWidgetItem, QFileDialog
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QLineEdit, QTableWidgetItem, QFileDialog, QProgressDialog
 from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal, QWaitCondition, QMutex
 from Backend.output_utils import save_project
 from Backend.input_reading import read_file
-from Frontend.field_of_study_page import *
-from Frontend.add_company_page import *
-from Frontend.file_specifier_page import *
+from Frontend.main_page_field_of_studies_display import *
+from Frontend.main_page_add_company import *
+from Frontend.main_page_specify_file_columns import *
 from Frontend.string_matcher_page import *
-from Frontend.process_settings_page import *
+from Frontend.main_page_selection_process_settings import *
 from Backend.output_utils import PDF_thread
 import Backend.backend_interface as backend_interface
 import Backend.statistics as statistics
 import threading
 
 class mainPage(QWidget):
-    # signals
+    # Signals
     input_table_specified = pyqtSignal()
     process_run = pyqtSignal()
     correct_student_name_signal = pyqtSignal('PyQt_PyObject')
+    update_progress_dialog_signal = pyqtSignal('int')
+    pdf_generation_done_signal = pyqtSignal()
+
     def __init__(self, parent):
         super().__init__()
         self.initialize()
@@ -32,9 +35,15 @@ class mainPage(QWidget):
         self.correct_student_name_signal.connect(self.correct_student_name)
         self.wait_condition = QWaitCondition()
         self.mutex = QMutex()
+        self.progress_dialog = []
+        self.update_progress_dialog_signal.connect(self.set_progress_dialog)
+        self.pdf_generation_done_signal.connect(self.pdf_generation_done)
+        self.messagebox = []
+        # Copy the current session to the buffer
         globals.current_session_buffer = copy.deepcopy(globals.current_session)
+        # Save reference to this window globally
         globals.main_page = self
-
+    # GUI construction
     def initialize(self):
         self.setWindowTitle("Career Night App")
         self.showMaximized()
@@ -45,7 +54,7 @@ class mainPage(QWidget):
         settings = QVBoxLayout()
         bottom_grid = QGridLayout()
 
-        # Upper grid
+        #------- Upper grid -------#
         button_save = QPushButton()
         button_save.setText("Projekt speichern")
 
@@ -113,7 +122,7 @@ class mainPage(QWidget):
         upper_grid.addWidget(self.table_students,1,0,5,3)
         upper_grid.addWidget(self.table_companies,1,3,5,3)
 
-        # Settings
+        #---------- Settings -----------#
         button_settings = QPushButton()
         button_settings.setText("Prozess Einstellungen")
         button_settings.clicked.connect(self.process_settings_clicked)
@@ -131,7 +140,7 @@ class mainPage(QWidget):
         settings.addWidget(button_start_process)
         settings.addWidget(button_start_process_limited)
 
-        # Bottom grid
+        #------- Bottom grid --------#
         label_statistik = QLabel()
         label_statistik.setText("Ergebnisse")
 
@@ -169,7 +178,7 @@ class mainPage(QWidget):
         bottom_grid.addWidget(button_home,8,3)
         bottom_grid.addWidget(button_help,8,5)
 
-        # Groupboxes
+        # ----- Main Groupboxes ----- #
         groupbox_data = QGroupBox()
         groupbox_data.setTitle("Studenten und Firmen")
         groupbox_data.setLayout(upper_grid)
@@ -181,6 +190,7 @@ class mainPage(QWidget):
         groupbox_output = QGroupBox()
         groupbox_output.setTitle("Ausgaben")
         groupbox_output.setLayout(bottom_grid)
+
         # Set main layout
         main_layout.addWidget(button_save)
         main_layout.addWidget(groupbox_data)
@@ -239,6 +249,7 @@ class mainPage(QWidget):
         save_project()
         super().closeEvent(QCloseEvent)
 
+    # Slot: for creating a QInputDialog to remove nonlatin letters from a students name
     @pyqtSlot('PyQt_PyObject')
     def correct_student_name(self,student_object):
         print('Slot called!')
@@ -250,20 +261,25 @@ class mainPage(QWidget):
         else:
             #TODO: How to react to this?
             pass
+        # Wake all waiting threads (waiting on the wait_condition)
         self.wait_condition.wakeAll()
 
+    # Slot: Home button clicked (emits a signal to the start_page)
     @pyqtSlot()
     def callback_home(self):
         self.parent.home_button_clicked_signal.emit()
 
+    # Slot: Settings clicked (creates the settings window)
     @pyqtSlot()
     def settings_clicked(self):
         self.fields_of_study_window = field_of_study(self)
 
+    # Slot: Add a company to the list
     @pyqtSlot()
     def add_company_clicked(self):
         self.add_company_window = add_company_page(self)
 
+    # Slot: Delete a company from the list
     @pyqtSlot()
     def delete_company_clicked(self):
         current_row = self.table_companies.currentRow()
@@ -273,6 +289,7 @@ class mainPage(QWidget):
                 globals.current_session.companies.remove(company)
         self.update_companies()
 
+    # Slot: Display a QFileDialog to choose the file and run the file_specifier afterwards
     @pyqtSlot()
     def choose_file_clicked(self):
         matcher = string_matcher_page()
@@ -292,20 +309,24 @@ class mainPage(QWidget):
          globals.home_dir+"\\Input","CSV File (*.csv)")
         self.file_specifier_page = file_specifier_page(self)
 
+    # Slot: Read the specified file (run when the signal file_specified is emitted)
     @pyqtSlot()
     def read_table(self):
         read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
         self.update_students()
         save_project()
 
+    # Slot: Display the process settings page to alter the display settings
     @pyqtSlot()
     def process_settings_clicked(self):
         self.process_settings_page = process_settings_page()
 
+    # Slot: The selection process should be rerun
     @pyqtSlot()
     def new_start_clicked(self):
         backend_interface.start()
 
+    # Slot: Update the statistics text display (run when the signal process_run is emitted)
     @pyqtSlot()
     def update_statistics_display(self):
         string = " ERGEBNISSE: \n"
@@ -321,6 +342,7 @@ class mainPage(QWidget):
             string+=str(statistics.get_row_covering(company)) + "\n"
         self.text_output.setText(string)
 
+    # Slot: QFileDialog is displayed to specify the savepath of pdf files
     @pyqtSlot()
     def set_pdf_dir_clicked(self):
         dir = QFileDialog.getExistingDirectory(parent=self,caption="Wähle den Zielpfad aus",directory="C://")
@@ -334,11 +356,32 @@ class mainPage(QWidget):
             globals.current_session.pdf_dir = None
             save_project()
 
+    # Slot: Start the PDF generation thread
     @pyqtSlot()
     def generate_pdfs_clicked(self):
         self.pdf_thread = PDF_thread(wait_condition=self.wait_condition,mutex=self.mutex)
+        self.progress_dialog = QProgressDialog()
+        self.progress_dialog.setMaximum(len(globals.passed_students))
+        self.progress_dialog.setLabelText("Bitte warte ein Moment ...")
+        self.progress_dialog.setWindowTitle("PDF Generierung")
+        self.progress_dialog.open()
+
+        print("Progress bar opened!")
         self.pdf_thread.start()
-        print("Done!")
+        print("PDF Thread started!")
+
+    @pyqtSlot(int)
+    def set_progress_dialog(self, value):
+        self.progress_dialog.setValue(value)
+        print("Progressbar updated")
+
+    @pyqtSlot()
+    def pdf_generation_done(self):
+        if not (self.progress_dialog.wasCanceled()):
+            self.progress_dialog.cancel()
+        QMessageBox.information(None,"PDF Generierung","Fertig!")
+        self.pdf_thread = []
+
 
 
 

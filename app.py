@@ -2,6 +2,7 @@
 import sys
 import os
 from PyQt5.QtWidgets import QApplication, QStyleFactory
+from PyQt5.QtCore import QThread
 from Frontend.start_page import startPage
 from Frontend.main_page import *
 import Data.globals as globals
@@ -13,6 +14,7 @@ def main():
     # Create the application
     app = QApplication([])
     app.setStyle(QStyleFactory.create("fusion"))
+    QThread.currentThread().setPriority(QThread.HighestPriority)
     #Create the start page
     startpage = startPage(app)
     #mainpage = mainPage(app)

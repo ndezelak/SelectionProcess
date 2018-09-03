@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QListWidget, QVBoxLayout, QPushButton, QTextEdit, QHBoxLayout, QFrame, QGroupBox, QLabel
 from PyQt5.QtCore import pyqtSlot
-from Frontend.edit_field_of_study_page import *
+from Frontend.main_page_add_field_of_study import *
 import Data.globals as globals
 import copy
 from Data.data_structures import Field_of_Study

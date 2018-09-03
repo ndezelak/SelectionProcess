@@ -1,7 +1,7 @@
 from PyQt5.QtGui import QPixmap
-from Frontend.create_new_project_page import *
+from Frontend.start_page_create_new_project import *
 from Frontend.main_page import *
-from Frontend.field_of_study_page import *
+from Frontend.main_page_field_of_studies_display import *
 from PyQt5.QtCore import pyqtSignal
 
 

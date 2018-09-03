@@ -1,3 +1,4 @@
+# TODO: Should this be inside main_page as a slot?
 from PyQt5.QtWidgets import QInputDialog, QWidget, QMessageBox
 class string_matcher_page(QWidget):
     def __init__(self):
