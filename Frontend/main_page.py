@@ -307,7 +307,8 @@ class mainPage(QWidget):
             return
         self.file_path =  QFileDialog.getOpenFileName(self, 'Open file',
          globals.home_dir+"\\Input","CSV File (*.csv)")
-        self.file_specifier_page = file_specifier_page(self)
+        if self.file_path[0] != "":
+            self.file_specifier_page = file_specifier_page(self)
 
     # Slot: Read the specified file (run when the signal file_specified is emitted)
     @pyqtSlot()

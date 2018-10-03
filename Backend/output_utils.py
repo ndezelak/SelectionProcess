@@ -2,6 +2,7 @@ import Data.globals as globals
 import pickle
 from PyQt5.QtCore import QThread
 from fpdf import FPDF
+from PyQt5.QtWidgets import QMessageBox
 
 def save_project():
     with open(globals.current_session.name+".bonding","wb") as file:
@@ -15,24 +16,28 @@ class PDF_thread(QThread):
         self.wait_condition = wait_condition
         self.mutex = mutex
         self.counter = 0
+
+    # Callback for thread start by the system
     def run(self):
         print("Thread started")
         globals.main_page.update_progress_dialog_signal.emit(1)
         self.generate_student_pdfs()
+        self.generate_company_pdfs()
+        globals.main_page.pdf_generation_done_signal.emit()
+        print("Done generating the pdf file")
+        self.quit()
 
+    # Callback for thread termination by the system
     def finished(self):
         super().finished()
         print("Thread finished")
 
-    def initialize_document(self):
-        globals.pdf_students.add_font(family='DejaVu',style='',fname='DejaVuSansCondensed.ttf', uni=True)
-
+    # Create a single page for a student
     def create_student_page(self,student):
         globals.pdf_students.add_page()
         globals.pdf_students.image("logo.png", x=(globals.pdf_students.w) / 4, y=10, w=(globals.pdf_students.w) / 2,
                                    h=30)
         globals.pdf_students.ln(80)
-
         #Check if student's names are all latin-1 encodable
         try:
             self.mutex.lock()
@@ -49,7 +54,6 @@ class PDF_thread(QThread):
         globals.pdf_students.multi_cell(globals.pdf_students.w, 10, txt=student.name, ln=1, align="C")
         # Student companies
         globals.pdf_students.ln(20)
-
         pointer = 1
         for seat in student.seats:
             globals.pdf_students.set_font("Arial", size=16)
@@ -58,8 +62,42 @@ class PDF_thread(QThread):
             globals.pdf_students.multi_cell(200,10, txt = seat.name, ln=1, align="C")
             globals.pdf_students.ln(5)
             pointer += 1
-
         self.mutex.unlock()
+
+    # Create a single page for a company
+    def create_company_page(self, company):
+        globals.pdf_companies.add_page()
+
+        globals.pdf_companies.image("logo.png", x=(globals.pdf_companies.w) / 4, y=10, w=(globals.pdf_companies.w) / 2,
+                                   h=60)
+        globals.pdf_companies.ln(80)
+        globals.pdf_companies.set_font("Arial", "B", size=32)
+        globals.pdf_companies.multi_cell(globals.pdf_companies.w,10,txt=company.name,ln=1,align="C")
+        globals.pdf_companies.ln(5)
+        counter = 1
+        for seat in company.seats:
+            globals.pdf_companies.set_font("Arial", size=16)
+            globals.pdf_companies.multi_cell(globals.pdf_companies.w,10,txt="Gang "+str(counter)+":",ln=1,align="C")
+            globals.pdf_companies.set_font("Arial", size=12)
+            counter+=1
+            for student in seat:
+                globals.pdf_companies.multi_cell(globals.pdf_companies.w,10,txt=student.name,ln=1,align="C")
+
+
+    # Create the pdf for companies
+    def generate_company_pdfs(self):
+        for company in globals.current_session.companies:
+            self.create_company_page(company = company)
+        while(True):
+            try:
+                with open("Companies.pdf","wb") as file:
+                    break
+            except PermissionError:
+                QMessageBox.warning(None, "Warning", "Close the open PDF document with the same name!",
+                                            QMessageBox.Ok)
+        globals.pdf_companies.output('Companies.pdf')
+
+    # Create the pdf for students
     def generate_student_pdfs(self):
         for student in globals.passed_students:
             self.counter +=1
@@ -67,96 +105,14 @@ class PDF_thread(QThread):
             globals.main_page.update_progress_dialog_signal.emit(self.counter)
             self.create_student_page(student)
         print("Done creating pages")
+        try:
+            with open('Studenten.pdf','wb') as file:
+                pass
+        except PermissionError:
+            print("Please close the PDF document with the same name!")
+            value = 0
+            while(value == 0):
+                value = QMessageBox.warning(None,"Warning","Close the open document with the same name!",QMessageBox.Ok)
         globals.pdf_students.output('Studenten.pdf')
         globals.pdf_students = FPDF()
         globals.pdf_students.set_margins(left=0,right=0,top=0)
-        globals.main_page.pdf_generation_done_signal.emit()
-        self.quit()
-        print("Done generating the pdf file")
-
-
-'''
-def create_global_plan(finished_students,sorted_companies):
-    #doc += style("h3{text-align:center}")
-    #doc += style("h4{text-align:center}")
-    for round in range(0,NUM_ROWS):
-        doc = document()
-        doc += style("h1{text-align:center; font size=""40""}")
-       # doc += style("h2{text-align:center}")
-        doc+=h1("Gang "+str(round+1))
-        for company in sorted_companies:
-            doc+=h2(company.name)
-            for student in company.seats[round]:
-               doc+=h3(pre("    "+student.name))
-        file = open("Output\Global\Gang"+str(round)+" global" + '.html', 'w')
-        file.write(str(doc))
-        file.close()
-
-def create_student_plans(finished_students):
-    # Seat plan for each student
-    i = 0
-    for student in finished_students:
-        doc = document()
-        doc += style("h1{text-align:center}")
-        doc += style("h3{text-align:center}")
-        doc += style("h2{text-align:center}")
-        doc += style("h4{text-align:center}")
-        doc += style("div{text-align:center}")
-        doc +=style(".container{ \
-        height:250px; \
-        background:#f8f8f8; \
-        display: -ms-flexbox; \
-        display: -webkit-flex; \
-        display: flex; \
-        -ms-flex-align: center; \
-        align-items: center; \
-        -webkit-box-align: center; \
-        justify-content: center;\
-        } \
-        h1{ \
-        font-size:48px;} \
-        h2{font-size:30px;}\
-        h3{font-size:20px;} h4{font-size:14px;}         ") \
-
-        doc.head.add_raw_string(
-        "<header><center><img src=""logo.png"" alt=""Something"" align=""middle"" width=""500""></center></header>")
-        doc += br()
-        doc += br()
-
-        doc += h1(student.name)
-        doc += br()
-        doc += style("h1{text-align:center; color:darkblue}")
-
-        for round in range(0, NUM_ROWS):
-            doc+=h3("Gang " + str(round + 1))
-            doc+=h2(unicode(str(student.seats[round].name)))
-           # doc+=h4("Tischnummer:" + str(student.seats[round].list_id + 1))
-            doc+=br()
-        # doc.body.add_raw_string("<footer><center><img src=""logo.png"" alt=""Something"" align=""middle""></center></footer>")
-
-    # Output result ot a specific file
-        file = open("Output/Students/" + str(student.name) + '.html', 'w')
-        file.write(str(doc))
-        file.close()
-        i = i + 1
-
-
-def create_company_plan(sorted_companies, system):
-    for company in sorted_companies:
-        doc = document()
-        doc += style("h1{text-align:left}")
-        doc += style("h3{text-align:left}")
-        doc += style("h2{text-align:left}")
-        doc += style("h4{text-align:left}")
-        doc += style("div{text-align:left}")
-        doc += h2(company.name)
-        for round in range(0, NUM_ROWS):
-            doc += h3("Gang " + str(round + 1))
-            for student in company.seats[round]:
-                doc += h5(
-                    " " + unicode(str(student.name)) + " (" + str(system[student.list_id][company.list_id]) + ")")
-            doc += br()
-        file = open("Output/Global/" + str(company.name) + '.html', 'w')
-        file.write(str(doc))
-        file.close()
-'''
