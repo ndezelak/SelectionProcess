@@ -31,6 +31,7 @@ class Student:
         self.other_points = other_points
         self.degree = degree
 
+
 class Company:
     def __init__(self, list_id=0, seats=[], name="Empty", field_of_study = [], points = 0, degrees = []):
         self.name=name
@@ -49,9 +50,11 @@ class Settings:
         self.points_company = points_company
 
 class Session:
-    def __init__(self,name = "",students = [],companies = [], fields_of_study = [], settings = Settings(), pdf_dir = ""):
+    def __init__(self,name = "",students = [],companies = [], fields_of_study = [], settings = Settings(), pdf_dir = "", passed_students = [], added_students = []):
         self.name = name
         self.students = students
+        self.passed_students = passed_students
+        self.added_students = added_students
         self.companies = companies
         self.fields_of_study = fields_of_study
         self.settings = settings

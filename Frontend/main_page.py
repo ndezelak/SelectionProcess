@@ -23,6 +23,9 @@ class mainPage(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.initialize()
+        self.update_companies()
+        self.update_students()
+        self.update_pdf_dir_display(globals.current_session.pdf_dir)
         self.parent = parent
         self.fields_of_study_window = []
         self.add_company_window = []
@@ -30,7 +33,6 @@ class mainPage(QWidget):
         self.input_table_specified.connect(self.read_table)
         self.process_run.connect(self.update_statistics_display)
         self.file_path = []
-        self.update_companies()
         self.pdf_thread = []
         self.correct_student_name_signal.connect(self.correct_student_name)
         self.wait_condition = QWaitCondition()
@@ -57,6 +59,7 @@ class mainPage(QWidget):
         #------- Upper grid -------#
         button_save = QPushButton()
         button_save.setText("Projekt speichern")
+        button_save.clicked.connect(self.save_project_clicked)
 
         label_students = QLabel()
         label_students.setText("Studenten")
@@ -347,10 +350,13 @@ class mainPage(QWidget):
     @pyqtSlot()
     def set_pdf_dir_clicked(self):
         dir = QFileDialog.getExistingDirectory(parent=self,caption="Wähle den Zielpfad aus",directory="C://")
+        self.update_pdf_dir_display(dir=dir)
+
+    def update_pdf_dir_display(self,dir):
         if dir != None and dir!='':
             self.label_pdf_dir.setText(dir)
             globals.current_session.pdf_dir = dir
-            print("Saved pdf dir to session: " + globals.current_session.pdf_dir)
+            #print("Saved pdf dir to session: " + globals.current_session.pdf_dir)
             save_project()
         else:
             self.label_pdf_dir.setText('Kein Zielpfad für die pdfs wurde ausgewählt!')
@@ -360,7 +366,14 @@ class mainPage(QWidget):
     # Slot: Start the PDF generation thread
     @pyqtSlot()
     def generate_pdfs_clicked(self):
+        path = globals.current_session.pdf_dir
+        # pdf path not yet specified
+        if path == None or path == "":
+            QMessageBox.warning(None,"Warning","Specify the pdf output directory first!",QMessageBox.Ok)
+            return 0
+        # Create a new thread for pdf generation
         self.pdf_thread = PDF_thread(wait_condition=self.wait_condition,mutex=self.mutex)
+        # Progressbar initialization
         self.progress_dialog = QProgressDialog()
         self.progress_dialog.setMaximum(len(globals.passed_students))
         self.progress_dialog.setLabelText("Bitte warte ein Moment ...")
@@ -383,6 +396,9 @@ class mainPage(QWidget):
         QMessageBox.information(None,"PDF Generierung","Fertig!")
         self.pdf_thread = []
 
+    @pyqtSlot()
+    def save_project_clicked(self):
+        save_project()
 
 
 

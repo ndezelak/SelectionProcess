@@ -80,6 +80,7 @@ def start():
             break
     print("DONE!")
     globals.passed_students = finished_students
+    globals.current_session.passed_students = finished_students
     print("--------------------------------------------------------------------------")
     passed = statistics.get_student_pass_rate()
     average = statistics.get_students_average_wish_rate()

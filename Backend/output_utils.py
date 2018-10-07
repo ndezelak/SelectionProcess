@@ -19,7 +19,7 @@ class PDF_thread(QThread):
 
     # Callback for thread start by the system
     def run(self):
-        print("Thread started")
+        #print("Thread started")
         globals.main_page.update_progress_dialog_signal.emit(1)
         self.generate_student_pdfs()
         self.generate_company_pdfs()
@@ -86,33 +86,46 @@ class PDF_thread(QThread):
 
     # Create the pdf for companies
     def generate_company_pdfs(self):
+        path = globals.current_session.pdf_dir
+        if path == None or path == "":
+            #QMessageBox.warning(None, "Warning", "Specify the pdf output directory first!", QMessageBox.Ok)
+            return 0
         for company in globals.current_session.companies:
             self.create_company_page(company = company)
         while(True):
             try:
-                with open("Companies.pdf","wb") as file:
+                with open(path+"\Companies.pdf","wb") as file:
                     break
             except PermissionError:
-                QMessageBox.warning(None, "Warning", "Close the open PDF document with the same name!",
+                QMessageBox.warning(None, "Warning", "Close the open PDF document with the name " +
+                                    "Company.pdf" + "!",
                                             QMessageBox.Ok)
-        globals.pdf_companies.output('Companies.pdf')
-
-    # Create the pdf for students
+        globals.pdf_companies.output(path + '\Companies.pdf')
+        globals.pdf_companies = FPDF()
+        globals.pdf_companies.set_margins(left=0, right=0, top=0)
+    # Create the PDF for students
     def generate_student_pdfs(self):
-        for student in globals.passed_students:
+        path = globals.current_session.pdf_dir
+        if path == None or path == "":
+            #QMessageBox.warning(None, "Warning", "Specify the pdf output directory first!", QMessageBox.Ok)
+            return 0
+        for student in globals.current_session.passed_students:
             self.counter +=1
-            print("Update progress dialog called")
+            #print("Update progress dialog called")
             globals.main_page.update_progress_dialog_signal.emit(self.counter)
             self.create_student_page(student)
         print("Done creating pages")
         try:
-            with open('Studenten.pdf','wb') as file:
+            with open(path+'\Studenten.pdf','wb') as file:
                 pass
         except PermissionError:
-            print("Please close the PDF document with the same name!")
+            print("Please close the PDF document with the name "+"Studenten.pdf"+"!")
             value = 0
             while(value == 0):
-                value = QMessageBox.warning(None,"Warning","Close the open document with the same name!",QMessageBox.Ok)
-        globals.pdf_students.output('Studenten.pdf')
+                value = QMessageBox.warning(None,"Warning","Please close the PDF document with the name "+"Studenten.pdf"+"!"
+                                            ,QMessageBox.Ok)
+        # Create the pdf document in the specified folder
+        globals.pdf_students.output(path+'\Studenten.pdf')
+        # Reinitialize the document object
         globals.pdf_students = FPDF()
         globals.pdf_students.set_margins(left=0,right=0,top=0)

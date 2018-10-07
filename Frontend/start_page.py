@@ -1,8 +1,10 @@
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QFileDialog
 from Frontend.start_page_create_new_project import *
 from Frontend.main_page import *
 from Frontend.main_page_field_of_studies_display import *
 from PyQt5.QtCore import pyqtSignal
+from pickle import *
 
 
 class startPage(QWidget):
@@ -63,9 +65,22 @@ class startPage(QWidget):
     @pyqtSlot()
     def new_project_selected(self):
         self.new_project_window = newProjectWindow(self)
+
     @pyqtSlot()
     def old_project_selected(self):
-        pass
+        file_path = QFileDialog.getOpenFileName(directory=globals.home_dir,filter = "bonding Files(*.bonding)")
+        print(file_path)
+        try:
+            with open(file_path[0],"rb") as file:
+                globals.current_session = pickle.load(file)
+        except FileNotFoundError:
+            print("File not found!")
+            return
+        except Exception as e:
+            print("Some other exception has happened!")
+            return
+        print("Done!")
+        self.main_window = mainPage(self)
 
     @pyqtSlot()
     def new_project_canceled(self):
