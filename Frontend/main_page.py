@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QTableWidget, QLabel, QLineEdit, QTableWidgetItem, QFileDialog, QProgressDialog
 from PyQt5.QtCore import pyqtSlot, Qt, pyqtSignal, QWaitCondition, QMutex
 from Backend.output_utils import save_project
-from Backend.input_reading import read_file
+from Backend.input_reading import thread_read_file
 from Frontend.main_page_field_of_studies_display import *
 from Frontend.main_page_add_company import *
 from Frontend.main_page_specify_file_columns import *
@@ -10,6 +10,7 @@ from Frontend.main_page_selection_process_settings import *
 from Backend.output_utils import PDF_thread
 import Backend.backend_interface as backend_interface
 import Backend.statistics as statistics
+from Frontend.main_page_unknown_company import *
 import threading
 
 class mainPage(QWidget):
@@ -19,6 +20,7 @@ class mainPage(QWidget):
     correct_student_name_signal = pyqtSignal('PyQt_PyObject')
     update_progress_dialog_signal = pyqtSignal('int')
     pdf_generation_done_signal = pyqtSignal()
+    create_unknown_company_window_signal = pyqtSignal(str)
 
     def __init__(self, parent):
         super().__init__()
@@ -41,6 +43,9 @@ class mainPage(QWidget):
         self.update_progress_dialog_signal.connect(self.set_progress_dialog)
         self.pdf_generation_done_signal.connect(self.pdf_generation_done)
         self.messagebox = []
+        self.unknown_company_window = []
+        self.reading_thread = []
+        self.create_unknown_company_window_signal.connect(self.create_unknown_company_window)
         # Copy the current session to the buffer
         globals.current_session_buffer = copy.deepcopy(globals.current_session)
         # Save reference to this window globally
@@ -316,7 +321,10 @@ class mainPage(QWidget):
     # Slot: Read the specified file (run when the signal file_specified is emitted)
     @pyqtSlot()
     def read_table(self):
-        read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
+        self.reading_thread = thread_read_file(file=self.file_path[0],widget = self,
+                                               mutex=self.mutex,wait_condition=self.wait_condition)
+        self.reading_thread.start()
+        #read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
         self.update_students()
         save_project()
 
@@ -399,6 +407,15 @@ class mainPage(QWidget):
     @pyqtSlot()
     def save_project_clicked(self):
         save_project()
+        self.unknown_company_window = unknown_company_window("blabla",self.wait_condition)
+
+    @pyqtSlot(str)
+    def create_unknown_company_window(self,company_text):
+        self.unknown_company_window = unknown_company_window(company_text,self.wait_condition)
+
+
+
+
 
 
 

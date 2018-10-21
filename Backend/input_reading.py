@@ -3,9 +3,120 @@
 from Data.data_structures import *
 from csv import *
 from config import *
+from PyQt5.QtCore import QThread,QMutex,QWaitCondition
 import Data.globals as globals
 from Frontend.string_matcher_page import *
 from PyQt5.QtWidgets import QInputDialog,QLineEdit
+from Frontend.main_page_unknown_company import *
+
+class thread_read_file(QThread):
+
+    def __init__(self,  file=[],parent=None, widget=[], mutex = [], wait_condition = []):
+        super().__init__(parent)
+        self.widget = widget
+        self.file_path = file
+        self.wait_condition = wait_condition
+        self.mutex = mutex
+
+    def run(self):
+        self.read_file(path_to_file=self.file_path,widget=self.widget)
+
+    def read_file(self,path_to_file, widget=[]):
+        # Read .csv file
+
+        with open(path_to_file, 'r') as file:
+            # Check for uninitialized file specifier
+            if (globals.table_specs.ID_name == -1 or
+                        globals.table_specs.ID_surname == -1 or
+                        globals.table_specs.ID_field_of_study == -1 or
+                        globals.table_specs.IDs_students[0] == -1 or
+                        globals.table_specs.IDs_students[1] == -1 or
+                        globals.table_specs.IDs_companies[0] == -1 or
+                        globals.table_specs.IDs_companies[1] == -1):
+                return
+            # Open the file
+            rows = reader(file, delimiter=';')
+            # Go through each line and create a list of students
+            index = 0
+            list_id = 0
+            for row in rows:
+                # Go only through specified rows
+                if index >= globals.table_specs.IDs_students[0] - 1 and index <= globals.table_specs.IDs_students[
+                    1] - 1:
+                    name = row[globals.table_specs.ID_name - 1]
+                    surname = row[globals.table_specs.ID_surname - 1]
+                    string_field_of_study = row[globals.table_specs.ID_field_of_study - 1]
+                    # Find matching field of study
+                    field_of_study = find_field_of_study(string_field_of_study, widget)
+                    # Something went wrong
+                    if field_of_study == -1:
+                        print("ERROR: No matching field of study found! Table reading not completed!")
+                        globals.current_session.students = []
+                        return
+                    read_companies = []
+                    matched_companies = []
+                    # Single column case
+                    if globals.table_specs.IDs_companies[0] == globals.table_specs.IDs_companies[1]:
+                        read_companies = row[globals.table_specs.IDs_companies[0] - 1].split(",")
+                    # Multi column case
+                    else:
+                        for j in range(globals.table_specs.IDs_companies[0], globals.table_specs.IDs_companies[1]):
+                            read_companies.append(row[j - 1])
+                    # Find matching company from DB
+                    for company in read_companies:
+                        success = False
+                        for company_ in globals.current_session.companies:
+                            if company.lower() == company_.name.lower():
+                                success = True
+                                break
+                        if not success:
+                            # Check for previous matches
+                            if globals.company_matching_hash_table.get(company) != None:
+                                matched_companies.append(globals.company_matching_hash_table.get(company))
+                            else:
+                                # Call the user prompt
+                                self.mutex.lock()
+                                self.widget.create_unknown_company_window_signal.emit(company)
+                                self.wait_condition.wait(self.mutex)
+                                globals.company_matching_hash_table[company] = globals.matched_company
+                                matched_companies.append(globals.matched_company)
+                                self.mutex.unlock()
+                    globals.current_session.students.append(
+                        Student(list_id=list_id, seats=[], name=name + " " + surname, field_of_study=field_of_study,
+                                companies=matched_companies))
+                    list_id += 1
+                index += 1
+        print('Done with reading the file!')
+
+
+def find_field_of_study(string_field="",widget=[]):
+    # Search for the matching field of study
+    for field in globals.current_session.fields_of_study:
+        for tag in field.tags:
+            if tag.lower() in string_field.lower():
+                return field
+        if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
+            return field
+    # No match, therefor a user prompt is launched
+    matcher = string_matcher_page()
+    fields = []
+    # Save all field names into a list of strings
+    for field in globals.current_session.fields_of_study:
+        fields.append(field.name)
+    # Launch the user prompt
+    field_chosen =  matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
+                               items=fields)
+    # Find the chosen field in the current session and save the string_field to the tags
+    for field in globals.current_session.fields_of_study:
+        if field.name == field_chosen:
+            field.tags.append(string_field)
+            return field
+    # An error occurred?
+    return -1
+
+'''
+
+
 
 def construct_companies(companies):
    file = open('Input/firmen.txt')
@@ -54,7 +165,7 @@ def construct_companies(companies):
 
    '''
 
-
+'''
    :param companies:
    :return:
    ''''''
@@ -118,7 +229,7 @@ def construct_companies(companies):
                                              Field_of_Study.INF],
                      degrees=[Degree.MASTER, Degree.ABSOLVENT]))
     '''
-
+'''
 def hacks(students,companies):
     # Hack for Vanessa
     meumann_companies = ['Miele & Cie. KG', 'BASF AG', 'Zielpuls GmbH', 'Bertrandt AG']
@@ -202,6 +313,7 @@ def read_csv(students, companies):
                 print('Could not find field of study column in the .csv file!')
                 raise ValueError
             '''
+'''
             try:
                 degree_index = row.index('Studienabschnitt')
             except ValueError:
@@ -214,6 +326,7 @@ def read_csv(students, companies):
                 print('Could not find column "wanted companies" in the .csv file!')
                 raise ValueError
             '''
+'''
             try:
                 firmen_pointer.append(row.index('Wunsch 1'))
                 firmen_pointer.append(row.index('Wunsch 2'))
@@ -268,79 +381,4 @@ def read_csv(students, companies):
         students.append(Student(i,seats=seats,name=row[name_index]+" "+row[surname_index],field_of_study=major,companies = pref_companies, degree=Degree.MASTER))
 
         i = i +1
-
-def read_file(file_path,widget=[]):
-    # Read .csv file
-    with open(file_path,'r') as file:
-        # Check for uninitialized file specifier
-        if (globals.table_specs.ID_name == -1 or
-            globals.table_specs.ID_surname == -1 or
-            globals.table_specs.ID_field_of_study == -1 or
-            globals.table_specs.IDs_students[0] == -1 or
-            globals.table_specs.IDs_students[1] == -1 or
-            globals.table_specs.IDs_companies[0] == -1 or
-            globals.table_specs.IDs_companies[1] == -1):
-            return
-        # Open the file
-        rows = reader(file, delimiter = ';')
-        # Go through each line and create a list of students
-        index = 0
-        list_id = 0
-        for row in rows:
-            # Go only through specified rows
-            if index >= globals.table_specs.IDs_students[0]-1 and index <= globals.table_specs.IDs_students[1]-1:
-                name =row[globals.table_specs.ID_name-1]
-                surname = row[globals.table_specs.ID_surname-1]
-                string_field_of_study = row[globals.table_specs.ID_field_of_study-1]
-                # Find matching field of study
-                field_of_study=find_field_of_study(string_field_of_study,widget)
-                # Something went wrong
-                if field_of_study == -1:
-                    print("ERROR: No matching field of study found! Table reading not completed!")
-                    globals.current_session.students = []
-                    return
-                read_companies = []
-                matched_companies = []
-                # Single column case
-                if globals.table_specs.IDs_companies[0] == globals.table_specs.IDs_companies[1]:
-                    read_companies = row[globals.table_specs.IDs_companies[0]-1].split(",")
-                # Multi column case
-                else:
-                    for j in range(globals.table_specs.IDs_companies[0],globals.table_specs.IDs_companies[1]):
-                        read_companies.append(row[j-1])
-                # Find matching company from DB
-                for company in read_companies:
-                    for company_ in globals.current_session.companies:
-                        if company.lower() == company_.name.lower():
-                            matched_companies.append(company_)
-                globals.current_session.students.append(Student(list_id=list_id, seats = [], name = name + " " + surname, field_of_study=field_of_study, companies=matched_companies))
-                list_id += 1
-            index += 1
-
-
-
-def find_field_of_study(string_field="",widget=[]):
-    # Search for the matching field of study
-    for field in globals.current_session.fields_of_study:
-        for tag in field.tags:
-            if tag.lower() in string_field.lower():
-                return field
-        if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
-            return field
-    # No match, therefor a user prompt is launched
-    matcher = string_matcher_page()
-    fields = []
-    # Save all field names into a list of strings
-    for field in globals.current_session.fields_of_study:
-        fields.append(field.name)
-    # Launch the user prompt
-    field_chosen =  matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
-                               items=fields)
-    # Find the chosen field in the current session and save the string_field to the tags
-    for field in globals.current_session.fields_of_study:
-        if field.name == field_chosen:
-            field.tags.append(string_field)
-            return field
-    # An error occurred?
-    return -1
-
+'''
