@@ -17,14 +17,45 @@ class thread_read_file(QThread):
         self.file_path = file
         self.wait_condition = wait_condition
         self.mutex = mutex
+        self.parent = parent
 
+    def find_field_of_study(self,string_field="",widget=[]):
+        # Search for the matching field of study
+        for field in globals.current_session.fields_of_study:
+            for tag in field.tags:
+                if tag.lower() in string_field.lower():
+                    return field
+            if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
+                return field
+        # No match, therefor a user prompt is launched
+        matcher = string_matcher_page(widget)
+        fields = []
+        # Save all field names into a list of strings
+        for field in globals.current_session.fields_of_study:
+            fields.append(field.name)
+        # Launch the user prompt
+        self.mutex.lock()
+        self.parent.create_string_matcher(window = widget,
+                        window_title="Unbekannter Studiengang",
+                        text = "Wähle den zugehörigen Studiengang für " + string_field,
+                        items=fields)
+        self.wait_condition.wait(self.mutex)
+        field_chosen =  self.parent.return_result_field_of_study()
+        self.mutex.unlock()
+        # Find the chosen field in the current session and save the string_field to the tags
+        for field in globals.current_session.fields_of_study:
+            if field.name == field_chosen:
+                field.tags.append(string_field)
+                return field
+        # An error occurred?
+        return -1
     def run(self):
         self.read_file(path_to_file=self.file_path,widget=self.widget)
 
     def read_file(self,path_to_file, widget=[]):
         # Read .csv file
-
-        with open(path_to_file, 'r') as file:
+        globals.current_session_buffer.students = []
+        with open(path_to_file, encoding="ISO-8859-1") as file:
             # Check for uninitialized file specifier
             if (globals.table_specs.ID_name == -1 or
                         globals.table_specs.ID_surname == -1 or
@@ -33,6 +64,7 @@ class thread_read_file(QThread):
                         globals.table_specs.IDs_students[1] == -1 or
                         globals.table_specs.IDs_companies[0] == -1 or
                         globals.table_specs.IDs_companies[1] == -1):
+                # TODO: Error message should be displayed
                 return
             # Open the file
             rows = reader(file, delimiter=';')
@@ -43,16 +75,19 @@ class thread_read_file(QThread):
                 # Go only through specified rows
                 if index >= globals.table_specs.IDs_students[0] - 1 and index <= globals.table_specs.IDs_students[
                     1] - 1:
+                    ###### STUDENT NAME ######
                     name = row[globals.table_specs.ID_name - 1]
                     surname = row[globals.table_specs.ID_surname - 1]
+                    ###### FIELD OF STUDY #######
                     string_field_of_study = row[globals.table_specs.ID_field_of_study - 1]
-                    # Find matching field of study
-                    field_of_study = find_field_of_study(string_field_of_study, widget)
+                    field_of_study = self.find_field_of_study(string_field_of_study, widget)
                     # Something went wrong
                     if field_of_study == -1:
-                        print("ERROR: No matching field of study found! Table reading not completed!")
-                        globals.current_session.students = []
-                        return
+                        # TODO: Display a warning message
+                        print("WARNING: No matching field of study found! Table reading not completed!")
+                        #globals.current_session.students = []
+                        continue
+                    ##### COMPANIES ######
                     read_companies = []
                     matched_companies = []
                     # Single column case
@@ -68,6 +103,7 @@ class thread_read_file(QThread):
                         for company_ in globals.current_session.companies:
                             if company.lower() == company_.name.lower():
                                 success = True
+                                matched_companies.append(company_)
                                 break
                         if not success:
                             # Check for previous matches
@@ -81,38 +117,19 @@ class thread_read_file(QThread):
                                 globals.company_matching_hash_table[company] = globals.matched_company
                                 matched_companies.append(globals.matched_company)
                                 self.mutex.unlock()
-                    globals.current_session.students.append(
+                    globals.current_session_buffer.students.append(
                         Student(list_id=list_id, seats=[], name=name + " " + surname, field_of_study=field_of_study,
                                 companies=matched_companies))
                     list_id += 1
                 index += 1
         print('Done with reading the file!')
+        if self.parent != None:
+            globals.current_session.students = globals.current_session_buffer.students
+            self.parent.update_students()
+        else:
+            print('Unknown parent class of the input reading thread!')
 
 
-def find_field_of_study(string_field="",widget=[]):
-    # Search for the matching field of study
-    for field in globals.current_session.fields_of_study:
-        for tag in field.tags:
-            if tag.lower() in string_field.lower():
-                return field
-        if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
-            return field
-    # No match, therefor a user prompt is launched
-    matcher = string_matcher_page()
-    fields = []
-    # Save all field names into a list of strings
-    for field in globals.current_session.fields_of_study:
-        fields.append(field.name)
-    # Launch the user prompt
-    field_chosen =  matcher.get_item(window=widget,window_title="Unbekannter Studiengang",text="Wähle den zugehörigen Studiengang für "+string_field,
-                               items=fields)
-    # Find the chosen field in the current session and save the string_field to the tags
-    for field in globals.current_session.fields_of_study:
-        if field.name == field_chosen:
-            field.tags.append(string_field)
-            return field
-    # An error occurred?
-    return -1
 
 '''
 

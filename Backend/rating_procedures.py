@@ -16,8 +16,10 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
     count = 0
     # Add index number to each student and fill the rows of the matrix
     for student in students:
+        if student.list_id == []: continue
         student.list_id = count
         for company in student.companies:
+            if company == []: continue
             # One point means the student prefers the company
             system[count][company.list_id] = globals.current_session.settings.points_student
             student.points += globals.current_session.settings.points_student

@@ -21,6 +21,8 @@ class mainPage(QWidget):
     update_progress_dialog_signal = pyqtSignal('int')
     pdf_generation_done_signal = pyqtSignal()
     create_unknown_company_window_signal = pyqtSignal(str)
+    unknown_field_of_study_specified = pyqtSignal('PyQt_PyObject')
+    create_string_matcher_signal = pyqtSignal('PyQt_PyObject','PyQt_PyObject','PyQt_PyObject','PyQt_PyObject')
 
     def __init__(self, parent):
         super().__init__()
@@ -46,6 +48,8 @@ class mainPage(QWidget):
         self.unknown_company_window = []
         self.reading_thread = []
         self.create_unknown_company_window_signal.connect(self.create_unknown_company_window)
+        self.unknown_field_of_study_specified.connect(self.on_field_of_study_specified)
+        self.create_string_matcher_signal.connect(self.slot_create_string_matcher)
         # Copy the current session to the buffer
         globals.current_session_buffer = copy.deepcopy(globals.current_session)
         # Save reference to this window globally
@@ -243,7 +247,7 @@ class mainPage(QWidget):
             student_field_of_study.setFlags(Qt.ItemIsEnabled)
             list_companies = []
             for company in student.companies:
-                if company != "":
+                if company != []:
                     list_companies.append(company.name)
             student_companies = QTableWidgetItem(",".join(list_companies))
             student_companies.setFlags(Qt.ItemIsEnabled)
@@ -300,7 +304,7 @@ class mainPage(QWidget):
     # Slot: Display a QFileDialog to choose the file and run the file_specifier afterwards
     @pyqtSlot()
     def choose_file_clicked(self):
-        matcher = string_matcher_page()
+        matcher = string_matcher_page(self)
         if len(globals.current_session.fields_of_study) == 0 and len(globals.current_session.companies) == 0:
             matcher.display_error(window=self, window_title="Fehlende Daten",
                                   text="Zuerst müssen Studiengänge und Firmen definiert werden!")
@@ -321,12 +325,9 @@ class mainPage(QWidget):
     # Slot: Read the specified file (run when the signal file_specified is emitted)
     @pyqtSlot()
     def read_table(self):
-        self.reading_thread = thread_read_file(file=self.file_path[0],widget = self,
+        self.reading_thread = thread_read_file(file=self.file_path[0],widget = self, parent=self,
                                                mutex=self.mutex,wait_condition=self.wait_condition)
         self.reading_thread.start()
-        #read_file(file_path=self.file_path[0],widget=self) #file_path is a tuple of file_path and file type filter
-        self.update_students()
-        save_project()
 
     # Slot: Display the process settings page to alter the display settings
     @pyqtSlot()
@@ -412,6 +413,29 @@ class mainPage(QWidget):
     @pyqtSlot(str)
     def create_unknown_company_window(self,company_text):
         self.unknown_company_window = unknown_company_window(company_text,self.wait_condition)
+
+    @pyqtSlot('PyQt_PyObject')
+    def on_field_of_study_specified(self, results):
+        self.results = results
+        self.wait_condition.wakeAll()
+
+    def return_result_field_of_study(self):
+        return self.results
+
+
+    def create_string_matcher(self,window = [],window_title="Unbekannter Studiengang",
+                                        text= [],
+                                        items=[]):
+        self.create_string_matcher_signal.emit(window,window_title,text,items)
+
+
+    @pyqtSlot('PyQt_PyObject','PyQt_PyObject','PyQt_PyObject','PyQt_PyObject')
+    def slot_create_string_matcher(self,window,window_title,text,items):
+        self.field_of_study_window = string_matcher_page(self)
+        self.field_of_study_window.get_item(window = self, window_title=window_title,
+                                                       text = text, items = items)
+
+
 
 
 

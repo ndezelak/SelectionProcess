@@ -35,7 +35,8 @@ class PDF_thread(QThread):
     # Create a single page for a student
     def create_student_page(self,student):
         globals.pdf_students.add_page()
-        globals.pdf_students.image("logo.png", x=(globals.pdf_students.w) / 4, y=10, w=(globals.pdf_students.w) / 2,
+        from app import resource_path
+        globals.pdf_students.image(resource_path("Data/logo.png"), x=(globals.pdf_students.w) / 4, y=10, w=(globals.pdf_students.w) / 2,
                                    h=30)
         globals.pdf_students.ln(80)
         #Check if student's names are all latin-1 encodable
@@ -68,8 +69,10 @@ class PDF_thread(QThread):
     def create_company_page(self, company):
         globals.pdf_companies.add_page()
 
-        globals.pdf_companies.image("logo.png", x=(globals.pdf_companies.w) / 4, y=10, w=(globals.pdf_companies.w) / 2,
-                                   h=60)
+        from app import resource_path
+        globals.pdf_companies.image(resource_path("Data\logo.png"), x=(globals.pdf_companies.w) / 4, y=10,
+                                    w=(globals.pdf_companies.w) / 2,
+                                    h=60)
         globals.pdf_companies.ln(80)
         globals.pdf_companies.set_font("Arial", "B", size=32)
         globals.pdf_companies.multi_cell(globals.pdf_companies.w,10,txt=company.name,ln=1,align="C")

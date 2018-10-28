@@ -37,7 +37,8 @@ class startPage(QWidget):
 
         # bonding LOGO
         backPicture = QLabel()
-        picture = QPixmap("Data/startpage_background.png")
+        from app import resource_path
+        picture = QPixmap(resource_path("Data/startpage_background.png"))
         backPicture.setPixmap(picture)
         backPicture.setAlignment(Qt.AlignHCenter | Qt.AlignBottom)
 

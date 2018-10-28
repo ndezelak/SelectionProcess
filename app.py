@@ -7,6 +7,13 @@ from Frontend.start_page import startPage
 from Frontend.main_page import *
 import Data.globals as globals
 
+# Method used by pyinstaller
+# Add this line to the spec file: datas=[('Data\startpage_background.png','DATA')],
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 def main():
     # Get app directory
     dir = os.path.dirname(os.path.realpath(sys.argv[0]))
