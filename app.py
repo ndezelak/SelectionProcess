@@ -21,6 +21,7 @@ def main():
     # Create the application
     app = QApplication([])
     app.setStyle(QStyleFactory.create("fusion"))
+    app.setWindowIcon(QtGui.QIcon(resource_path('Data/icon.png')))
     QThread.currentThread().setPriority(QThread.HighestPriority)
     #Create the start page
     startpage = startPage(app)

@@ -11,6 +11,7 @@ class add_company_page(QWidget):
         self.parent = parent
 
     def initialize(self):
+        self.setWindowTitle("Firma hinzufügen")
         # Basic widgets
         label_name = QLabel("Firmenname")
         self.text_name = QTextEdit()

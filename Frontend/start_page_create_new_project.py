@@ -11,7 +11,7 @@ class newProjectWindow(QWidget):
         self.initialize()
         self.parent = parent
     def initialize(self):
-        self.setWindowTitle("Project settings")
+        self.setWindowTitle("Einstellungen des neuen Projektes")
 
         # OK button
         self.button_ok = QPushButton()

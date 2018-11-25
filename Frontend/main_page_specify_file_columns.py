@@ -9,7 +9,7 @@ class file_specifier_page(QWidget):
         self.parent = parent
 
     def initialize(self):
-        self.setWindowTitle("Spezifizierung der Tabelle")
+        self.setWindowTitle("Spezifizierung der Input-Tabelle")
         # User prompt text
         label_user_prompt = QLabel("Bitte gebe die Spalten- bzw. Zeilennummern ein. \nDie erste Spalte bzw. Zeile hat die Nummer 1")
         # Name, surname, field of study, companies spinboxes

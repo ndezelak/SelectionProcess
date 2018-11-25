@@ -27,7 +27,7 @@ class startPage(QWidget):
         self.dir = dir
     # Create the GUI
     def initialize(self):
-        self.setWindowTitle("bonding Career Night App")
+        self.setWindowTitle("Startseite")
         self.setGeometry(200,200,500,200)
         #startPage.setSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed)
         self.setFixedSize(500,200)

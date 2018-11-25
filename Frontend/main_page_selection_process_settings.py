@@ -8,7 +8,7 @@ class process_settings_page(QWidget):
         super().__init__()
         self.initialize()
     def initialize(self):
-        self.setWindowTitle("Prozesseinstellungen")
+        self.setWindowTitle("Einstellungen Sitzplanerstellung")
         # Labels
         label_rows = QLabel("Anzahl der Gänge")
         label_rows.setAlignment(Qt.AlignCenter)

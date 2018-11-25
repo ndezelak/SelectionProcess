@@ -10,6 +10,7 @@ from Frontend.main_page_selection_process_settings import *
 from Backend.output_utils import PDF_thread
 import Backend.backend_interface as backend_interface
 import Backend.statistics as statistics
+import PyQt5.QtGui as QtGui
 from Frontend.main_page_unknown_company import *
 import threading
 
@@ -78,7 +79,7 @@ class mainPage(QWidget):
         button_fields.clicked.connect(self.settings_clicked)
 
         button_import_students = QPushButton()
-        button_import_students.setText("Studenten aus einer Tabelle importieren")
+        button_import_students.setText("Studentendaten aus einer Tabelle auslesen")
         button_import_students.clicked.connect(self.choose_file_clicked)
 
         label_firmen = QLabel()
@@ -150,7 +151,7 @@ class mainPage(QWidget):
 
         settings.addWidget(button_settings)
         settings.addWidget(button_start_process)
-        settings.addWidget(button_start_process_limited)
+        #settings.addWidget(button_start_process_limited)
 
         #------- Bottom grid --------#
         label_statistik = QLabel()
@@ -182,13 +183,13 @@ class mainPage(QWidget):
         button_help.setText("HILFE")
 
         bottom_grid.addWidget(label_statistik,0,0,1,5)
-        bottom_grid.addWidget(button_statistics,0,5,1,1)
+        #bottom_grid.addWidget(button_statistics,0,5,1,1)
         bottom_grid.addWidget(self.text_output,1,0,6,6)
         bottom_grid.addWidget(button_pdf_dir,7,0)
         bottom_grid.addWidget(self.label_pdf_dir,7,1,1,2)
         bottom_grid.addWidget(button_pdf_gen,8,0,1,3)
         bottom_grid.addWidget(button_home,8,3)
-        bottom_grid.addWidget(button_help,8,5)
+        #bottom_grid.addWidget(button_help,8,5)
 
         # ----- Main Groupboxes ----- #
         groupbox_data = QGroupBox()
@@ -204,7 +205,7 @@ class mainPage(QWidget):
         groupbox_output.setLayout(bottom_grid)
 
         # Set main layout
-        main_layout.addWidget(button_save)
+        #main_layout.addWidget(button_save)
         main_layout.addWidget(groupbox_data)
         main_layout.addWidget(groupbox_settings)
         main_layout.addWidget(groupbox_output)
@@ -408,7 +409,7 @@ class mainPage(QWidget):
     @pyqtSlot()
     def save_project_clicked(self):
         save_project()
-        self.unknown_company_window = unknown_company_window("blabla",self.wait_condition)
+        #self.unknown_company_window = unknown_company_window("blabla",self.wait_condition)
 
     @pyqtSlot(str)
     def create_unknown_company_window(self,company_text):

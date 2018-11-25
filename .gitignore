@@ -12,3 +12,8 @@ dist/
 logo.jpg
 main.spec
 setup.py
+test_data.py
+config.py
+LICENSE
+build/
+

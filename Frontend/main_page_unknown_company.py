@@ -17,6 +17,7 @@ class unknown_company_window(QWidget):
 
 
     def initialize(self,  unknown_company):
+        self.setWindowTitle("Unbekannte Firma agegeben")
         # Text creation
         self.text = QLabel(" Von einem Studenten wurde die gewünschte Firma als " +
                             "<span style= font-size:13pt><b>" + unknown_company + "</b></span> angegeben.<br><br>" +
