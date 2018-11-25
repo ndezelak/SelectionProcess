@@ -10,5 +10,4 @@ Die App ist nur auf einem **Windows** Betriebsystem lauffähig.
 # Was kann die App? 
 Die App kann automatisch ein Sitzplan für die Veranstalltung CareerNight erstellen und gleichzeitig PDF Dateien mit personalisierten Sitzplänen für jeden Teilnehmer generieren. 
 # Fehlermeldung, weitere Ideen und Support
-<!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/ndezelak/bonding_CN_app/issues" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="Issue ntkme/github-buttons on GitHub">Issue</a>
+Bitte schreiben Sie mir ihre Fragen, Probleme, Bugs oder neue Ideen auf die Email Adresse bondingCNAPP@gmail.com
