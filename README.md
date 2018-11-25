@@ -1,4 +1,4 @@
-Hallo liebe bonding! Auf der Seite findet ihr mehr Informationen zu der CareerNight App. 
+Hallo liebe bondings! Auf der Seite findet ihr mehr Informationen zu der CareerNight App. 
 
 ## App herunterladen
 Mit dem Klick auf den Link könnt ihr die aktuellste Version der App herunterladen. 
