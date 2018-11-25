@@ -1,5 +1,5 @@
 <p align="center">
-# CareerNight App 
+<h1> CareerNight App </h1> 
   </p>
 ## App herunterladen
 Mit dem Klick auf den Knopf kann die aktuellste Version der App heruntergeladen werden. 
