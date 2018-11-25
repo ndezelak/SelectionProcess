@@ -1,6 +1,6 @@
 # App herunterladen
 Mit dem Klick auf den Knopf kann die aktuellste Version der App heruntergeladen werden. 
-Die App ist nurauf einem **Windows** Betriebsystem lauffähig. 
+Die App ist nur auf einem **Windows** Betriebsystem lauffähig. 
 
 <p align="center">
 <!-- Place this tag where you want the button to render. -->
@@ -8,6 +8,7 @@ Die App ist nurauf einem **Windows** Betriebsystem lauffähig.
 </p>
 
 # Was kann die App? 
-
+Die App kann automatisch ein Sitzplan für die Veranstalltung CareerNight erstellen und gleichzeitig PDF Dateien mit personalisierten Sitzplänen für jeden Teilnehmer generieren. 
 # Fehlermeldung, weitere Ideen und Support
-
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/ndezelak/bonding_CN_app/issues" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="Issue ntkme/github-buttons on GitHub">Issue</a>
