@@ -13,30 +13,48 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
     # Python list comprehension generating a M X N matrix
     system = [ [0 for x in range(col_count)] for y in range(row_count) ]
 
+    # Define list IDs
     count = 0
-    # Add index number to each student and fill the rows of the matrix
     for student in students:
-        if student.list_id == []: continue
+        student.points = 0
         student.list_id = count
+        count += 1
+    count = 0
+    for company in companies:
+        company.points = 0
+        company.list_id = count
+        count += 1
+    # Determine points of the system matrix
+    for company in companies:
+        for student in students:
+            try:
+                # Field of study match
+                check = any(student.field_of_study.name == field.name for field in company.field_of_study)
+                # check = any(student.field_of_study.name == field.name for field in company.field_of_study)
+                if check:
+                    system[student.list_id][company.list_id] += globals.current_session.settings.points_field_of_study
+                    student.points+= globals.current_session.settings.points_field_of_study
+                check = any(student.degree.name == degree.name for degree in company.degrees)
+                if check:
+                    system[student.list_id][company.list_id] += globals.current_session.settings.points_degree
+                    student.points += globals.current_session.settings.points_degree
+                check = any(company.name == comp.name for comp in student.companies)
+                if check:
+                    system[student.list_id][company.list_id]+=globals.current_session.settings.points_student
+                    company.points += globals.current_session.settings.points_student
+            except Exception as e:
+                pass#print(str(e))
+    # Add index number to each student and fill the rows of the matrix
+    '''
+    for student in students:
         for company in student.companies:
             if company == []: continue
             # One point means the student prefers the company
-            system[count][company.list_id] = globals.current_session.settings.points_student
+            system[student.list_id][company.list_id] = globals.current_session.settings.points_student
             student.points += globals.current_session.settings.points_student
             company.points += globals.current_session.settings.points_student
         count = count + 1
-
-
-    # Fill additionally the coloumns
-    for company in companies:
-       for student in students:
-                # Field of study match
-                for field in company.field_of_study:
-                    if student.field_of_study.name == field.name:
-                        system[student.list_id][company.list_id]=system[student.list_id][company.list_id] + globals.current_session.settings.points_company
-                        student.points += globals.current_session.settings.points_company
-                        company.points += globals.current_session.settings.points_company
-                        break
+    '''
     return system
 
 #---------------------------------------------------#

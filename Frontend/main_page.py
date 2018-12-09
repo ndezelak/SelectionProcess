@@ -13,6 +13,7 @@ import Backend.statistics as statistics
 import PyQt5.QtGui as QtGui
 from Frontend.main_page_unknown_company import *
 import threading
+from Data.data_structures import Degree
 
 class mainPage(QWidget):
     # Signals
@@ -100,30 +101,38 @@ class mainPage(QWidget):
         header_field.setFlags(Qt.ItemIsEnabled)
         header_companies = QTableWidgetItem("Gewünschte Firmen")
         header_companies.setFlags(Qt.ItemIsEnabled)
+        header_degree = QTableWidgetItem('Studienabschnitt')
+        header_degree.setFlags(Qt.ItemIsEnabled)
         header_match = QTableWidgetItem("Matching mit den Firmen")
         header_match.setFlags(Qt.ItemIsEnabled)
         self.table_students.setColumnCount(4)
         #self.table_students.
-        self.table_students.setColumnWidth(0,self.table_students.width()/4)
-        self.table_students.setColumnWidth(1, self.table_students.width() / 4)
-        self.table_students.setColumnWidth(2, self.table_students.width() / 4)
-        self.table_students.setColumnWidth(3, self.table_students.width() / 4)
+        self.table_students.setColumnWidth(0,self.table_students.width()/5)
+        self.table_students.setColumnWidth(1, self.table_students.width() / 5)
+        self.table_students.setColumnWidth(2, self.table_students.width() / 5)
+        self.table_students.setColumnWidth(3, self.table_students.width() / 5)
+        self.table_students.setColumnWidth(4, self.table_students.width() / 5)
         self.table_students.setHorizontalHeaderItem(0,header_student_name)
         self.table_students.setHorizontalHeaderItem(1,header_field)
         self.table_students.setHorizontalHeaderItem(2,header_companies)
-        self.table_students.setHorizontalHeaderItem(3,header_match)
+        self.table_students.setHorizontalHeaderItem(3,header_degree)
+        self.table_students.setHorizontalHeaderItem(4,header_match)
 
         self.table_companies = QTableWidget()
         header_horizontal_name = QTableWidgetItem("Firma")
         header_horizontal_name.setFlags(Qt.ItemIsEnabled)
         header_horizontal_fields = QTableWidgetItem("Gesuchte Studienrichtungen")
         header_horizontal_fields.setFlags(Qt.ItemIsEnabled)
-        self.table_companies.setColumnCount(2)
+        header_horizontal_degrees = QTableWidgetItem("Gesuchte Studienabschnitte")
+        header_horizontal_degrees.setFlags(Qt.ItemIsEnabled)
+        self.table_companies.setColumnCount(3)
         self.table_companies.setRowCount(0)
         self.table_companies.setHorizontalHeaderItem(0,header_horizontal_name)
         self.table_companies.setHorizontalHeaderItem(1,header_horizontal_fields)
-        self.table_companies.setColumnWidth(0,self.table_companies.width()/2)
-        self.table_companies.setColumnWidth(1, self.table_companies.width() / 2)
+        self.table_companies.setHorizontalHeaderItem(2, header_horizontal_degrees)
+        self.table_companies.setColumnWidth(0,self.table_companies.width()/3)
+        self.table_companies.setColumnWidth(1, self.table_companies.width() / 3)
+        self.table_companies.setColumnWidth(2, self.table_companies.width() / 3)
 
 
         upper_grid.addWidget(label_students,0,0)
@@ -224,14 +233,24 @@ class mainPage(QWidget):
         for company in globals.current_session.companies:
             company_name = QTableWidgetItem(company.name)
             company_name.setFlags(Qt.ItemIsEnabled)
+
             list_of_fields = []
             for field in company.field_of_study:
                 list_of_fields.append(field.name)
             string = ",".join(list_of_fields)
+
+            list_of_degrees = []
+            for degree in company.degrees:
+                list_of_degrees.append(degree.name)
+            string_ = ",".join(list_of_degrees)
+
             company_fields = QTableWidgetItem(string)
             company_fields.setFlags(Qt.ItemIsEnabled)
+            company_degrees = QTableWidgetItem(string_)
+            company_degrees.setFlags(Qt.ItemIsEnabled)
             self.table_companies.setItem(index,0,company_name)
             self.table_companies.setItem(index, 1, company_fields)
+            self.table_companies.setItem(index, 2, company_degrees)
             index+=1
         self.table_companies.resizeRowsToContents()
     # Update students display
@@ -246,6 +265,11 @@ class mainPage(QWidget):
             student_name.setFlags(Qt.ItemIsEnabled)
             student_field_of_study = QTableWidgetItem(student.field_of_study.name)
             student_field_of_study.setFlags(Qt.ItemIsEnabled)
+            if isinstance(student.degree, Degree):
+                student_degree = QTableWidgetItem(student.degree.name)
+            else:
+                student_degree = QTableWidgetItem('')
+            student_degree.setFlags(Qt.ItemIsEnabled)
             list_companies = []
             for company in student.companies:
                 if company != []:
@@ -255,6 +279,7 @@ class mainPage(QWidget):
             self.table_students.setItem(index,0,student_name)
             self.table_students.setItem(index,1,student_field_of_study)
             self.table_students.setItem(index,2,student_companies)
+            self.table_students.setItem(index,3,student_degree)
             index = index + 1
 
     # Callback when the main window is closed

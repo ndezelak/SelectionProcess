@@ -36,4 +36,7 @@ def get_company_wish_rate(company):
             sum_students += 1
             if student.field_of_study in company.field_of_study:
                 company_rate += 1
-    return float(company_rate)/float(sum_students)
+    if float(sum_students) == 0:
+        return 0
+    else:
+        return float(company_rate)/float(sum_students)

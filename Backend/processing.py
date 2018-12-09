@@ -10,6 +10,7 @@ import Data.globals as globals
 
 # Find seats for students with the matching point number in the system matrix
 def fill_tables(passed_students, finished_students, sorted_companies, system, matching_points):
+    print('Fill tables called with points: ' + str(matching_points))
     to_delete_students = []
     # Call fill_student for each student
     for student in passed_students:
@@ -27,7 +28,7 @@ def fill_student(matching_points, student, system, sorted_companies):
     num_companies = len(sorted_companies)
     for i in range(0, num_companies):
         # Start with the last company (so that their seats would be more easily filled up)
-        index = num_companies - 1 - i
+        index =  num_companies - 1 - i
         # Only consider the student (and companies) with the matching point in the system matrix
         if system[student.list_id][sorted_companies[index].list_id] == matching_points:
             # Start with the first row and repeat until you come to the last one
@@ -244,7 +245,8 @@ def post_process(sorted_companies):
                 break
             else:
                 print("Trying with the next round ...")
-
+    # Here you should simply pick students with least points from companies
+    # that have the most students in the problematic round
 
 def delete_all_student_entries(student):
     # Delete everything

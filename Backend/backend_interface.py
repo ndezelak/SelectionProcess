@@ -31,24 +31,13 @@ def start():
         company.seats = [[] for i in range(globals.current_session.settings.num_rows)]
     for student in passed_students:
         student.seats = [None for i in range(globals.current_session.settings.num_rows)]
-    process.fill_tables(passed_students = passed_students,
-                        finished_students = finished_students,
-                        sorted_companies = companies,
-                        system = system,
-                        matching_points=globals.current_session.settings.points_company+globals.current_session.settings.points_student)
-    process.fill_tables(passed_students=passed_students,
-                        finished_students=finished_students,
-                        sorted_companies=companies,
-                        system=system,
-                        matching_points=max(globals.current_session.settings.points_company ,globals.current_session.settings.points_student) )
-    if globals.current_session.settings.points_company  != globals.current_session.settings.points_student:
-        process.fill_tables(passed_students=passed_students,
-                        finished_students=finished_students,
-                        sorted_companies=companies,
-                        system=system,
-                        matching_points=min(globals.current_session.settings.points_company,
-                                            globals.current_session.settings.points_student))
-
+    max_points = globals.current_session.settings.points_field_of_study + globals.current_session.settings.points_student + globals.current_session.settings.points_degree
+    for j in range(max_points,0,-1):
+            process.fill_tables(passed_students = passed_students,
+                                finished_students = finished_students,
+                                sorted_companies = companies,
+                                system = system,
+                                matching_points= j)
     # Try to fill left places five times or until you are done.
     watchdog = 0
     while (len(passed_students) > 0):
@@ -63,7 +52,11 @@ def start():
                 print(student.name + "\n")
             break
     # Post process the results (so that companies won't have not enough filled seats at a round
-    process.post_process(companies)
+
+    watchdog = 0
+    while(watchdog < 5):
+        process.post_process(companies)
+        watchdog+=1
     # Try to find left places for not yet finished students on the postprocessed state
 
     watchdog = 0

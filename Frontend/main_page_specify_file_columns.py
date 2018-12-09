@@ -124,6 +124,7 @@ class file_specifier_page(QWidget):
         globals.table_specs = Table_Specs(ID_name=self.spinbox_name.value(),
                                           ID_surname=self.spinbox_surname.value(),
                                           ID_field_of_study=self.spinbox_field_of_study.value(),
+                                          ID_degree=self.spinbox_degree.value(),
                                           IDs_companies=[self.spinbox_companies_from.value(),self.spinbox_companies_to.value(),],
                                           IDs_students=[self.spinbox_rows_from.value(),self.spinbox_rows_to.value()])
         self.hide()

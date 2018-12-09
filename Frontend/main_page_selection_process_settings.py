@@ -22,8 +22,11 @@ class process_settings_page(QWidget):
         label_points_students = QLabel("Punkte für Studentenwunsch")
         label_points_students.setAlignment(Qt.AlignCenter)
 
-        label_points_company = QLabel("Punkte für Firmenwunsch")
+        label_points_company = QLabel("Punkte für Firmenwunsch Studiengang")
         label_points_company.setAlignment(Qt.AlignCenter)
+
+        label_points_degree = QLabel("Punkte für Firmenwunsch Studienabschnitt")
+        label_points_degree.setAlignment(Qt.AlignCenter)
         # Spinboxes
         self.spinbox_rows = QSpinBox()
         self.spinbox_rows.setAlignment(Qt.AlignCenter)
@@ -35,7 +38,7 @@ class process_settings_page(QWidget):
 
         self.spinbox_max_seats = QSpinBox()
         self.spinbox_max_seats.setAlignment(Qt.AlignCenter)
-        self.spinbox_max_seats.setMinimum(2)
+        self.spinbox_max_seats.setMinimum(1)
 
         self.spinbox_points_students = QSpinBox()
         self.spinbox_points_students.setAlignment(Qt.AlignCenter)
@@ -44,6 +47,10 @@ class process_settings_page(QWidget):
         self.spinbox_points_company = QSpinBox()
         self.spinbox_points_company.setAlignment(Qt.AlignCenter)
         self.spinbox_points_company.setMinimum(1)
+
+        self.spinbox_points_degree = QSpinBox()
+        self.spinbox_points_degree.setAlignment(Qt.AlignCenter)
+        self.spinbox_points_degree.setMinimum(1)
         # Horizontal layouts and frames
         layout_rows = QHBoxLayout()
         layout_rows.addWidget(label_rows)
@@ -75,6 +82,11 @@ class process_settings_page(QWidget):
         frame_points_company = QFrame()
         frame_points_company.setLayout(layout_points_company)
 
+        layout_points_degree= QHBoxLayout()
+        layout_points_degree.addWidget(label_points_degree)
+        layout_points_degree.addWidget(self.spinbox_points_degree)
+        frame_points_degree = QFrame()
+        frame_points_degree.setLayout(layout_points_degree)
         # OK and CANCEL buttons
         self.pushbutton_ok = QPushButton("OK")
         self.pushbutton_ok.clicked.connect(self.ok_clicked)
@@ -93,6 +105,7 @@ class process_settings_page(QWidget):
         main_layout.addWidget(frame_max_seats)
         main_layout.addWidget(frame_points_students)
         main_layout.addWidget(frame_points_company)
+        main_layout.addWidget(frame_points_degree)
         main_layout.addWidget(frame_buttons)
 
         # Read current settings and set the spinboxes
@@ -101,7 +114,8 @@ class process_settings_page(QWidget):
             self.spinbox_min_seats.setValue(globals.current_session.settings.min_num)
             self.spinbox_max_seats.setValue(globals.current_session.settings.max_num)
             self.spinbox_points_students.setValue(globals.current_session.settings.points_student)
-            self.spinbox_points_company.setValue(globals.current_session.settings.points_company)
+            self.spinbox_points_company.setValue(globals.current_session.settings.points_field_of_study)
+            self.spinbox_points_degree.setValue(globals.current_session.settings.points_degree)
 
         # Final window creation
         self.setLayout(main_layout)
@@ -111,7 +125,8 @@ class process_settings_page(QWidget):
     def ok_clicked(self):
         # Read settings
         settings = Settings(num_rows=self.spinbox_rows.value(),min_num=self.spinbox_min_seats.value(),max_num=self.spinbox_max_seats.value(),
-                            points_student=self.spinbox_points_students.value(),points_company=self.spinbox_points_company.value())
+                            points_student=self.spinbox_points_students.value(),points_company=self.spinbox_points_company.value(),
+                            points_degree=self.spinbox_points_degree.value())
         # Value check and error display
         if settings.min_num > settings.max_num:
             error_message = QMessageBox()

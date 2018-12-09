@@ -19,6 +19,14 @@ class Degree(Enum):
     DOCTOR = 3
     ABSOLVENT = 4
 
+    @classmethod
+    def match_value_with_degree(cls,value):
+        if cls.__has_value(value):
+            return Degree[value]
+        else: return -1
+    def __has_value(value):
+        return any(value==item.name for item in Degree)
+
 class Student:
     def __init__(self, list_id, seats,name="Empty", field_of_study = [], text = "Empty", companies = [], points = 0, degree = '', other_points=0):
         self.name=name
@@ -42,12 +50,13 @@ class Company:
         self.degrees = degrees
 
 class Settings:
-    def __init__(self,num_rows = 0, min_num = 0, max_num = 0, points_student = 0, points_company = 0):
+    def __init__(self,num_rows = 0, min_num = 0, max_num = 0, points_student = 0, points_company = 0, points_degree=0):
         self.num_rows = num_rows
         self.min_num = min_num
         self.max_num = max_num
         self.points_student = points_student
-        self.points_company = points_company
+        self.points_field_of_study = points_company
+        self.points_degree = points_degree
 
 class Session:
     def __init__(self,name = "",students = [],companies = [], fields_of_study = [], settings = Settings(), pdf_dir = "", passed_students = [], added_students = []):
@@ -67,12 +76,13 @@ class Field_of_Study():
         self.tags = tags
 
 class Table_Specs():
-    def __init__(self,ID_name=-1,ID_surname=-1,ID_field_of_study=-1,IDs_companies = [-1,-1],IDs_students = [-1,-1]):
+    def __init__(self,ID_name=-1,ID_surname=-1,ID_field_of_study=-1,ID_degree=-1,IDs_companies = [-1,-1],IDs_students = [-1,-1]):
         self.ID_name = ID_name
         self.ID_surname = ID_surname
         self.ID_field_of_study = ID_field_of_study
         self.IDs_companies = IDs_companies
         self.IDs_students = IDs_students
+        self.ID_degree = ID_degree
 
 
 

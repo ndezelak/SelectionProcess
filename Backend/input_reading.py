@@ -82,6 +82,10 @@ class thread_read_file(QThread):
                         print("WARNING: No matching field of study found! Table reading not completed!")
                         #globals.current_session.students = []
                         continue
+                    ###### DEGREE ###########
+                    degree = row[globals.table_specs.ID_degree - 1]
+                    degree = Degree.match_value_with_degree(str(degree).upper())
+                    if degree == -1: degree=''
                     ##### COMPANIES ######
                     read_companies = []
                     matched_companies = []
@@ -114,7 +118,7 @@ class thread_read_file(QThread):
                                 self.mutex.unlock()
                     globals.current_session_buffer.students.append(
                         Student(list_id=list_id, seats=[], name=name + " " + surname, field_of_study=field_of_study,
-                                companies=matched_companies))
+                                companies=matched_companies, degree=degree))
                     list_id += 1
                 index += 1
         print('Done with reading the file!')
