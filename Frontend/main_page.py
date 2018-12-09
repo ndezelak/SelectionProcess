@@ -296,6 +296,7 @@ class mainPage(QWidget):
     @pyqtSlot()
     def delete_company_clicked(self):
         current_row = self.table_companies.currentRow()
+        if current_row == -1: return
         company_item = self.table_companies.item(current_row,0)
         for company in globals.current_session.companies:
             if company_item.text() == company.name:

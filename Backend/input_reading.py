@@ -1,12 +1,7 @@
-# Module external functions:
-#                           - read_csv( csv_file, person_type)
 from Data.data_structures import *
 from csv import *
-from config import *
-from PyQt5.QtCore import QThread,QMutex,QWaitCondition
-import Data.globals as globals
+from PyQt5.QtCore import QThread
 from Frontend.string_matcher_page import *
-from PyQt5.QtWidgets import QInputDialog,QLineEdit
 from Frontend.main_page_unknown_company import *
 
 class thread_read_file(QThread):
@@ -95,7 +90,7 @@ class thread_read_file(QThread):
                         read_companies = row[globals.table_specs.IDs_companies[0] - 1].split(",")
                     # Multi column case
                     else:
-                        for j in range(globals.table_specs.IDs_companies[0], globals.table_specs.IDs_companies[1]):
+                        for j in range(globals.table_specs.IDs_companies[0], globals.table_specs.IDs_companies[1]+1):
                             read_companies.append(row[j - 1])
                     # Find matching company from DB
                     for company in read_companies:

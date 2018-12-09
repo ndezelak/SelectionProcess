@@ -25,7 +25,6 @@ def main():
     QThread.currentThread().setPriority(QThread.HighestPriority)
     #Create the start page
     startpage = startPage(app)
-    #mainpage = mainPage(app)
     # Stop when app is closed
     sys.exit(app.exec_())
 
