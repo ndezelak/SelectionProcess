@@ -28,7 +28,7 @@ def fill_student(matching_points, student, system, sorted_companies):
     num_companies = len(sorted_companies)
     for i in range(0, num_companies):
         # Start with the last company (so that their seats would be more easily filled up)
-        index =  num_companies - 1 - i
+        index =  i #num_companies - 1 - i
         # Only consider the student (and companies) with the matching point in the system matrix
         if system[student.list_id][sorted_companies[index].list_id] == matching_points:
             # Start with the first row and repeat until you come to the last one

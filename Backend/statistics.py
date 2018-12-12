@@ -12,7 +12,8 @@ def get_student_pass_rate():
 def get_students_average_wish_rate():
     list_rates = []
     for student in globals.passed_students:
-        list_rates.append(get_student_wish_rate(student))
+        if not all(company == [] for company in student.companies):
+            list_rates.append(get_student_wish_rate(student))
     return float(sum(list_rates))/float(len(list_rates))
 
 def get_company_average_wish_rate():
@@ -35,7 +36,9 @@ def get_company_wish_rate(company):
         for student in row:
             sum_students += 1
             if student.field_of_study in company.field_of_study:
-                company_rate += 1
+                company_rate += float(globals.current_session.settings.points_field_of_study)/(float(globals.current_session.settings.points_field_of_study)+float(globals.current_session.settings.points_degree))
+            if student.degree in company.degrees:
+                company_rate+=float(globals.current_session.settings.points_degree)/(float(globals.current_session.settings.points_field_of_study)+float(globals.current_session.settings.points_degree))
     if float(sum_students) == 0:
         return 0
     else:

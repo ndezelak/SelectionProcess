@@ -34,10 +34,10 @@ def generate_system_matrix (students, companies): # ****** TESTED ****** #
                 if check:
                     system[student.list_id][company.list_id] += globals.current_session.settings.points_field_of_study
                     student.points+= globals.current_session.settings.points_field_of_study
-                check = any(student.degree.name == degree.name for degree in company.degrees)
-                if check:
-                    system[student.list_id][company.list_id] += globals.current_session.settings.points_degree
-                    student.points += globals.current_session.settings.points_degree
+                    check = any(student.degree.name == degree.name for degree in company.degrees)
+                    if check:
+                        system[student.list_id][company.list_id] += globals.current_session.settings.points_degree
+                        student.points += globals.current_session.settings.points_degree
                 check = any(company.name == comp.name for comp in student.companies)
                 if check:
                     system[student.list_id][company.list_id]+=globals.current_session.settings.points_student

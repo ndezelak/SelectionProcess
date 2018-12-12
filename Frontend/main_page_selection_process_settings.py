@@ -42,15 +42,15 @@ class process_settings_page(QWidget):
 
         self.spinbox_points_students = QSpinBox()
         self.spinbox_points_students.setAlignment(Qt.AlignCenter)
-        self.spinbox_points_students.setMinimum(1)
+        self.spinbox_points_students.setMinimum(0)
 
         self.spinbox_points_company = QSpinBox()
         self.spinbox_points_company.setAlignment(Qt.AlignCenter)
-        self.spinbox_points_company.setMinimum(1)
+        self.spinbox_points_company.setMinimum(0)
 
         self.spinbox_points_degree = QSpinBox()
         self.spinbox_points_degree.setAlignment(Qt.AlignCenter)
-        self.spinbox_points_degree.setMinimum(1)
+        self.spinbox_points_degree.setMinimum(0)
         # Horizontal layouts and frames
         layout_rows = QHBoxLayout()
         layout_rows.addWidget(label_rows)

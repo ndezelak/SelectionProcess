@@ -20,8 +20,8 @@ class thread_read_file(QThread):
             for tag in field.tags:
                 if tag.lower() in string_field.lower():
                     return field
-            if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
-                return field
+            #if string_field.lower() in field.name.lower() or field.name.lower() in string_field.lower():
+            #    return field
         # No match, therefor a user prompt is launched
         matcher = string_matcher_page(widget)
         fields = []
